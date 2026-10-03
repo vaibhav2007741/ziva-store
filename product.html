@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ZIVA | Product</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .product-page {
+            min-height: 80vh;
+            padding: 70px 7%;
+            background: #fff8f3;
+        }
+
+        .product-detail {
+            max-width: 1150px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .product-photo {
+            height: 600px;
+            overflow: hidden;
+            background: #f3e5dc;
+        }
+
+        .product-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-details .category {
+            color: #b17b68;
+            font-size: 12px;
+            letter-spacing: 3px;
+            font-weight: bold;
+        }
+
+        .product-details h1 {
+            font-size: 42px;
+            margin: 15px 0;
+            color: #241b19;
+        }
+
+        .product-rating {
+            color: #c6a15b;
+            letter-spacing: 3px;
+            margin: 15px 0;
+        }
+
+        .product-price {
+            font-size: 28px;
+            font-weight: bold;
+            color: #8b4f55;
+        }
+
+        .product-price del {
+            font-size: 16px;
+            color: #999;
+            margin-left: 10px;
+        }
+
+        .product-description {
+            color: #665a56;
+            line-height: 1.7;
+            margin: 25px 0;
+        }
+
+        .size-title {
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .sizes {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .size-btn {
+            width: 48px;
+            height: 42px;
+            background: white;
+            border: 1px solid #d8c6bd;
+            color: #241b19;
+        }
+
+        .size-btn:hover {
+            background: #241b19;
+            color: white;
+        }
+
+        .buy-btn {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            background: #241b19;
+            color: white;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .buy-btn:hover {
+            background: #8b4f55;
+        }
+
+        .wishlist-btn {
+            width: 100%;
+            padding: 15px;
+            background: transparent;
+            border: 1px solid #241b19;
+            color: #241b19;
+            font-weight: bold;
+        }
+
+        .wishlist-btn:hover {
+            background: #e8a0a8;
+            border-color: #e8a0a8;
+        }
+
+        .product-info-box {
+            margin-top: 30px;
+            border-top: 1px solid #dfcec5;
+            padding-top: 20px;
+        }
+
+        .product-info-box p {
+            margin: 8px 0;
+            color: #665a56;
+            font-size: 14px;
+        }
+
+        @media (max-width: 800px) {
+            .product-page {
+                padding: 40px 20px;
+            }
+
+            .product-detail {
+                grid-template-columns: 1fr;
+                gap: 35px;
+            }
+
+            .product-photo {
+                height: 480px;
+            }
+
+            .product-details h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="logo">ZIVA</div>
+
+    <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="index.html">New In</a>
+        <a href="index.html">Women</a>
+        <a href="index.html">Men</a>
+        <a href="index.html">Sale</a>
+    </nav>
+
+    <div class="header-actions">
+        <button class="icon-btn">⌕</button>
+        <button class="icon-btn">♡</button>
+        <button class="cart-btn" id="cartButton">🛍 Cart (0)</button>
+    </div>
+
+</header>
+
+
+<main class="product-page">
+
+    <div class="product-detail">
+
+        <div class="product-photo">
+            <img
+                src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=900&q=85"
+                alt="ZIVA Fashion Dress">
+        </div>
+
+
+        <div class="product-details">
+
+            <p class="category">WOMEN</p>
+
+            <h1>Classic Fashion Dress</h1>
+
+            <div class="product-rating">
+                ★★★★★
+            </div>
+
+            <div class="product-price">
+                ₹799
+                <del>₹999</del>
+            </div>
+
+            <p class="product-description">
+                A stylish and comfortable fashion dress designed
+                for modern everyday looks. Perfect for casual
+                outings, shopping and special occasions.
+            </p>
+
+
+            <div class="size-title">
+                Select Size
+            </div>
+
+            <div class="sizes">
+                <button class="size-btn">S</button>
+                <button class="size-btn">M</button>
+                <button class="size-btn">L</button>
+                <button class="size-btn">XL</button>
+            </div>
+
+
+            <button class="buy-btn" onclick="addToCart()">
+                ADD TO BAG
+            </button>
+
+            <button class="wishlist-btn">
+                ♡ ADD TO WISHLIST
+            </button>
+
+
+            <div class="product-info-box">
+                <p>✓ Premium quality fabric</p>
+                <p>✓ Comfortable fit</p>
+                <p>✓ Easy returns available</p>
+                <p>✓ Secure payment</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<footer>
+
+    <div class="footer-logo">ZIVA</div>
+
+    <p>Modern fashion for everyone.</p>
+
+    <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+    </div>
+
+    <small>
+        © 2026 ZIVA. All Rights Reserved.
+    </small>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ZIVA | Login</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .auth-page {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+            background: #fff8f3;
+        }
+
+        .auth-box {
+            width: 100%;
+            max-width: 450px;
+            background: white;
+            padding: 45px;
+            border: 1px solid #eadbd3;
+            box-shadow: 0 10px 30px rgba(36,27,25,.08);
+        }
+
+        .auth-box h1 {
+            text-align: center;
+            color: #241b19;
+            margin: 0 0 10px;
+        }
+
+        .auth-subtitle {
+            text-align: center;
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .auth-tab {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            background: transparent;
+            color: #777;
+            font-weight: bold;
+        }
+
+        .auth-tab.active {
+            color: #8b4f55;
+            border-bottom: 2px solid #8b4f55;
+        }
+
+        .auth-form {
+            display: none;
+        }
+
+        .auth-form.active {
+            display: block;
+        }
+
+        .auth-form label {
+            display: block;
+            margin: 15px 0 7px;
+            font-size: 13px;
+            font-weight: bold;
+            color: #241b19;
+        }
+
+        .auth-form input {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #d8c6bd;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .auth-form input:focus {
+            border-color: #8b4f55;
+        }
+
+        .auth-submit {
+            width: 100%;
+            margin-top: 25px;
+            padding: 15px;
+            border: none;
+            background: #241b19;
+            color: white;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .auth-submit:hover {
+            background: #8b4f55;
+        }
+
+        .auth-note {
+            text-align: center;
+            margin-top: 20px;
+            color: #888;
+            font-size: 12px;
+        }
+
+        @media (max-width: 500px) {
+            .auth-box {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="logo">ZIVA</div>
+
+    <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="index.html">New In</a>
+        <a href="index.html">Women</a>
+        <a href="index.html">Men</a>
+        <a href="index.html">Sale</a>
+    </nav>
+
+    <div class="header-actions">
+        <button class="icon-btn">⌕</button>
+        <button class="icon-btn">♡</button>
+        <button class="cart-btn" id="cartButton">
+            🛍 Cart (0)
+        </button>
+    </div>
+
+</header>
+
+
+<main class="auth-page">
+
+    <div class="auth-box">
+
+        <h1>Welcome to ZIVA</h1>
+
+        <p class="auth-subtitle">
+            Login or create your ZIVA account
+        </p>
+
+
+        <div class="auth-tabs">
+
+            <button
+                class="auth-tab active"
+                onclick="showLogin()">
+                LOGIN
+            </button>
+
+            <button
+                class="auth-tab"
+                onclick="showSignup()">
+                SIGN UP
+            </button>
+
+        </div>
+
+
+        <!-- LOGIN -->
+
+        <form
+            id="loginForm"
+            class="auth-form active"
+            onsubmit="loginUser(event)">
+
+            <label>Email</label>
+
+            <input
+                type="email"
+                id="loginEmail"
+                placeholder="Enter your email"
+                required>
+
+
+            <label>Password</label>
+
+            <input
+                type="password"
+                id="loginPassword"
+                placeholder="Enter your password"
+                required>
+
+
+            <button
+                type="submit"
+                class="auth-submit">
+                LOGIN
+            </button>
+
+        </form>
+
+
+        <!-- SIGN UP -->
+
+        <form
+            id="signupForm"
+            class="auth-form"
+            onsubmit="signupUser(event)">
+
+            <label>Full Name</label>
+
+            <input
+                type="text"
+                id="signupName"
+                placeholder="Enter your name"
+                required>
+
+
+            <label>Email</label>
+
+            <input
+                type="email"
+                id="signupEmail"
+                placeholder="Enter your email"
+                required>
+
+
+            <label>Password</label>
+
+            <input
+                type="password"
+                id="signupPassword"
+                placeholder="Create a password"
+                minlength="6"
+                required>
+
+
+            <button
+                type="submit"
+                class="auth-submit">
+                CREATE ACCOUNT
+            </button>
+
+        </form>
+
+
+        <p class="auth-note">
+            By continuing, you agree to ZIVA's Terms & Privacy Policy.
+        </p>
+
+    </div>
+
+</main>
+
+
+<footer>
+
+    <div class="footer-logo">ZIVA</div>
+
+    <p>Modern fashion for everyone.</p>
+
+    <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+    </div>
+
+    <small>
+        © 2026 ZIVA. All Rights Reserved.
+    </small>
+
+</footer>
+
+
+<script>
+
+function showLogin() {
+
+    document.getElementById("loginForm")
+        .classList.add("active");
+
+    document.getElementById("signupForm")
+        .classList.remove("active");
+
+    document.querySelectorAll(".auth-tab")[0]
+        .classList.add("active");
+
+    document.querySelectorAll(".auth-tab")[1]
+        .classList.remove("active");
+}
+
+
+function showSignup() {
+
+    document.getElementById("signupForm")
+        .classList.add("active");
+
+    document.getElementById("loginForm")
+        .classList.remove("active");
+
+    document.querySelectorAll(".auth-tab")[1]
+        .classList.add("active");
+
+    document.querySelectorAll(".auth-tab")[0]
+        .classList.remove("active");
+}
+
+
+function signupUser(event) {
+
+    event.preventDefault();
+
+    const name =
+        document.getElementById("signupName").value;
+
+    const email =
+        document.getElementById("signupEmail").value;
+
+    localStorage.setItem(
+        "zivaUser",
+        JSON.stringify({
+            name: name,
+            email: email
+        })
+    );
+
+    alert("Account created successfully!");
+
+    showLogin();
+}
+
+
+function loginUser(event) {
+
+    event.preventDefault();
+
+    const email =
+        document.getElementById("loginEmail").value;
+
+    const user =
+        JSON.parse(localStorage.getItem("zivaUser"));
+
+    if (user && user.email === email) {
+
+        alert("Welcome back to ZIVA, " + user.name + "!");
+
+    } else {
+
+        alert("Account not found. Please sign up first.");
+
+    }
+}
+
+</script>
+
+</body>
+</html>

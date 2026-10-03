@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZIVA | Shopping Cart</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .cart-page {
+            min-height: 70vh;
+            padding: 70px 7%;
+            background: #fff8f3;
+        }
+
+        .cart-title {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .cart-title p {
+            color: #b17b68;
+            letter-spacing: 4px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .cart-title h1 {
+            font-size: 40px;
+            color: #241b19;
+        }
+
+        #cartItems {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border: 1px solid #eadbd3;
+        }
+
+        .cart-item img {
+            width: 100px;
+            height: 120px;
+            object-fit: cover;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-info h3 {
+            margin: 0 0 8px;
+            color: #241b19;
+        }
+
+        .cart-item-price {
+            color: #8b4f55;
+            font-weight: bold;
+        }
+
+        .quantity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quantity button {
+            width: 30px;
+            height: 30px;
+            border: 1px solid #d8c6bd;
+            background: white;
+        }
+
+        .remove-btn {
+            border: none;
+            background: none;
+            color: #8b4f55;
+            font-weight: bold;
+        }
+
+        .cart-summary {
+            max-width: 900px;
+            margin: 30px auto 0;
+            background: #f3e5dc;
+            padding: 25px;
+            text-align: right;
+        }
+
+        .cart-total {
+            font-size: 24px;
+            font-weight: bold;
+            color: #241b19;
+        }
+
+        .checkout-btn {
+            margin-top: 15px;
+            padding: 15px 30px;
+            border: none;
+            background: #241b19;
+            color: white;
+            font-weight: bold;
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 50px;
+            color: #665a56;
+        }
+
+        @media (max-width: 600px) {
+            .cart-item {
+                flex-wrap: wrap;
+            }
+
+            .cart-item img {
+                width: 80px;
+                height: 100px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="logo">ZIVA</div>
+
+    <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="index.html">New In</a>
+        <a href="index.html">Women</a>
+        <a href="index.html">Men</a>
+        <a href="index.html">Sale</a>
+    </nav>
+
+    <div class="header-actions">
+        <button class="icon-btn">⌕</button>
+        <button class="icon-btn">♡</button>
+        <button class="cart-btn" id="cartButton">🛍 Cart (0)</button>
+    </div>
+
+</header>
+
+<main class="cart-page">
+
+    <div class="cart-title">
+        <p>ZIVA SHOPPING</p>
+        <h1>Your Cart</h1>
+    </div>
+
+    <div id="cartItems"></div>
+
+    <div class="cart-summary">
+        <div class="cart-total">
+            Total: ₹<span id="cartTotal">0</span>
+        </div>
+
+        <button class="checkout-btn">
+            PROCEED TO CHECKOUT
+        </button>
+    </div>
+
+</main>
+
+<footer>
+
+    <div class="footer-logo">ZIVA</div>
+
+    <p>Modern fashion for everyone.</p>
+
+    <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+    </div>
+
+    <small>© 2026 ZIVA. All Rights Reserved.</small>
+
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ZIVA | Contact Us</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .contact-page {
+            background: #fff8f3;
+            min-height: 80vh;
+            padding: 70px 7%;
+        }
+
+        .contact-heading {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .contact-heading p {
+            color: #b17b68;
+            letter-spacing: 4px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .contact-heading h1 {
+            color: #241b19;
+            font-size: 42px;
+            margin: 15px 0;
+        }
+
+        .contact-heading span {
+            color: #777;
+        }
+
+        .contact-container {
+            max-width: 1000px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .contact-info,
+        .contact-form {
+            background: white;
+            padding: 35px;
+            border: 1px solid #eadbd3;
+        }
+
+        .contact-info h2,
+        .contact-form h2 {
+            color: #241b19;
+            margin-top: 0;
+        }
+
+        .contact-info p {
+            color: #665a56;
+            line-height: 1.7;
+        }
+
+        .contact-item {
+            margin-top: 25px;
+        }
+
+        .contact-item strong {
+            display: block;
+            color: #241b19;
+            margin-bottom: 5px;
+        }
+
+        .contact-item span {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .contact-form label {
+            display: block;
+            margin: 15px 0 7px;
+            font-size: 13px;
+            font-weight: bold;
+            color: #241b19;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 13px;
+            border: 1px solid #d8c6bd;
+            outline: none;
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        .contact-form textarea {
+            height: 130px;
+            resize: vertical;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: #8b4f55;
+        }
+
+        .contact-submit {
+            width: 100%;
+            margin-top: 20px;
+            padding: 15px;
+            border: none;
+            background: #241b19;
+            color: white;
+            font-weight: bold;
+            letter-spacing: 1px;
+            cursor: pointer;
+        }
+
+        .contact-submit:hover {
+            background: #8b4f55;
+        }
+
+        @media (max-width: 750px) {
+            .contact-page {
+                padding: 50px 20px;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-heading h1 {
+                font-size: 34px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="logo">ZIVA</div>
+
+    <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="index.html">New In</a>
+        <a href="index.html">Women</a>
+        <a href="index.html">Men</a>
+        <a href="index.html">Sale</a>
+    </nav>
+
+    <div class="header-actions">
+        <button class="icon-btn">⌕</button>
+        <button class="icon-btn">♡</button>
+        <button class="cart-btn" id="cartButton">🛍 Cart (0)</button>
+    </div>
+
+</header>
+
+
+<main class="contact-page">
+
+    <div class="contact-heading">
+
+        <p>GET IN TOUCH</p>
+
+        <h1>Contact ZIVA</h1>
+
+        <span>
+            Have a question? We'd love to hear from you.
+        </span>
+
+    </div>
+
+
+    <div class="contact-container">
+
+        <div class="contact-info">
+
+            <h2>Let's Talk</h2>
+
+            <p>
+                If you have questions about our products,
+                orders or anything else, send us a message.
+            </p>
+
+            <div class="contact-item">
+                <strong>📧 Email</strong>
+                <span>support@ziva.com</span>
+            </div>
+
+            <div class="contact-item">
+                <strong>📞 Phone</strong>
+                <span>+91 XXXXX XXXXX</span>
+            </div>
+
+            <div class="contact-item">
+                <strong>📍 Location</strong>
+                <span>Rajasthan, India</span>
+            </div>
+
+        </div>
+
+
+        <div class="contact-form">
+
+            <h2>Send Us a Message</h2>
+
+            <form onsubmit="sendMessage(event)">
+
+                <label>Your Name</label>
+
+                <input
+                    type="text"
+                    id="contactName"
+                    placeholder="Enter your name"
+                    required>
+
+
+                <label>Email</label>
+
+                <input
+                    type="email"
+                    id="contactEmail"
+                    placeholder="Enter your email"
+                    required>
+
+
+                <label>Message</label>
+
+                <textarea
+                    id="contactMessage"
+                    placeholder="Write your message..."
+                    required></textarea>
+
+
+                <button
+                    type="submit"
+                    class="contact-submit">
+                    SEND MESSAGE
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<footer>
+
+    <div class="footer-logo">ZIVA</div>
+
+    <p>Modern fashion for everyone.</p>
+
+    <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="privacy.html">Privacy</a>
+<a href="terms.html">Terms</a>
+    </div>
+
+    <small>
+        © 2026 ZIVA. All Rights Reserved.
+    </small>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+<script>
+function sendMessage(event) {
+
+    event.preventDefault();
+
+    alert("Thank you! Your message has been received.");
+
+    event.target.reset();
+}
+</script>
+
+</body>
+</html>

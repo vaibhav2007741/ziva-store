@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ZIVA | About Us</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .about-page {
+            background: #fff8f3;
+        }
+
+        .about-hero {
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 50px 20px;
+            color: white;
+            background:
+                linear-gradient(rgba(36,27,25,.65), rgba(36,27,25,.65)),
+                url("https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=1600&q=85");
+            background-size: cover;
+            background-position: center;
+        }
+
+        .about-hero p {
+            color: #f4d6b8;
+            letter-spacing: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .about-hero h1 {
+            font-size: 60px;
+            margin: 15px 0;
+        }
+
+        .about-content {
+            max-width: 950px;
+            margin: auto;
+            padding: 80px 25px;
+            text-align: center;
+        }
+
+        .about-content .small-title {
+            color: #b17b68;
+            letter-spacing: 4px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .about-content h2 {
+            font-size: 38px;
+            color: #241b19;
+            margin: 15px 0 25px;
+        }
+
+        .about-content p {
+            color: #665a56;
+            line-height: 1.8;
+            font-size: 16px;
+            margin-bottom: 18px;
+        }
+
+        .about-values {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto 80px;
+            padding: 0 25px;
+        }
+
+        .value-card {
+            background: white;
+            padding: 35px 25px;
+            text-align: center;
+            border: 1px solid #eadbd3;
+        }
+
+        .value-card span {
+            font-size: 32px;
+        }
+
+        .value-card h3 {
+            color: #241b19;
+            margin: 15px 0 10px;
+        }
+
+        .value-card p {
+            color: #777;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        @media (max-width: 700px) {
+            .about-hero h1 {
+                font-size: 45px;
+            }
+
+            .about-values {
+                grid-template-columns: 1fr;
+            }
+
+            .about-content h2 {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="logo">ZIVA</div>
+
+    <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="index.html">New In</a>
+        <a href="index.html">Women</a>
+        <a href="index.html">Men</a>
+        <a href="index.html">Sale</a>
+    </nav>
+
+    <div class="header-actions">
+        <button class="icon-btn">⌕</button>
+        <button class="icon-btn">♡</button>
+        <button class="cart-btn" id="cartButton">🛍 Cart (0)</button>
+    </div>
+
+</header>
+
+
+<main class="about-page">
+
+    <section class="about-hero">
+
+        <div>
+            <p>WELCOME TO ZIVA</p>
+            <h1>Fashion Made For You.</h1>
+        </div>
+
+    </section>
+
+
+    <section class="about-content">
+
+        <p class="small-title">OUR STORY</p>
+
+        <h2>Style. Comfort. Confidence.</h2>
+
+        <p>
+            ZIVA is a modern fashion brand created for people
+            who want stylish clothing without compromising on
+            comfort and everyday wearability.
+        </p>
+
+        <p>
+            Our goal is to bring together modern trends,
+            timeless styles and carefully selected fashion
+            for everyone.
+        </p>
+
+        <p>
+            From everyday essentials to statement pieces,
+            ZIVA is built around one simple idea:
+            <strong>wear your style.</strong>
+        </p>
+
+    </section>
+
+
+    <section class="about-values">
+
+        <div class="value-card">
+            <span>✦</span>
+            <h3>Modern Style</h3>
+            <p>
+                Fashion-forward styles designed for
+                today's generation.
+            </p>
+        </div>
+
+        <div class="value-card">
+            <span>♡</span>
+            <h3>Made With Care</h3>
+            <p>
+                We focus on quality, comfort and
+                thoughtful fashion choices.
+            </p>
+        </div>
+
+        <div class="value-card">
+            <span>✧</span>
+            <h3>For Everyone</h3>
+            <p>
+                Fashion that lets everyone express
+                their own personality.
+            </p>
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <div class="footer-logo">ZIVA</div>
+
+    <p>Modern fashion for everyone.</p>
+
+    <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="#">Contact</a>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+    </div>
+
+    <small>
+        © 2026 ZIVA. All Rights Reserved.
+    </small>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
