@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZIVA — Fashion</title>
+    <title>ZIVA — Fashion Store</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- HEADER -->
+<!-- ================= HEADER ================= -->
+
 <header class="header">
 
     <a href="index.html" class="logo">ZIVA</a>
 
     <nav class="nav">
         <a href="#new-in">New In</a>
-        <a href="#women-section">Women</a>
         <a href="#mens-section">Men</a>
         <a href="#trending-section">Trending</a>
         <a href="#sale-section">Sale</a>
@@ -27,47 +27,54 @@
         <button class="icon-btn" onclick="openSearch()">
             ⌕
         </button>
-    
-        <button class="icon-btn" id="accountButton" onclick="openAccount()">
+
+        <button
+            class="icon-btn"
+            id="accountButton"
+            onclick="openAccount()">
             👤 Login
         </button>
-    
-        <button class="cart-btn" id="cartButton">
+
+        <button
+            class="cart-btn"
+            id="cartButton">
             🛍 Cart (0)
         </button>
-    
+
     </div>
 
 </header>
 
 
-<!-- HERO -->
+<!-- ================= HERO ================= -->
+
 <section class="hero" id="new-in">
 
-    <div class="hero-text">
+    <div class="hero-content">
 
-        <p>NEW SEASON • NEW STYLE</p>
+        <p class="hero-small">
+            NEW SEASON • NEW STYLE
+        </p>
 
         <h1>
-            WEAR<br>
-            YOUR<br>
-            VIBE.
+            STYLE<br>
+            YOUR WAY
         </h1>
 
-        <span>
-            Discover fashion made for your everyday style.
-        </span>
+        <p>
+            Discover your next favourite look with ZIVA.
+        </p>
 
         <div class="hero-buttons">
 
-            <button onclick="document.getElementById('women-section').scrollIntoView()">
-                SHOP WOMEN
+            <button
+                onclick="document.getElementById('mens-section').scrollIntoView({behavior:'smooth'})">
+                SHOP MEN
             </button>
 
             <button
-                class="light-btn"
-                onclick="document.getElementById('mens-section').scrollIntoView()">
-                SHOP MEN
+                onclick="document.getElementById('trending-section').scrollIntoView({behavior:'smooth'})">
+                TRENDING
             </button>
 
         </div>
@@ -77,57 +84,72 @@
 </section>
 
 
-<!-- CATEGORIES -->
-<section class="categories-section" id="women-section">
+<!-- ================= CATEGORY ================= -->
+
+<section class="categories-section">
 
     <div class="section-heading">
 
-        <p>EXPLORE ZIVA</p>
+        <p>EXPLORE</p>
 
-        <h2>Shop Your Style</h2>
+        <h2>Shop By Category</h2>
 
     </div>
 
-
     <div class="category-grid">
 
-        <div class="category-card">
-
-            <img
-                src="images/WhatsApp Image 2026-10-03 at 9.58.39 PM (1).jpeg"
-                alt="Women Fashion">
-
-            <div>
-                <h3>Women</h3>
-                <span>Explore the latest looks</span>
-            </div>
-
-        </div>
-
-
-        <div class="category-card" id="mens-section">
+        <div
+            class="category-card"
+            onclick="document.getElementById('mens-section').scrollIntoView({behavior:'smooth'})">
 
             <img
                 src="images/men-outfit.jpeg"
                 alt="Men Fashion">
 
-            <div>
+            <div class="category-overlay">
+
                 <h3>Men</h3>
-                <span>Classic looks. Modern attitude.</span>
+
+                <span>Shop Now →</span>
+
             </div>
 
         </div>
 
 
-        <div class="category-card" id="trending-section">
+        <div
+            class="category-card"
+            onclick="document.getElementById('trending-section').scrollIntoView({behavior:'smooth'})">
 
             <img
-                src="images/WhatsApp Image 2026-10-03 at 9.59.14 PM.jpeg"
-                alt="Trending Fashion">
+                src="images/WhatsApp Image 2026-10-03 at 9.58.48 PM (1).jpeg"
+                alt="Trending Men Fashion">
 
-            <div>
+            <div class="category-overlay">
+
                 <h3>Trending</h3>
-                <span>What's trending now</span>
+
+                <span>Explore →</span>
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="category-card"
+            onclick="document.getElementById('sale-section').scrollIntoView({behavior:'smooth'})">
+
+            <img
+                src="images/WhatsApp Image 2026-10-03 at 9.58.39 PM.jpeg"
+                alt="Sale">
+
+            <div class="category-overlay">
+
+                <h3>Sale</h3>
+
+                <span>Shop Now →</span>
+
             </div>
 
         </div>
@@ -137,1997 +159,87 @@
 </section>
 
 
-<!-- PRODUCTS -->
-<section class="products-section" id="sale-section">
+<!-- ================= MEN'S COLLECTION ================= -->
+
+<section
+    class="products-section"
+    id="mens-section">
 
     <div class="section-heading">
 
-        <p>ZIVA COLLECTION</p>
+        <p>ZIVA MEN</p>
 
-        <h2>Latest Looks</h2>
+        <h2>Men's Collection</h2>
 
     </div>
 
-
-    <div class="product-grid">
-
-
-        <!-- 01 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/WhatsApp Image 2026-10-03 at 9.58.39 PM (1).jpeg"
-                    alt="ZIVA Look 01">
-
-                <span class="sale">NEW</span>
-
-                <button class="heart" onclick="addToWishlist()">♡</button>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">WOMEN</span>
-
-                <h3>
-                    <a href="product.html">ZIVA Look 01</a>
-                </h3>
-
-                <div class="rating">
-                    ★★★★★ <span>(New)</span>
-                </div>
-
-                <strong>₹799</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- 02 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/WhatsApp Image 2026-10-03 at 9.58.39 PM.jpeg"
-                    alt="ZIVA Look 02">
-
-                <span class="sale">NEW</span>
-
-                <button class="heart">♡</button>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">WOMEN</span>
-
-                <h3>ZIVA Look 02</h3>
-
-                <div class="rating">
-                    ★★★★★ <span>(New)</span>
-                </div>
-
-                <strong>₹899</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- 03 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/WhatsApp Image 2026-10-03 at 9.58.41 PM.jpeg"
-                    alt="ZIVA Look 03">
-
-                <span class="sale">NEW</span>
-
-                <button class="heart">♡</button>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">WOMEN</span>
-
-                <h3>ZIVA Look 03</h3>
-
-                <div class="rating">
-                    ★★★★★ <span>(New)</span>
-                </div>
-
-                <strong>₹799</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- 04 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/WhatsApp Image 2026-10-03 at 9.58.42 PM (1).jpeg"
-                    alt="ZIVA Look 04">
-
-                <span class="sale">NEW</span>
-
-                <button class="heart">♡</button>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">WOMEN</span>
-
-                <h3>ZIVA Look 04</h3>
-
-                <div class="rating">
-                    ★★★★★ <span>(New)</span>
-                </div>
-
-                <strong>₹999</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- 05 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/WhatsApp Image 2026-10-03 at 9.58.42 PM.jpeg"
-                    alt="ZIVA Look 05">
-
-                <span class="sale">NEW</span>
-
-                <button class="heart">♡</button>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">WOMEN</span>
-
-                <h3>ZIVA Look 05</h3>
-
-                <div class="rating">
-                    ★★★★★ <span>(New)</span>
-                </div>
-
-                <strong>₹899</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- 06 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/WhatsApp Image 2026-10-03 at 9.58.48 PM (1).jpeg"
-                    alt="ZIVA Look 06">
-
-                <span class="sale">NEW</span>
-
-                <button class="heart">♡</button>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">WOMEN</span>
-
-                <h3>ZIVA Look 06</h3>
-
-                <div class="rating">
-                    ★★★★★ <span>(New)</span>
-                </div>
-
-                <strong>₹799</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- 07 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/WhatsApp Image 2026-10-03 at 9.58.48 PM (2).jpeg"
-                    alt="ZIVA Look 07">
-
-                <span class="sale">NEW</span>
-
-                <button class="heart">♡</button>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">WOMEN</span>
-
-                <h3>ZIVA Look 07</h3>
-
-                <div class="rating">
-                    ★★★★★ <span>(New)</span>
-                </div>
-
-                <strong>₹899</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- 08 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/WhatsApp Image 2026-10-03 at 9.58.48 PM (3).jpeg"
-                    alt="ZIVA Look 08">
-
-                <span class="sale">NEW</span>
-
-                <button class="heart">♡</button>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">WOMEN</span>
-
-                <h3>ZIVA Look 08</h3>
-
-                <div class="rating">
-                    ★★★★★ <span>(New)</span>
-                </div>
-
-                <strong>₹999</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- 09 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/WhatsApp Image 2026-10-03 at 9.58.48 PM.jpeg"
-                    alt="ZIVA Look 09">
-
-                <span class="sale">NEW</span>
-
-                <button class="heart">♡</button>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">WOMEN</span>
-
-                <h3>ZIVA Look 09</h3>
-
-                <div class="rating">
-                    ★★★★★ <span>(New)</span>
-                </div>
-
-                <strong>₹799</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- 10 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/WhatsApp Image 2026-10-03 at 9.58.49 PM (1).jpeg"
-                    alt="ZIVA Look 10">
-
-                <span class="sale">NEW</span>
-
-                <button class="heart">♡</button>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">WOMEN</span>
-
-                <h3>ZIVA Look 10</h3>
-
-                <div class="rating">
-                    ★★★★★ <span>(New)</span>
-                </div>
-
-                <strong>₹899</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- 11 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/WhatsApp Image 2026-10-03 at 9.58.49 PM.jpeg"
-                    alt="ZIVA Look 11">
-
-                <span class="sale">NEW</span>
-
-                <button class="heart">♡</button>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">WOMEN</span>
-
-                <h3>ZIVA Look 11</h3>
-
-                <div class="rating">
-                    ★★★★★ <span>(New)</span>
-                </div>
-
-                <strong>₹799</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- 12 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/WhatsApp Image 2026-10-03 at 9.58.50 PM (1).jpeg"
-                    alt="ZIVA Look 12">
-
-                <span class="sale">NEW</span>
-
-                <button class="heart">♡</button>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">WOMEN</span>
-
-                <h3>ZIVA Look 12</h3>
-
-                <div class="rating">
-                    ★★★★★ <span>(New)</span>
-                </div>
-
-                <strong>₹999</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- 13 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/WhatsApp Image 2026-10-03 at 9.58.50 PM.jpeg"
-                    alt="ZIVA Look 13">
-
-                <span class="sale">NEW</span>
-
-                <button class="heart">♡</button>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">WOMEN</span>
-
-                <h3>ZIVA Look 13</h3>
-
-                <div class="rating">
-                    ★★★★★ <span>(New)</span>
-                </div>
-
-                <strong>₹899</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- 14 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/WhatsApp Image 2026-10-03 at 9.58.51 PM (1).jpeg"
-                    alt="ZIVA Look 14">
-
-                <span class="sale">NEW</span>
-
-                <button class="heart">♡</button>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">WOMEN</span>
-
-                <h3>ZIVA Look 14</h3>
-
-                <div class="rating">
-                    ★★★★★ <span>(New)</span>
-                </div>
-
-                <strong>₹799</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- 15 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/WhatsApp Image 2026-10-03 at 9.58.51 PM (2).jpeg"
-                    alt="ZIVA Look 15">
-
-                <span class="sale">NEW</span>
-
-                <button class="heart">♡</button>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">WOMEN</span>
-
-                <h3>ZIVA Look 15</h3>
-
-                <div class="rating">
-                    ★★★★★ <span>(New)</span>
-                </div>
-
-                <strong>₹899</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- 16 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/WhatsApp Image 2026-10-03 at 9.58.51 PM.jpeg"
-                    alt="ZIVA Look 16">
-
-                <span class="sale">NEW</span>
-
-                <button class="heart">♡</button>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">WOMEN</span>
-
-                <h3>ZIVA Look 16</h3>
-
-                <div class="rating">
-                    ★★★★★ <span>(New)</span>
-                </div>
-
-                <strong>₹999</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- 17 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/WhatsApp Image 2026-10-03 at 9.58.52 PM.jpeg"
-                    alt="ZIVA Look 17">
-
-                <span class="sale">NEW</span>
-
-                <button class="heart">♡</button>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">WOMEN</span>
-
-                <h3>ZIVA Look 17</h3>
-
-                <div class="rating">
-                    ★★★★★ <span>(New)</span>
-                </div>
-
-                <strong>₹799</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- 18 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/WhatsApp Image 2026-10-03 at 9.58.53 PM.jpeg"
-                    alt="ZIVA Look 18">
-
-                <span class="sale">NEW</span>
-
-                <button class="heart">♡</button>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">WOMEN</span>
-
-                <h3>ZIVA Look 18</h3>
-
-                <div class="rating">
-                    ★★★★★ <span>(New)</span>
-                </div>
-
-                <strong>₹899</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- 19 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/WhatsApp Image 2026-10-03 at 9.58.54 PM.jpeg"
-                    alt="ZIVA Look 19">
-
-                <span class="sale">NEW</span>
-
-                <button class="heart">♡</button>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">WOMEN</span>
-
-                <h3>ZIVA Look 19</h3>
-
-                <div class="rating">
-                    ★★★★★ <span>(New)</span>
-                </div>
-
-                <strong>₹799</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- 20 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/WhatsApp Image 2026-10-03 at 9.58.55 PM (1).jpeg"
-                    alt="ZIVA Look 20">
-
-                <span class="sale">NEW</span>
-
-                <button class="heart">♡</button>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">WOMEN</span>
-
-                <h3>ZIVA Look 20</h3>
-
-                <div class="rating">
-                    ★★★★★ <span>(New)</span>
-                </div>
-
-                <strong>₹999</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- 21 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/WhatsApp Image 2026-10-03 at 9.58.55 PM.jpeg"
-                    alt="ZIVA Look 21">
-
-                <span class="sale">NEW</span>
-
-                <button class="heart">♡</button>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">WOMEN</span>
-
-                <h3>ZIVA Look 21</h3>
-
-                <div class="rating">
-                    ★★★★★ <span>(New)</span>
-                </div>
-
-                <strong>₹899</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- 22 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/WhatsApp Image 2026-10-03 at 9.58.56 PM (1).jpeg"
-                    alt="ZIVA Look 22">
-
-                <span class="sale">NEW</span>
-
-                <button class="heart">♡</button>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">WOMEN</span>
-
-                <h3>ZIVA Look 22</h3>
-
-                <div class="rating">
-                    ★★★★★ <span>(New)</span>
-                </div>
-
-                <strong>₹799</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- 23 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/WhatsApp Image 2026-10-03 at 9.58.56 PM.jpeg"
-                    alt="ZIVA Look 23">
-
-                <span class="sale">NEW</span>
-
-                <button class="heart">♡</button>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">WOMEN</span>
-
-                <h3>ZIVA Look 23</h3>
-
-                <div class="rating">
-                    ★★★★★ <span>(New)</span>
-                </div>
-
-                <strong>₹899</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- 24 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/WhatsApp Image 2026-10-03 at 9.58.57 PM (1).jpeg"
-                    alt="ZIVA Look 24">
-
-                <span class="sale">NEW</span>
-
-                <button class="heart">♡</button>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">WOMEN</span>
-
-                <h3>ZIVA Look 24</h3>
-
-                <div class="rating">
-                    ★★★★★ <span>(New)</span>
-                </div>
-
-                <strong>₹999</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- 25 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/WhatsApp Image 2026-10-03 at 9.58.57 PM (2).jpeg"
-                    alt="ZIVA Look 25">
-
-                <span class="sale">NEW</span>
-
-                <button class="heart">♡</button>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">WOMEN</span>
-
-                <h3>ZIVA Look 25</h3>
-
-                <div class="rating">
-                    ★★★★★ <span>(New)</span>
-                </div>
-
-                <strong>₹799</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- 26 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/WhatsApp Image 2026-10-03 at 9.58.57 PM.jpeg"
-                    alt="ZIVA Look 26">
-
-                <span class="sale">NEW</span>
-
-                <button class="heart">♡</button>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">WOMEN</span>
-
-                <h3>ZIVA Look 26</h3>
-
-                <div class="rating">
-                    ★★★★★ <span>(New)</span>
-                </div>
-
-                <strong>₹899</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- 27 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/WhatsApp Image 2026-10-03 at 9.58.58 PM.jpeg"
-                    alt="ZIVA Look 27">
-
-                <span class="sale">NEW</span>
-
-                <button class="heart">♡</button>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">WOMEN</span>
-
-                <h3>ZIVA Look 27</h3>
-
-                <div class="rating">
-                    ★★★★★ <span>(New)</span>
-                </div>
-
-                <strong>₹799</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- 28 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/WhatsApp Image 2026-10-03 at 9.59.00 PM (1).jpeg"
-                    alt="ZIVA Look 28">
-
-                <span class="sale">NEW</span>
-
-                <button class="heart">♡</button>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">WOMEN</span>
-
-                <h3>ZIVA Look 28</h3>
-
-                <div class="rating">
-                    ★★★★★ <span>(New)</span>
-                </div>
-
-                <strong>₹999</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- 29 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/WhatsApp Image 2026-10-03 at 9.59.00 PM.jpeg"
-                    alt="ZIVA Look 29">
-
-                <span class="sale">NEW</span>
-
-                <button class="heart">♡</button>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">WOMEN</span>
-
-                <h3>ZIVA Look 29</h3>
-
-                <div class="rating">
-                    ★★★★★ <span>(New)</span>
-                </div>
-
-                <strong>₹899</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- 30 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/WhatsApp Image 2026-10-03 at 9.59.02 PM (1).jpeg"
-                    alt="ZIVA Look 30">
-
-                <span class="sale">NEW</span>
-
-                <button class="heart">♡</button>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">WOMEN</span>
-
-                <h3>ZIVA Look 30</h3>
-
-                <div class="rating">
-                    ★★★★★ <span>(New)</span>
-                </div>
-
-                <strong>₹799</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- 31 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/WhatsApp Image 2026-10-03 at 9.59.02 PM.jpeg"
-                    alt="ZIVA Look 31">
-
-                <span class="sale">NEW</span>
-
-                <button class="heart">♡</button>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">WOMEN</span>
-
-                <h3>ZIVA Look 31</h3>
-
-                <div class="rating">
-                    ★★★★★ <span>(New)</span>
-                </div>
-
-                <strong>₹899</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- 32 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/WhatsApp Image 2026-10-03 at 9.59.05 PM (1).jpeg"
-                    alt="ZIVA Look 32">
-
-                <span class="sale">NEW</span>
-
-                <button class="heart">♡</button>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">WOMEN</span>
-
-                <h3>ZIVA Look 32</h3>
-
-                <div class="rating">
-                    ★★★★★ <span>(New)</span>
-                </div>
-
-                <strong>₹999</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- 33 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/WhatsApp Image 2026-10-03 at 9.59.05 PM (2).jpeg"
-                    alt="ZIVA Look 33">
-
-                <span class="sale">NEW</span>
-
-                <button class="heart">♡</button>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">WOMEN</span>
-
-                <h3>ZIVA Look 33</h3>
-
-                <div class="rating">
-                    ★★★★★ <span>(New)</span>
-                </div>
-
-                <strong>₹799</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- 34 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/WhatsApp Image 2026-10-03 at 9.59.05 PM.jpeg"
-                    alt="ZIVA Look 34">
-
-                <span class="sale">NEW</span>
-
-                <button class="heart">♡</button>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">WOMEN</span>
-
-                <h3>ZIVA Look 34</h3>
-
-                <div class="rating">
-                    ★★★★★ <span>(New)</span>
-                </div>
-
-                <strong>₹899</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- 35 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/WhatsApp Image 2026-10-03 at 9.59.06 PM (1).jpeg"
-                    alt="ZIVA Look 35">
-
-                <span class="sale">NEW</span>
-
-                <button class="heart">♡</button>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">WOMEN</span>
-
-                <h3>ZIVA Look 35</h3>
-
-                <div class="rating">
-                    ★★★★★ <span>(New)</span>
-                </div>
-
-                <strong>₹799</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- 36 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/WhatsApp Image 2026-10-03 at 9.59.06 PM.jpeg"
-                    alt="ZIVA Look 36">
-
-                <span class="sale">NEW</span>
-
-                <button class="heart">♡</button>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">WOMEN</span>
-
-                <h3>ZIVA Look 36</h3>
-
-                <div class="rating">
-                    ★★★★★ <span>(New)</span>
-                </div>
-
-                <strong>₹999</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- 37 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/WhatsApp Image 2026-10-03 at 9.59.07 PM.jpeg"
-                    alt="ZIVA Look 37">
-
-                <span class="sale">NEW</span>
-
-                <button class="heart">♡</button>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">WOMEN</span>
-
-                <h3>ZIVA Look 37</h3>
-
-                <div class="rating">
-                    ★★★★★ <span>(New)</span>
-                </div>
-
-                <strong>₹899</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- 38 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/WhatsApp Image 2026-10-03 at 9.59.11 PM (1).jpeg"
-                    alt="ZIVA Look 38">
-
-                <span class="sale">NEW</span>
-
-                <button class="heart">♡</button>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">WOMEN</span>
-
-                <h3>ZIVA Look 38</h3>
-
-                <div class="rating">
-                    ★★★★★ <span>(New)</span>
-                </div>
-
-                <strong>₹799</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- 39 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/WhatsApp Image 2026-10-03 at 9.59.11 PM (2).jpeg"
-                    alt="ZIVA Look 39">
-
-                <span class="sale">NEW</span>
-
-                <button class="heart">♡</button>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">WOMEN</span>
-
-                <h3>ZIVA Look 39</h3>
-
-                <div class="rating">
-                    ★★★★★ <span>(New)</span>
-                </div>
-
-                <strong>₹899</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- 40 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/WhatsApp Image 2026-10-03 at 9.59.11 PM.jpeg"
-                    alt="ZIVA Look 40">
-
-                <span class="sale">NEW</span>
-
-                <button class="heart">♡</button>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">WOMEN</span>
-
-                <h3>ZIVA Look 40</h3>
-
-                <div class="rating">
-                    ★★★★★ <span>(New)</span>
-                </div>
-
-                <strong>₹999</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- 41 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/WhatsApp Image 2026-10-03 at 9.59.12 PM.jpeg"
-                    alt="ZIVA Look 41">
-
-                <span class="sale">NEW</span>
-
-                <button class="heart">♡</button>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">WOMEN</span>
-
-                <h3>ZIVA Look 41</h3>
-
-                <div class="rating">
-                    ★★★★★ <span>(New)</span>
-                </div>
-
-                <strong>₹799</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- 42 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/WhatsApp Image 2026-10-03 at 9.59.13 PM (1).jpeg"
-                    alt="ZIVA Look 42">
-
-                <span class="sale">NEW</span>
-
-                <button class="heart">♡</button>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">WOMEN</span>
-
-                <h3>ZIVA Look 42</h3>
-
-                <div class="rating">
-                    ★★★★★ <span>(New)</span>
-                </div>
-
-                <strong>₹899</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- 43 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/WhatsApp Image 2026-10-03 at 9.59.13 PM.jpeg"
-                    alt="ZIVA Look 43">
-
-                <span class="sale">NEW</span>
-
-                <button class="heart">♡</button>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">WOMEN</span>
-
-                <h3>ZIVA Look 43</h3>
-
-                <div class="rating">
-                    ★★★★★ <span>(New)</span>
-                </div>
-
-                <strong>₹799</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- 44 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/WhatsApp Image 2026-10-03 at 9.59.14 PM (1).jpeg"
-                    alt="ZIVA Look 44">
-
-                <span class="sale">NEW</span>
-
-                <button class="heart">♡</button>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">WOMEN</span>
-
-                <h3>ZIVA Look 44</h3>
-
-                <div class="rating">
-                    ★★★★★ <span>(New)</span>
-                </div>
-
-                <strong>₹999</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- 45 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/WhatsApp Image 2026-10-03 at 9.59.14 PM.jpeg"
-                    alt="ZIVA Look 45">
-
-                <span class="sale">NEW</span>
-
-                <button class="heart">♡</button>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">WOMEN</span>
-
-                <h3>ZIVA Look 45</h3>
-
-                <div class="rating">
-                    ★★★★★ <span>(New)</span>
-                </div>
-
-                <strong>₹899</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- 46 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/WhatsApp Image 2026-10-03 at 9.59.16 PM (1).jpeg"
-                    alt="ZIVA Look 46">
-
-                <span class="sale">NEW</span>
-
-                <button class="heart">♡</button>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">WOMEN</span>
-
-                <h3>ZIVA Look 46</h3>
-
-                <div class="rating">
-                    ★★★★★ <span>(New)</span>
-                </div>
-
-                <strong>₹799</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- 47 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/WhatsApp Image 2026-10-03 at 9.59.16 PM.jpeg"
-                    alt="ZIVA Look 47">
-
-                <span class="sale">NEW</span>
-
-                <button class="heart">♡</button>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">WOMEN</span>
-
-                <h3>ZIVA Look 47</h3>
-
-                <div class="rating">
-                    ★★★★★ <span>(New)</span>
-                </div>
-
-                <strong>₹899</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- 48 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/WhatsApp Image 2026-10-03 at 9.59.17 PM (1).jpeg"
-                    alt="ZIVA Look 48">
-
-                <span class="sale">NEW</span>
-
-                <button class="heart">♡</button>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">WOMEN</span>
-
-                <h3>ZIVA Look 48</h3>
-
-                <div class="rating">
-                    ★★★★★ <span>(New)</span>
-                </div>
-
-                <strong>₹999</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- 49 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/WhatsApp Image 2026-10-03 at 9.59.17 PM.jpeg"
-                    alt="ZIVA Look 49">
-
-                <span class="sale">NEW</span>
-
-                <button class="heart">♡</button>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">WOMEN</span>
-
-                <h3>ZIVA Look 49</h3>
-
-                <div class="rating">
-                    ★★★★★ <span>(New)</span>
-                </div>
-
-                <strong>₹899</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- MEN 01 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/men-outfit1.jpeg"
-                    alt="Men Outfit 01">
-
-                <span class="sale">MEN</span>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">MEN</span>
-
-                <h3>Men Outfit 01</h3>
-
-                <div class="rating">★★★★★</div>
-
-                <strong>₹999</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- MEN 03 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/men-outfit3.jpeg"
-                    alt="Men Outfit 03">
-
-                <span class="sale">MEN</span>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">MEN</span>
-
-                <h3>Men Outfit 03</h3>
-
-                <div class="rating">★★★★★</div>
-
-                <strong>₹1,099</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- MEN 04 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/men-outfit4.jpeg"
-                    alt="Men Outfit 04">
-
-                <span class="sale">MEN</span>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">MEN</span>
-
-                <h3>Men Outfit 04</h3>
-
-                <div class="rating">★★★★★</div>
-
-                <strong>₹1,199</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- MEN 05 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/men-outfit5.jpeg"
-                    alt="Men Outfit 05">
-
-                <span class="sale">MEN</span>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">MEN</span>
-
-                <h3>Men Outfit 05</h3>
-
-                <div class="rating">★★★★★</div>
-
-                <strong>₹999</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- MEN 06 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/men-outfit6.jpeg"
-                    alt="Men Outfit 06">
-
-                <span class="sale">MEN</span>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">MEN</span>
-
-                <h3>Men Outfit 06</h3>
-
-                <div class="rating">★★★★★</div>
-
-                <strong>₹1,099</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- MEN 07 -->
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                    src="images/men-outfit7.jpeg"
-                    alt="Men Outfit 07">
-
-                <span class="sale">MEN</span>
-
-            </div>
-
-            <div class="product-info">
-
-                <span class="category-name">MEN</span>
-
-                <h3>Men Outfit 07</h3>
-
-                <div class="rating">★★★★★</div>
-
-                <strong>₹1,199</strong>
-
-                <button class="add-btn" onclick="addToCart()">
-                    ADD TO BAG
-                </button>
-
-            </div>
-
-        </div>
-
-
+    <div
+        class="product-grid"
+        id="menProductGrid">
     </div>
 
 </section>
 
 
-<!-- BANNER -->
-<section class="banner">
+<!-- ================= TRENDING ================= -->
 
-    <div>
+<section
+    class="products-section"
+    id="trending-section">
 
-        <p>ZIVA STYLE</p>
+    <div class="section-heading">
+
+        <p>MOST LOVED</p>
+
+        <h2>Trending Now</h2>
+
+    </div>
+
+    <div
+        class="product-grid"
+        id="trendingProductGrid">
+    </div>
+
+</section>
+
+
+<!-- ================= SALE ================= -->
+
+<section
+    class="products-section"
+    id="sale-section">
+
+    <div class="section-heading">
+
+        <p>DON'T MISS OUT</p>
+
+        <h2>Sale</h2>
+
+    </div>
+
+    <div
+        class="product-grid"
+        id="saleProductGrid">
+    </div>
+
+</section>
+
+
+<!-- ================= BANNER ================= -->
+
+<section class="banner-section">
+
+    <div class="banner-content">
+
+        <p>ZIVA EXCLUSIVE</p>
 
         <h2>
-            YOUR STYLE.<br>
-            YOUR RULES.
+            FIND YOUR<br>
+            PERFECT STYLE
         </h2>
 
-        <button onclick="document.getElementById('new-in').scrollIntoView()">
+        <button
+            onclick="document.getElementById('mens-section').scrollIntoView({behavior:'smooth'})">
             SHOP NOW
         </button>
 
@@ -2136,75 +248,925 @@
 </section>
 
 
-<!-- FOOTER -->
-<footer>
+<!-- ================= FOOTER ================= -->
 
-    <div class="footer-logo">ZIVA</div>
+<footer class="footer">
 
-    <p>
-        Fashion made for your everyday vibe.
-    </p>
+    <div class="footer-grid">
 
-    <div class="footer-links">
+        <div class="footer-brand">
 
-        <a href="about.html">About</a>
+            <h2>ZIVA</h2>
 
-        <a href="contact.html">Contact</a>
+            <p>
+                Fashion that feels like you.
+            </p>
 
-        <a href="privacy.html">Privacy</a>
+        </div>
 
-        <a href="terms.html">Terms</a>
+
+        <div class="footer-links">
+
+            <h3>SHOP</h3>
+
+            <a href="#mens-section">
+                Men
+            </a>
+
+            <a href="#trending-section">
+                Trending
+            </a>
+
+            <a href="#sale-section">
+                Sale
+            </a>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <h3>HELP</h3>
+
+            <a href="contact.html">
+                Contact
+            </a>
+
+            <a href="about.html">
+                About Us
+            </a>
+
+            <a href="privacy.html">
+                Privacy Policy
+            </a>
+
+            <a href="terms.html">
+                Terms & Conditions
+            </a>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <h3>ACCOUNT</h3>
+
+            <a href="login.html">
+                Login / Sign Up
+            </a>
+
+            <a href="cart.html">
+                My Cart
+            </a>
+
+        </div>
 
     </div>
 
-    <small>
-        © 2026 ZIVA. All rights reserved.
-    </small>
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 ZIVA. All Rights Reserved.
+        </p>
+
+    </div>
 
 </footer>
 
 
-<<script>
-    function openAccount() {
-        const loggedIn = localStorage.getItem("zivaLoggedIn");
-        const user = JSON.parse(localStorage.getItem("zivaCurrentUser"));
-    
-        if (loggedIn === "true" && user) {
-            const logout = confirm(
-                "Welcome " + user.name + "!\n\nOK = Logout\nCancel = Stay Logged In"
+<!-- =====================================================
+     ALL ZIVA PRODUCTS
+     ALL PRODUCTS ARE MEN'S PRODUCTS
+===================================================== -->
+
+<script>
+
+window.zivaProducts = [
+
+    {
+        id:"men-01",
+        name:"ZIVA Men Look 01",
+        price:999,
+        oldPrice:1299,
+        image:"images/men-outfit.jpeg"
+    },
+
+    {
+        id:"men-02",
+        name:"ZIVA Men Look 02",
+        price:899,
+        oldPrice:1199,
+        image:"images/WhatsApp Image 2026-10-03 at 9.58.39 PM (1).jpeg"
+    },
+
+    {
+        id:"men-03",
+        name:"ZIVA Men Look 03",
+        price:899,
+        oldPrice:1199,
+        image:"images/WhatsApp Image 2026-10-03 at 9.58.39 PM.jpeg"
+    },
+
+    {
+        id:"men-04",
+        name:"ZIVA Men Look 04",
+        price:999,
+        oldPrice:1299,
+        image:"images/WhatsApp Image 2026-10-03 at 9.58.41 PM.jpeg"
+    },
+
+    {
+        id:"men-05",
+        name:"ZIVA Men Look 05",
+        price:899,
+        oldPrice:1199,
+        image:"images/WhatsApp Image 2026-10-03 at 9.58.42 PM (1).jpeg"
+    },
+
+    {
+        id:"men-06",
+        name:"ZIVA Men Look 06",
+        price:999,
+        oldPrice:1299,
+        image:"images/WhatsApp Image 2026-10-03 at 9.58.42 PM.jpeg"
+    },
+
+    {
+        id:"men-07",
+        name:"ZIVA Men Look 07",
+        price:899,
+        oldPrice:1199,
+        image:"images/WhatsApp Image 2026-10-03 at 9.58.48 PM (1).jpeg"
+    },
+
+    {
+        id:"men-08",
+        name:"ZIVA Men Look 08",
+        price:999,
+        oldPrice:1299,
+        image:"images/WhatsApp Image 2026-10-03 at 9.58.48 PM (2).jpeg"
+    },
+
+    {
+        id:"men-09",
+        name:"ZIVA Men Look 09",
+        price:899,
+        oldPrice:1199,
+        image:"images/WhatsApp Image 2026-10-03 at 9.58.48 PM (3).jpeg"
+    },
+
+    {
+        id:"men-10",
+        name:"ZIVA Men Look 10",
+        price:999,
+        oldPrice:1299,
+        image:"images/WhatsApp Image 2026-10-03 at 9.58.48 PM.jpeg"
+    },
+
+    {
+        id:"men-11",
+        name:"ZIVA Men Look 11",
+        price:899,
+        oldPrice:1199,
+        image:"images/WhatsApp Image 2026-10-03 at 9.58.49 PM (1).jpeg"
+    },
+
+    {
+        id:"men-12",
+        name:"ZIVA Men Look 12",
+        price:999,
+        oldPrice:1299,
+        image:"images/WhatsApp Image 2026-10-03 at 9.58.49 PM.jpeg"
+    },
+
+    {
+        id:"men-13",
+        name:"ZIVA Men Look 13",
+        price:899,
+        oldPrice:1199,
+        image:"images/WhatsApp Image 2026-10-03 at 9.58.50 PM (1).jpeg"
+    },
+
+    {
+        id:"men-14",
+        name:"ZIVA Men Look 14",
+        price:999,
+        oldPrice:1299,
+        image:"images/WhatsApp Image 2026-10-03 at 9.58.50 PM.jpeg"
+    },
+
+    {
+        id:"men-15",
+        name:"ZIVA Men Look 15",
+        price:899,
+        oldPrice:1199,
+        image:"images/WhatsApp Image 2026-10-03 at 9.58.51 PM (1).jpeg"
+    },
+
+    {
+        id:"men-16",
+        name:"ZIVA Men Look 16",
+        price:999,
+        oldPrice:1299,
+        image:"images/WhatsApp Image 2026-10-03 at 9.58.51 PM (2).jpeg"
+    },
+
+    {
+        id:"men-17",
+        name:"ZIVA Men Look 17",
+        price:899,
+        oldPrice:1199,
+        image:"images/WhatsApp Image 2026-10-03 at 9.58.51 PM.jpeg"
+    },
+
+    {
+        id:"men-18",
+        name:"ZIVA Men Look 18",
+        price:999,
+        oldPrice:1299,
+        image:"images/WhatsApp Image 2026-10-03 at 9.58.52 PM.jpeg"
+    },
+
+    {
+        id:"men-19",
+        name:"ZIVA Men Look 19",
+        price:899,
+        oldPrice:1199,
+        image:"images/WhatsApp Image 2026-10-03 at 9.58.53 PM.jpeg"
+    },
+
+    {
+        id:"men-20",
+        name:"ZIVA Men Look 20",
+        price:999,
+        oldPrice:1299,
+        image:"images/WhatsApp Image 2026-10-03 at 9.58.54 PM.jpeg"
+    },
+
+    {
+        id:"men-21",
+        name:"ZIVA Men Look 21",
+        price:899,
+        oldPrice:1199,
+        image:"images/WhatsApp Image 2026-10-03 at 9.58.55 PM (1).jpeg"
+    },
+
+    {
+        id:"men-22",
+        name:"ZIVA Men Look 22",
+        price:999,
+        oldPrice:1299,
+        image:"images/WhatsApp Image 2026-10-03 at 9.58.55 PM.jpeg"
+    },
+
+    {
+        id:"men-23",
+        name:"ZIVA Men Look 23",
+        price:899,
+        oldPrice:1199,
+        image:"images/WhatsApp Image 2026-10-03 at 9.58.56 PM (1).jpeg"
+    },
+
+    {
+        id:"men-24",
+        name:"ZIVA Men Look 24",
+        price:999,
+        oldPrice:1299,
+        image:"images/WhatsApp Image 2026-10-03 at 9.58.56 PM.jpeg"
+    },
+
+    {
+        id:"men-25",
+        name:"ZIVA Men Look 25",
+        price:899,
+        oldPrice:1199,
+        image:"images/WhatsApp Image 2026-10-03 at 9.58.57 PM (1).jpeg"
+    },
+
+    {
+        id:"men-26",
+        name:"ZIVA Men Look 26",
+        price:999,
+        oldPrice:1299,
+        image:"images/WhatsApp Image 2026-10-03 at 9.58.57 PM (2).jpeg"
+    },
+
+    {
+        id:"men-27",
+        name:"ZIVA Men Look 27",
+        price:899,
+        oldPrice:1199,
+        image:"images/WhatsApp Image 2026-10-03 at 9.58.57 PM.jpeg"
+    },
+
+    {
+        id:"men-28",
+        name:"ZIVA Men Look 28",
+        price:999,
+        oldPrice:1299,
+        image:"images/WhatsApp Image 2026-10-03 at 9.58.58 PM.jpeg"
+    },
+
+    {
+        id:"men-29",
+        name:"ZIVA Men Look 29",
+        price:899,
+        oldPrice:1199,
+        image:"images/WhatsApp Image 2026-10-03 at 9.59.00 PM (1).jpeg"
+    },
+
+    {
+        id:"men-30",
+        name:"ZIVA Men Look 30",
+        price:999,
+        oldPrice:1299,
+        image:"images/WhatsApp Image 2026-10-03 at 9.59.00 PM.jpeg"
+    },
+
+    {
+        id:"men-31",
+        name:"ZIVA Men Look 31",
+        price:899,
+        oldPrice:1199,
+        image:"images/WhatsApp Image 2026-10-03 at 9.59.02 PM (1).jpeg"
+    },
+
+    {
+        id:"men-32",
+        name:"ZIVA Men Look 32",
+        price:999,
+        oldPrice:1299,
+        image:"images/WhatsApp Image 2026-10-03 at 9.59.02 PM.jpeg"
+    },
+
+    {
+        id:"men-33",
+        name:"ZIVA Men Look 33",
+        price:899,
+        oldPrice:1199,
+        image:"images/WhatsApp Image 2026-10-03 at 9.59.05 PM (1).jpeg"
+    },
+
+    {
+        id:"men-34",
+        name:"ZIVA Men Look 34",
+        price:999,
+        oldPrice:1299,
+        image:"images/WhatsApp Image 2026-10-03 at 9.59.05 PM (2).jpeg"
+    },
+
+    {
+        id:"men-35",
+        name:"ZIVA Men Look 35",
+        price:899,
+        oldPrice:1199,
+        image:"images/WhatsApp Image 2026-10-03 at 9.59.05 PM.jpeg"
+    },
+
+    {
+        id:"men-36",
+        name:"ZIVA Men Look 36",
+        price:999,
+        oldPrice:1299,
+        image:"images/WhatsApp Image 2026-10-03 at 9.59.06 PM (1).jpeg"
+    },
+
+    {
+        id:"men-37",
+        name:"ZIVA Men Look 37",
+        price:899,
+        oldPrice:1199,
+        image:"images/WhatsApp Image 2026-10-03 at 9.59.06 PM.jpeg"
+    },
+
+    {
+        id:"men-38",
+        name:"ZIVA Men Look 38",
+        price:999,
+        oldPrice:1299,
+        image:"images/WhatsApp Image 2026-10-03 at 9.59.07 PM.jpeg"
+    },
+
+    {
+        id:"men-39",
+        name:"ZIVA Men Look 39",
+        price:899,
+        oldPrice:1199,
+        image:"images/WhatsApp Image 2026-10-03 at 9.59.11 PM (1).jpeg"
+    },
+
+    {
+        id:"men-40",
+        name:"ZIVA Men Look 40",
+        price:999,
+        oldPrice:1299,
+        image:"images/WhatsApp Image 2026-10-03 at 9.59.11 PM (2).jpeg"
+    },
+
+    {
+        id:"men-41",
+        name:"ZIVA Men Look 41",
+        price:899,
+        oldPrice:1199,
+        image:"images/WhatsApp Image 2026-10-03 at 9.59.11 PM.jpeg"
+    },
+
+    {
+        id:"men-42",
+        name:"ZIVA Men Look 42",
+        price:999,
+        oldPrice:1299,
+        image:"images/WhatsApp Image 2026-10-03 at 9.59.12 PM.jpeg"
+    },
+
+    {
+        id:"men-43",
+        name:"ZIVA Men Look 43",
+        price:899,
+        oldPrice:1199,
+        image:"images/WhatsApp Image 2026-10-03 at 9.59.13 PM (1).jpeg"
+    },
+
+    {
+        id:"men-44",
+        name:"ZIVA Men Look 44",
+        price:999,
+        oldPrice:1299,
+        image:"images/WhatsApp Image 2026-10-03 at 9.59.13 PM.jpeg"
+    },
+
+    {
+        id:"men-45",
+        name:"ZIVA Men Look 45",
+        price:899,
+        oldPrice:1199,
+        image:"images/WhatsApp Image 2026-10-03 at 9.59.14 PM (1).jpeg"
+    },
+
+    {
+        id:"men-46",
+        name:"ZIVA Men Look 46",
+        price:999,
+        oldPrice:1299,
+        image:"images/WhatsApp Image 2026-10-03 at 9.59.14 PM.jpeg"
+    },
+
+    {
+        id:"men-47",
+        name:"ZIVA Men Look 47",
+        price:899,
+        oldPrice:1199,
+        image:"images/WhatsApp Image 2026-10-03 at 9.59.16 PM (1).jpeg"
+    },
+
+    {
+        id:"men-48",
+        name:"ZIVA Men Look 48",
+        price:999,
+        oldPrice:1299,
+        image:"images/WhatsApp Image 2026-10-03 at 9.59.16 PM.jpeg"
+    },
+
+    {
+        id:"men-49",
+        name:"ZIVA Men Look 49",
+        price:899,
+        oldPrice:1199,
+        image:"images/WhatsApp Image 2026-10-03 at 9.59.17 PM (1).jpeg"
+    },
+
+    {
+        id:"men-50",
+        name:"ZIVA Men Look 50",
+        price:999,
+        oldPrice:1299,
+        image:"images/WhatsApp Image 2026-10-03 at 9.59.17 PM.jpeg"
+    },
+
+    {
+        id:"men-51",
+        name:"ZIVA Men Look 51",
+        price:1099,
+        oldPrice:1399,
+        image:"images/men-outfit3.jpeg"
+    },
+
+    {
+        id:"men-52",
+        name:"ZIVA Men Look 52",
+        price:999,
+        oldPrice:1299,
+        image:"images/men-outfit4.jpeg"
+    },
+
+    {
+        id:"men-53",
+        name:"ZIVA Men Look 53",
+        price:1199,
+        oldPrice:1499,
+        image:"images/men-outfit5.jpeg"
+    },
+
+    {
+        id:"men-54",
+        name:"ZIVA Men Look 54",
+        price:1099,
+        oldPrice:1399,
+        image:"images/men-outfit6.jpeg"
+    },
+
+    {
+        id:"men-55",
+        name:"ZIVA Men Look 55",
+        price:999,
+        oldPrice:1299,
+        image:"images/men-outfit7.jpeg"
+    }
+
+];
+
+
+/* =====================================================
+   PRODUCT CARD
+===================================================== */
+
+function createProductCard(product) {
+
+    const card =
+        document.createElement("div");
+
+    card.className =
+        "product-card";
+
+    card.style.cursor =
+        "pointer";
+
+
+    card.innerHTML = `
+
+        <div class="product-image">
+
+            <img
+                src="${product.image}"
+                alt="${product.name}"
+                loading="lazy">
+
+            <button
+                class="heart"
+                type="button">
+                ♡
+            </button>
+
+        </div>
+
+        <div class="product-info">
+
+            <h3>
+                ${product.name}
+            </h3>
+
+            <p class="product-price">
+
+                ₹${product.price}
+
+                <span
+                    style="
+                    text-decoration:line-through;
+                    opacity:.5;
+                    margin-left:6px;
+                    font-size:13px;
+                    ">
+                    ₹${product.oldPrice}
+                </span>
+
+            </p>
+
+            <button
+                class="add-btn"
+                type="button">
+                ADD TO BAG
+            </button>
+
+        </div>
+    `;
+
+
+    /* OPEN PRODUCT */
+
+    card.addEventListener(
+        "click",
+        function() {
+
+            localStorage.setItem(
+                "zivaSelectedProduct",
+                JSON.stringify(product)
             );
-    
-            if (logout) {
-                localStorage.removeItem("zivaLoggedIn");
-                localStorage.removeItem("zivaCurrentUser");
-                alert("You have been logged out.");
-                window.location.href = "index.html";
+
+            window.location.href =
+                "product.html";
+
+        }
+    );
+
+
+    /* HEART */
+
+    const heart =
+        card.querySelector(".heart");
+
+    heart.addEventListener(
+        "click",
+        function(e) {
+
+            e.stopPropagation();
+
+            if (
+                typeof addToWishlist ===
+                "function"
+            ) {
+
+                addToWishlist(product);
+
+            } else {
+
+                let wishlist =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "zivaWishlist"
+                        )
+                    ) || [];
+
+                const exists =
+                    wishlist.some(
+                        item =>
+                            item.id === product.id
+                    );
+
+                if (!exists) {
+
+                    wishlist.push(product);
+
+                    localStorage.setItem(
+                        "zivaWishlist",
+                        JSON.stringify(wishlist)
+                    );
+
+                    alert(
+                        "Added to wishlist ❤️"
+                    );
+
+                } else {
+
+                    alert(
+                        "Already in your wishlist ❤️"
+                    );
+
+                }
+
             }
-        } else {
-            window.location.href = "login.html";
+
         }
-    }
-    
-    function updateAccountButton() {
-        const button = document.getElementById("accountButton");
-        if (!button) return;
-    
-        const loggedIn = localStorage.getItem("zivaLoggedIn");
-        const user = JSON.parse(localStorage.getItem("zivaCurrentUser"));
-    
-        if (loggedIn === "true" && user) {
-            button.innerText = "👤 " + user.name;
-        } else {
-            button.innerText = "👤 Login";
+    );
+
+
+    /* ADD TO BAG */
+
+    const addButton =
+        card.querySelector(".add-btn");
+
+    addButton.addEventListener(
+        "click",
+        function(e) {
+
+            e.stopPropagation();
+
+            if (
+                typeof addToCart ===
+                "function"
+            ) {
+
+                addToCart(product);
+
+            } else {
+
+                alert(
+                    "Please wait..."
+                );
+
+            }
+
         }
+    );
+
+
+    return card;
+
+}
+
+
+/* =====================================================
+   LOAD MEN PRODUCTS
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        const menGrid =
+            document.getElementById(
+                "menProductGrid"
+            );
+
+        const trendingGrid =
+            document.getElementById(
+                "trendingProductGrid"
+            );
+
+        const saleGrid =
+            document.getElementById(
+                "saleProductGrid"
+            );
+
+
+        /* ALL PRODUCTS IN MEN */
+
+        window.zivaProducts.forEach(
+            function(product) {
+
+                menGrid.appendChild(
+                    createProductCard(
+                        product
+                    )
+                );
+
+            }
+        );
+
+
+        /* TRENDING */
+
+        window.zivaProducts
+            .slice(0, 8)
+            .forEach(
+                function(product) {
+
+                    trendingGrid.appendChild(
+                        createProductCard(
+                            product
+                        )
+                    );
+
+                }
+            );
+
+
+        /* SALE */
+
+        window.zivaProducts
+            .filter(
+                function(product) {
+
+                    return (
+                        product.oldPrice >
+                        product.price
+                    );
+
+                }
+            )
+            .slice(0, 8)
+            .forEach(
+                function(product) {
+
+                    saleGrid.appendChild(
+                        createProductCard(
+                            product
+                        )
+                    );
+
+                }
+            );
+
     }
-    
-    document.addEventListener("DOMContentLoaded", function () {
-        updateAccountButton();
-    });
-    </script>
-    
-    <script src="script.js"></script>
-    
-    </body>
-    </html>
+);
+
+</script>
+
+
+<!-- ================= ACCOUNT ================= -->
+
+<script>
+
+function openAccount() {
+
+    const loggedIn =
+        localStorage.getItem(
+            "zivaLoggedIn"
+        );
+
+    const user =
+        JSON.parse(
+            localStorage.getItem(
+                "zivaCurrentUser"
+            ) || "null"
+        );
+
+
+    if (
+        loggedIn === "true" &&
+        user
+    ) {
+
+        const logout =
+            confirm(
+                "Welcome " +
+                user.name +
+                "!\n\nOK = Logout\nCancel = Stay Logged In"
+            );
+
+
+        if (logout) {
+
+            localStorage.removeItem(
+                "zivaLoggedIn"
+            );
+
+            localStorage.removeItem(
+                "zivaCurrentUser"
+            );
+
+            alert(
+                "You have been logged out."
+            );
+
+            window.location.href =
+                "index.html";
+
+        }
+
+    } else {
+
+        window.location.href =
+            "login.html";
+
+    }
+
+}
+
+
+function updateAccountButton() {
+
+    const button =
+        document.getElementById(
+            "accountButton"
+        );
+
+    if (!button) return;
+
+
+    const loggedIn =
+        localStorage.getItem(
+            "zivaLoggedIn"
+        );
+
+    const user =
+        JSON.parse(
+            localStorage.getItem(
+                "zivaCurrentUser"
+            ) || "null"
+        );
+
+
+    if (
+        loggedIn === "true" &&
+        user
+    ) {
+
+        button.innerText =
+            "👤 " + user.name;
+
+    } else {
+
+        button.innerText =
+            "👤 Login";
+
+    }
+
+}
+
+
+document.addEventListener(
+    "DOMContentLoaded",
+    updateAccountButton
+);
+
+</script>
+
+
+<!-- ================= SCRIPT ================= -->
+
+<script src="script.js"></script>
+
+
+</body>
+</html>

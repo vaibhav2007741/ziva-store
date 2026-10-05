@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Details | ZIVA</title>
+
+  <style>
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    body{
+      font-family:Arial, Helvetica, sans-serif;
+      background:#f8f3ee;
+      color:#171717;
+    }
+
+    .header{
+      height:72px;
+      background:#111;
+      color:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:0 5%;
+      position:sticky;
+      top:0;
+      z-index:100;
+    }
+
+    .logo{
+      color:#fff;
+      text-decoration:none;
+      font-size:27px;
+      font-weight:800;
+      letter-spacing:3px;
+    }
+
+    .nav{
+      display:flex;
+      gap:28px;
+    }
+
+    .nav a{
+      color:#fff;
+      text-decoration:none;
+      font-size:14px;
+      transition:.2s;
+    }
+
+    .nav a:hover{
+      color:#d8a47f;
+    }
+
+    .header-actions{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .header-btn{
+      background:transparent;
+      border:1px solid #555;
+      color:#fff;
+      padding:9px 13px;
+      border-radius:8px;
+      cursor:pointer;
+    }
+
+    .container{
+      max-width:1100px;
+      margin:40px auto;
+      padding:0 20px;
+    }
+
+    .back-btn{
+      border:0;
+      background:transparent;
+      color:#555;
+      cursor:pointer;
+      font-size:15px;
+      margin-bottom:20px;
+    }
+
+    .back-btn:hover{
+      color:#000;
+    }
+
+    .top-card{
+      background:#fff;
+      border-radius:18px;
+      padding:28px;
+      box-shadow:0 8px 30px rgba(0,0,0,.06);
+      margin-bottom:22px;
+    }
+
+    .top-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:20px;
+    }
+
+    .small-label{
+      color:#777;
+      font-size:13px;
+      margin-bottom:6px;
+    }
+
+    .order-id{
+      font-size:22px;
+      font-weight:800;
+    }
+
+    .order-date{
+      color:#777;
+      margin-top:8px;
+      font-size:14px;
+    }
+
+    .status{
+      display:inline-block;
+      background:#e8f7ed;
+      color:#218447;
+      padding:8px 14px;
+      border-radius:30px;
+      font-size:13px;
+      font-weight:700;
+    }
+
+    .section{
+      background:#fff;
+      border-radius:18px;
+      padding:28px;
+      margin-bottom:22px;
+      box-shadow:0 8px 30px rgba(0,0,0,.06);
+    }
+
+    .section-title{
+      font-size:20px;
+      margin-bottom:22px;
+    }
+
+    /* TIMELINE */
+
+    .timeline{
+      display:flex;
+      justify-content:space-between;
+      position:relative;
+      margin:20px 10px 5px;
+    }
+
+    .timeline::before{
+      content:"";
+      position:absolute;
+      top:17px;
+      left:8%;
+      right:8%;
+      height:2px;
+      background:#ddd;
+      z-index:0;
+    }
+
+    .step{
+      position:relative;
+      z-index:1;
+      text-align:center;
+      width:20%;
+    }
+
+    .circle{
+      width:34px;
+      height:34px;
+      margin:0 auto 10px;
+      border-radius:50%;
+      background:#ddd;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:14px;
+      font-weight:700;
+      color:#666;
+    }
+
+    .step.active .circle{
+      background:#171717;
+      color:#fff;
+    }
+
+    .step-title{
+      font-size:12px;
+      font-weight:700;
+    }
+
+    .step-date{
+      font-size:11px;
+      color:#999;
+      margin-top:5px;
+    }
+
+    /* PRODUCTS */
+
+    .product-item{
+      display:flex;
+      gap:18px;
+      padding:18px 0;
+      border-bottom:1px solid #eee;
+    }
+
+    .product-item:last-child{
+      border-bottom:0;
+    }
+
+    .product-image{
+      width:105px;
+      height:125px;
+      border-radius:12px;
+      object-fit:cover;
+      background:#eee;
+    }
+
+    .product-info{
+      flex:1;
+    }
+
+    .product-name{
+      font-size:17px;
+      font-weight:700;
+      margin-bottom:8px;
+    }
+
+    .product-meta{
+      color:#777;
+      font-size:13px;
+      line-height:1.8;
+    }
+
+    .product-price{
+      font-size:16px;
+      font-weight:700;
+      margin-top:10px;
+    }
+
+    /* GRID */
+
+    .details-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:22px;
+    }
+
+    .info-box{
+      background:#faf7f4;
+      border-radius:12px;
+      padding:18px;
+    }
+
+    .info-box h3{
+      font-size:15px;
+      margin-bottom:12px;
+    }
+
+    .info-box p{
+      font-size:14px;
+      color:#666;
+      line-height:1.7;
+    }
+
+    /* PAYMENT */
+
+    .payment-row{
+      display:flex;
+      justify-content:space-between;
+      padding:10px 0;
+      font-size:14px;
+      color:#555;
+    }
+
+    .payment-row.total{
+      border-top:1px solid #ddd;
+      margin-top:10px;
+      padding-top:16px;
+      font-size:18px;
+      color:#111;
+      font-weight:800;
+    }
+
+    .advance{
+      color:#b27642;
+      font-weight:700;
+    }
+
+    .free{
+      color:#208548;
+      font-weight:700;
+    }
+
+    .testing{
+      margin-top:18px;
+      padding:14px;
+      background:#fff8e7;
+      border:1px solid #f0d99b;
+      border-radius:10px;
+      color:#765b20;
+      font-size:13px;
+      line-height:1.6;
+    }
+
+    /* BUTTONS */
+
+    .bottom-actions{
+      display:flex;
+      gap:12px;
+      margin-top:25px;
+    }
+
+    .primary-btn,
+    .secondary-btn{
+      padding:13px 20px;
+      border-radius:9px;
+      cursor:pointer;
+      font-size:14px;
+      font-weight:700;
+    }
+
+    .primary-btn{
+      background:#111;
+      color:#fff;
+      border:1px solid #111;
+    }
+
+    .secondary-btn{
+      background:#fff;
+      color:#111;
+      border:1px solid #ccc;
+    }
+
+    .primary-btn:hover{
+      background:#333;
+    }
+
+    .secondary-btn:hover{
+      background:#f5f5f5;
+    }
+
+    .empty{
+      text-align:center;
+      padding:70px 20px;
+      background:#fff;
+      border-radius:18px;
+      box-shadow:0 8px 30px rgba(0,0,0,.06);
+    }
+
+    .empty h2{
+      margin-bottom:10px;
+    }
+
+    .empty p{
+      color:#777;
+      margin-bottom:22px;
+    }
+
+    /* MOBILE */
+
+    @media(max-width:768px){
+
+      .header{
+        height:auto;
+        padding:16px 5%;
+        flex-wrap:wrap;
+        gap:14px;
+      }
+
+      .nav{
+        order:3;
+        width:100%;
+        justify-content:center;
+        gap:16px;
+        overflow-x:auto;
+      }
+
+      .nav a{
+        font-size:12px;
+        white-space:nowrap;
+      }
+
+      .header-actions{
+        gap:5px;
+      }
+
+      .header-btn{
+        padding:7px 9px;
+        font-size:12px;
+      }
+
+      .container{
+        margin:25px auto;
+      }
+
+      .top-card,
+      .section{
+        padding:20px;
+      }
+
+      .top-row{
+        flex-direction:column;
+      }
+
+      .details-grid{
+        grid-template-columns:1fr;
+      }
+
+      .timeline{
+        margin-left:0;
+        margin-right:0;
+      }
+
+      .timeline::before{
+        left:10%;
+        right:10%;
+      }
+
+      .step-title{
+        font-size:10px;
+      }
+
+      .step-date{
+        display:none;
+      }
+
+      .product-image{
+        width:85px;
+        height:105px;
+      }
+
+      .product-name{
+        font-size:15px;
+      }
+
+      .bottom-actions{
+        flex-direction:column;
+      }
+
+      .primary-btn,
+      .secondary-btn{
+        width:100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="header">
+
+  <a href="index.html" class="logo">ZIVA</a>
+
+  <nav class="nav">
+    <a href="index.html">Home</a>
+    <a href="index.html#women-section">Women</a>
+    <a href="index.html#mens-section">Men</a>
+    <a href="index.html#trending-section">Trending</a>
+    <a href="index.html#sale-section">Sale</a>
+  </nav>
+
+  <div class="header-actions">
+    <button class="header-btn" onclick="goAccount()">👤 Account</button>
+    <button class="header-btn" onclick="goCart()">🛍 Cart</button>
+  </div>
+
+</header>
+
+
+<main class="container">
+
+  <button class="back-btn" onclick="goOrders()">← Back to My Orders</button>
+
+  <div id="orderContainer"></div>
+
+</main>
+
+
+<script>
+
+  function getOrders(){
+    try{
+      return JSON.parse(localStorage.getItem("zivaOrders")) || [];
+    }catch(error){
+      return [];
+    }
+  }
+
+
+  function getSelectedOrder(){
+
+    try{
+      return JSON.parse(localStorage.getItem("zivaSelectedOrder"));
+    }catch(error){
+      return null;
+    }
+
+  }
+
+
+  function formatDate(dateValue){
+
+    if(!dateValue) return "—";
+
+    const date = new Date(dateValue);
+
+    if(isNaN(date.getTime())){
+      return dateValue;
+    }
+
+    return date.toLocaleDateString("en-IN",{
+      day:"2-digit",
+      month:"short",
+      year:"numeric"
+    });
+
+  }
+
+
+  function money(value){
+
+    return "₹" + Number(value || 0).toLocaleString("en-IN");
+
+  }
+
+
+  function getProductImage(product){
+
+    if(!product) return "";
+
+    if(product.image){
+      return product.image;
+    }
+
+    if(product.images && product.images.length){
+      return product.images[0];
+    }
+
+    return "";
+
+  }
+
+
+  function getProductType(product){
+
+    if(!product) return "";
+
+    if(product.type === "tshirt"){
+      return "T-Shirt";
+    }
+
+    if(product.type === "pant"){
+      return "Pant";
+    }
+
+    if(product.type === "set" || product.type === "co-ord"){
+      return "Co-ord / Set";
+    }
+
+    return product.category || "";
+
+  }
+
+
+  function renderProducts(order){
+
+    const products = order.items || order.products || [];
+
+    if(!products.length){
+
+      return `
+        <div style="color:#777;">
+          No product information found for this order.
+        </div>
+      `;
+
+    }
+
+
+    return products.map(product => {
+
+      const image = getProductImage(product);
+
+      const quantity = Number(product.quantity || 1);
+
+      const price = Number(
+        product.price ||
+        product.salePrice ||
+        0
+      );
+
+      let sizeText = [];
+
+      if(product.tshirtSize){
+        sizeText.push("T-Shirt: " + product.tshirtSize);
+      }
+
+      if(product.pantSize){
+        sizeText.push("Pant: " + product.pantSize);
+      }
+
+      if(product.size && !sizeText.length){
+        sizeText.push("Size: " + product.size);
+      }
+
+      return `
+        <div class="product-item">
+
+          ${
+            image
+            ? `<img class="product-image"
+                    src="${image}"
+                    alt="${product.name || "ZIVA Product"}"
+                    onerror="this.style.display='none';">`
+            : `<div class="product-image"></div>`
+          }
+
+          <div class="product-info">
+
+            <div class="product-name">
+              ${product.name || "ZIVA Product"}
+            </div>
+
+            <div class="product-meta">
+
+              ${
+                getProductType(product)
+                ? `Category: ${getProductType(product)}<br>`
+                : ""
+              }
+
+              ${
+                sizeText.length
+                ? sizeText.join(" • ") + "<br>"
+                : ""
+              }
+
+              Quantity: ${quantity}
+
+            </div>
+
+            <div class="product-price">
+              ${money(price)} × ${quantity}
+            </div>
+
+          </div>
+
+        </div>
+      `;
+
+    }).join("");
+
+  }
+
+
+  function getSubtotal(order){
+
+    if(typeof order.subtotal === "number"){
+      return order.subtotal;
+    }
+
+    if(typeof order.total === "number"){
+      return order.total;
+    }
+
+    const products = order.items || order.products || [];
+
+    return products.reduce((sum,product)=>{
+
+      const price = Number(
+        product.price ||
+        product.salePrice ||
+        0
+      );
+
+      const quantity = Number(product.quantity || 1);
+
+      return sum + (price * quantity);
+
+    },0);
+
+  }
+
+
+  function renderOrder(){
+
+    const container = document.getElementById("orderContainer");
+
+    const order = getSelectedOrder();
+
+    if(!order){
+
+      container.innerHTML = `
+        <div class="empty">
+
+          <h2>Order Not Found</h2>
+
+          <p>
+            We couldn't find the order details you're looking for.
+          </p>
+
+          <button
+            class="primary-btn"
+            onclick="goOrders()">
+            Go to My Orders
+          </button>
+
+        </div>
+      `;
+
+      return;
+
+    }
+
+
+    const subtotal = getSubtotal(order);
+
+    const paymentMethod =
+      String(
+        order.paymentMethod ||
+        order.payment ||
+        "Online Payment"
+      ).toLowerCase();
+
+    const isCOD =
+      paymentMethod.includes("cod") ||
+      paymentMethod.includes("cash");
+
+
+    const customer =
+      order.customer ||
+      order.customerDetails ||
+      {};
+
+    const address =
+      order.address ||
+      order.deliveryAddress ||
+      {};
+
+
+    const customerName =
+      order.name ||
+      customer.name ||
+      "Customer";
+
+
+    const phone =
+      order.phone ||
+      customer.phone ||
+      "—";
+
+
+    const email =
+      order.email ||
+      customer.email ||
+      "—";
+
+
+    const fullAddress =
+      order.fullAddress ||
+      address.fullAddress ||
+      address.address ||
+      [
+        address.addressLine,
+        address.city,
+        address.state,
+        address.pin
+      ].filter(Boolean).join(", ") ||
+      "—";
+
+
+    const city =
+      order.city ||
+      address.city ||
+      "—";
+
+
+    const state =
+      order.state ||
+      address.state ||
+      "—";
+
+
+    const pin =
+      order.pin ||
+      order.pincode ||
+      address.pin ||
+      address.pincode ||
+      "—";
+
+
+    const orderId =
+      order.orderId ||
+      order.id ||
+      "ZIVA-ORDER";
+
+
+    const orderDate =
+      order.createdAt ||
+      order.date ||
+      new Date().toISOString();
+
+
+    const status =
+      order.status ||
+      "Placed";
+
+
+    let activeStep = 1;
+
+    const statusLower = String(status).toLowerCase();
+
+    if(statusLower.includes("confirmed")){
+      activeStep = 2;
+    }
+
+    if(statusLower.includes("shipped")){
+      activeStep = 3;
+    }
+
+    if(
+      statusLower.includes("out for delivery") ||
+      statusLower.includes("out-for-delivery")
+    ){
+      activeStep = 4;
+    }
+
+    if(statusLower.includes("delivered")){
+      activeStep = 5;
+    }
+
+
+    container.innerHTML = `
+
+      <!-- ORDER HEADER -->
+
+      <section class="top-card">
+
+        <div class="top-row">
+
+          <div>
+
+            <div class="small-label">
+              Order ID
+            </div>
+
+            <div class="order-id">
+              ${orderId}
+            </div>
+
+            <div class="order-date">
+              Placed on ${formatDate(orderDate)}
+            </div>
+
+          </div>
+
+          <div>
+            <span class="status">
+              ${status}
+            </span>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- TRACKING -->
+
+      <section class="section">
+
+        <h2 class="section-title">
+          Order Tracking
+        </h2>
+
+        <div class="timeline">
+
+          <div class="step ${activeStep >= 1 ? "active" : ""}">
+
+            <div class="circle">✓</div>
+
+            <div class="step-title">
+              Placed
+            </div>
+
+            <div class="step-date">
+              ${activeStep >= 1 ? formatDate(orderDate) : ""}
+            </div>
+
+          </div>
+
+
+          <div class="step ${activeStep >= 2 ? "active" : ""}">
+
+            <div class="circle">
+              ${activeStep >= 2 ? "✓" : "2"}
+            </div>
+
+            <div class="step-title">
+              Confirmed
+            </div>
+
+          </div>
+
+
+          <div class="step ${activeStep >= 3 ? "active" : ""}">
+
+            <div class="circle">
+              ${activeStep >= 3 ? "✓" : "3"}
+            </div>
+
+            <div class="step-title">
+              Shipped
+            </div>
+
+          </div>
+
+
+          <div class="step ${activeStep >= 4 ? "active" : ""}">
+
+            <div class="circle">
+              ${activeStep >= 4 ? "✓" : "4"}
+            </div>
+
+            <div class="step-title">
+              Out for Delivery
+            </div>
+
+          </div>
+
+
+          <div class="step ${activeStep >= 5 ? "active" : ""}">
+
+            <div class="circle">
+              ${activeStep >= 5 ? "✓" : "5"}
+            </div>
+
+            <div class="step-title">
+              Delivered
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- PRODUCTS -->
+
+      <section class="section">
+
+        <h2 class="section-title">
+          Ordered Items
+        </h2>
+
+        ${renderProducts(order)}
+
+      </section>
+
+
+      <!-- CUSTOMER + ADDRESS -->
+
+      <section class="section">
+
+        <h2 class="section-title">
+          Delivery Details
+        </h2>
+
+        <div class="details-grid">
+
+          <div class="info-box">
+
+            <h3>Customer Information</h3>
+
+            <p>
+
+              <strong>Name:</strong>
+              ${customerName}
+              <br>
+
+              <strong>Phone:</strong>
+              ${phone}
+              <br>
+
+              <strong>Email:</strong>
+              ${email}
+
+            </p>
+
+          </div>
+
+
+          <div class="info-box">
+
+            <h3>Delivery Address</h3>
+
+            <p>
+
+              ${fullAddress}
+              <br>
+
+              ${city}, ${state} - ${pin}
+
+            </p>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- PAYMENT -->
+
+      <section class="section">
+
+        <h2 class="section-title">
+          Payment Summary
+        </h2>
+
+
+        <div class="payment-row">
+
+          <span>
+            Product Subtotal
+          </span>
+
+          <strong>
+            ${money(subtotal)}
+          </strong>
+
+        </div>
+
+
+        <div class="payment-row">
+
+          <span>
+            Delivery
+          </span>
+
+          <span class="free">
+            FREE
+          </span>
+
+        </div>
+
+
+        ${
+          isCOD
+          ? `
+
+            <div class="payment-row">
+
+              <span>
+                COD Advance Paid
+              </span>
+
+              <span class="advance">
+                ₹250
+              </span>
+
+            </div>
+
+
+            <div class="payment-row">
+
+              <span>
+                Pay at Delivery
+              </span>
+
+              <strong>
+                ${money(Math.max(subtotal - 250, 0))}
+              </strong>
+
+            </div>
+
+          `
+          : `
+
+            <div class="payment-row">
+
+              <span>
+                Payment Method
+              </span>
+
+              <strong>
+                Online Payment
+              </strong>
+
+            </div>
+
+          `
+        }
+
+
+        <div class="payment-row total">
+
+          <span>
+            Total Order Value
+          </span>
+
+          <span>
+            ${money(subtotal)}
+          </span>
+
+        </div>
+
+
+        ${
+          isCOD
+          ? `
+
+            <div class="testing">
+
+              <strong>COD Order</strong><br>
+
+              ₹250 is treated as the advance amount.
+              The remaining amount is payable at delivery.
+
+            </div>
+
+          `
+          : `
+
+            <div class="testing">
+
+              <strong>Online Payment</strong><br>
+
+              Online payment is currently in testing mode.
+              A live payment gateway has not been connected yet.
+
+            </div>
+
+          `
+        }
+
+      </section>
+
+
+      <!-- ACTIONS -->
+
+      <div class="bottom-actions">
+
+        <button
+          class="primary-btn"
+          onclick="goShopping()">
+          Continue Shopping
+        </button>
+
+        <button
+          class="secondary-btn"
+          onclick="goOrders()">
+          Back to My Orders
+        </button>
+
+      </div>
+
+    `;
+
+  }
+
+
+  function goOrders(){
+
+    window.location.href = "my-orders.html";
+
+  }
+
+
+  function goShopping(){
+
+    window.location.href = "index.html";
+
+  }
+
+
+  function goCart(){
+
+    window.location.href = "cart.html";
+
+  }
+
+
+  function goAccount(){
+
+    window.location.href = "my-orders.html";
+
+  }
+
+
+  document.addEventListener(
+    "DOMContentLoaded",
+    renderOrder
+  );
+
+</script>
+
+</body>
+</html>

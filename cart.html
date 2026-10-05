@@ -1,194 +1,1488 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZIVA | Shopping Cart</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        .cart-page {
-            min-height: 70vh;
-            padding: 70px 7%;
-            background: #fff8f3;
-        }
+  <title>Your Bag | ZIVA</title>
+  <meta
+    name="description"
+    content="View your ZIVA shopping bag and proceed to checkout."
+  >
 
-        .cart-title {
-            text-align: center;
-            margin-bottom: 45px;
-        }
+  <link rel="stylesheet" href="style.css">
 
-        .cart-title p {
-            color: #b17b68;
-            letter-spacing: 4px;
-            font-size: 11px;
-            font-weight: bold;
-        }
+  <style>
+    /* =========================
+       ZIVA CART PAGE
+    ========================= */
 
-        .cart-title h1 {
-            font-size: 40px;
-            color: #241b19;
-        }
+    .cart-page {
+      min-height: 100vh;
+      background: #f8f3ed;
+      padding: 55px 6%;
+    }
 
-        #cartItems {
-            max-width: 900px;
-            margin: auto;
-        }
+    .cart-heading {
+      text-align: center;
+      margin-bottom: 45px;
+    }
 
-        .cart-item {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            background: white;
-            padding: 20px;
-            margin-bottom: 15px;
-            border: 1px solid #eadbd3;
-        }
+    .cart-heading h1 {
+      font-size: 42px;
+      letter-spacing: 2px;
+      margin: 0 0 10px;
+      color: #171313;
+    }
 
-        .cart-item img {
-            width: 100px;
-            height: 120px;
-            object-fit: cover;
-        }
+    .cart-heading p {
+      margin: 0;
+      color: #756b64;
+      font-size: 15px;
+    }
 
-        .cart-item-info {
-            flex: 1;
-        }
+    .cart-layout {
+      max-width: 1250px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 35px;
+      align-items: start;
+    }
 
-        .cart-item-info h3 {
-            margin: 0 0 8px;
-            color: #241b19;
-        }
+    /* =========================
+       CART ITEMS
+    ========================= */
 
-        .cart-item-price {
-            color: #8b4f55;
-            font-weight: bold;
-        }
+    .cart-items-box {
+      background: #fff;
+      border: 1px solid #e8ded5;
+      border-radius: 18px;
+      overflow: hidden;
+    }
 
-        .quantity {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+    .cart-topbar {
+      padding: 20px 25px;
+      border-bottom: 1px solid #eee5dd;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-        .quantity button {
-            width: 30px;
-            height: 30px;
-            border: 1px solid #d8c6bd;
-            background: white;
-        }
+    .cart-topbar h2 {
+      margin: 0;
+      font-size: 20px;
+      color: #171313;
+    }
 
-        .remove-btn {
-            border: none;
-            background: none;
-            color: #8b4f55;
-            font-weight: bold;
-        }
+    .cart-count-text {
+      color: #81766e;
+      font-size: 14px;
+    }
 
-        .cart-summary {
-            max-width: 900px;
-            margin: 30px auto 0;
-            background: #f3e5dc;
-            padding: 25px;
-            text-align: right;
-        }
+    .cart-item {
+      padding: 25px;
+      display: grid;
+      grid-template-columns: 125px 1fr auto;
+      gap: 22px;
+      border-bottom: 1px solid #eee5dd;
+    }
 
-        .cart-total {
-            font-size: 24px;
-            font-weight: bold;
-            color: #241b19;
-        }
+    .cart-item:last-child {
+      border-bottom: none;
+    }
 
-        .checkout-btn {
-            margin-top: 15px;
-            padding: 15px 30px;
-            border: none;
-            background: #241b19;
-            color: white;
-            font-weight: bold;
-        }
+    .cart-item-image {
+      width: 125px;
+      height: 155px;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #f1e9e1;
+    }
 
-        .empty-cart {
-            text-align: center;
-            padding: 50px;
-            color: #665a56;
-        }
+    .cart-item-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
 
-        @media (max-width: 600px) {
-            .cart-item {
-                flex-wrap: wrap;
-            }
+    .cart-item-info {
+      min-width: 0;
+    }
 
-            .cart-item img {
-                width: 80px;
-                height: 100px;
-            }
-        }
-    </style>
+    .cart-item-category {
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #9a8778;
+      margin-bottom: 7px;
+    }
+
+    .cart-item-name {
+      font-size: 19px;
+      font-weight: 600;
+      color: #191515;
+      margin-bottom: 8px;
+    }
+
+    .cart-item-price {
+      font-size: 17px;
+      font-weight: 600;
+      color: #171313;
+      margin-bottom: 14px;
+    }
+
+    .size-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-bottom: 16px;
+    }
+
+    .size-tag {
+      background: #f7f0e9;
+      border: 1px solid #e4d8ce;
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      color: #4e443d;
+    }
+
+    .quantity-control {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid #d9cec4;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .quantity-control button {
+      width: 35px;
+      height: 35px;
+      border: none;
+      background: #f8f3ed;
+      cursor: pointer;
+      font-size: 18px;
+      color: #222;
+    }
+
+    .quantity-control button:hover {
+      background: #eee4da;
+    }
+
+    .quantity-number {
+      min-width: 38px;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .cart-item-right {
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .item-total {
+      font-size: 18px;
+      font-weight: 700;
+      color: #171313;
+    }
+
+    .remove-item {
+      border: none;
+      background: transparent;
+      color: #9b7068;
+      cursor: pointer;
+      font-size: 13px;
+      padding: 7px 0;
+    }
+
+    .remove-item:hover {
+      color: #7a433c;
+      text-decoration: underline;
+    }
+
+    /* =========================
+       SUMMARY
+    ========================= */
+
+    .cart-summary {
+      background: #fff;
+      border: 1px solid #e8ded5;
+      border-radius: 18px;
+      padding: 28px;
+      position: sticky;
+      top: 25px;
+    }
+
+    .cart-summary h2 {
+      margin: 0 0 25px;
+      font-size: 23px;
+      color: #171313;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 11px 0;
+      color: #665c55;
+      font-size: 14px;
+    }
+
+    .summary-row.total {
+      border-top: 1px solid #e8ded5;
+      margin-top: 10px;
+      padding-top: 20px;
+      color: #171313;
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .free-delivery {
+      color: #55735a;
+      font-weight: 600;
+    }
+
+    .checkout-btn-ziva {
+      width: 100%;
+      border: none;
+      background: #171313;
+      color: #fff;
+      padding: 17px 20px;
+      border-radius: 9px;
+      margin-top: 25px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      cursor: pointer;
+      transition: .2s ease;
+    }
+
+    .checkout-btn-ziva:hover {
+      background: #302727;
+      transform: translateY(-1px);
+    }
+
+    .continue-shopping {
+      display: block;
+      text-align: center;
+      margin-top: 18px;
+      color: #4d433d;
+      text-decoration: none;
+      font-size: 13px;
+    }
+
+    .continue-shopping:hover {
+      text-decoration: underline;
+    }
+
+    .secure-note {
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid #eee5dd;
+      text-align: center;
+      color: #847970;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    /* =========================
+       EMPTY CART
+    ========================= */
+
+    .empty-cart {
+      max-width: 600px;
+      margin: 70px auto;
+      text-align: center;
+      background: #fff;
+      border: 1px solid #e8ded5;
+      border-radius: 20px;
+      padding: 60px 30px;
+    }
+
+    .empty-cart-icon {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    .empty-cart h2 {
+      margin: 0 0 10px;
+      color: #171313;
+      font-size: 28px;
+    }
+
+    .empty-cart p {
+      margin: 0 auto 25px;
+      color: #756b64;
+      max-width: 420px;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .shop-btn {
+      display: inline-block;
+      background: #171313;
+      color: #fff;
+      padding: 14px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    /* =========================
+       LOGIN / MESSAGE MODAL
+    ========================= */
+
+    .ziva-cart-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .55);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 20px;
+    }
+
+    .ziva-cart-overlay.active {
+      display: flex;
+    }
+
+    .ziva-cart-modal {
+      width: min(430px, 100%);
+      background: #fff;
+      border-radius: 18px;
+      padding: 32px;
+      position: relative;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0,0,0,.2);
+    }
+
+    .ziva-cart-modal h3 {
+      margin: 0 0 10px;
+      color: #171313;
+      font-size: 24px;
+    }
+
+    .ziva-cart-modal p {
+      margin: 0 0 25px;
+      color: #756b64;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .modal-close {
+      position: absolute;
+      right: 17px;
+      top: 14px;
+      border: none;
+      background: transparent;
+      font-size: 23px;
+      cursor: pointer;
+      color: #555;
+    }
+
+    .modal-main-btn {
+      width: 100%;
+      border: none;
+      background: #171313;
+      color: #fff;
+      padding: 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+    }
+
+    .modal-secondary-btn {
+      width: 100%;
+      border: 1px solid #d8cbc0;
+      background: #fff;
+      color: #171313;
+      padding: 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 900px) {
+      .cart-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .cart-summary {
+        position: static;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .cart-page {
+        padding: 35px 15px;
+      }
+
+      .cart-heading h1 {
+        font-size: 32px;
+      }
+
+      .cart-item {
+        grid-template-columns: 90px 1fr;
+        gap: 15px;
+        padding: 18px;
+      }
+
+      .cart-item-image {
+        width: 90px;
+        height: 120px;
+      }
+
+      .cart-item-right {
+        grid-column: 2;
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+      }
+
+      .item-total {
+        font-size: 16px;
+      }
+
+      .cart-topbar {
+        padding: 17px;
+      }
+
+      .cart-summary {
+        padding: 22px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<header class="header">
+  <!-- =========================
+       HEADER
+  ========================= -->
 
-    <div class="logo">ZIVA</div>
+  <header class="header">
 
-    <nav class="nav">
-        <a href="index.html">Home</a>
-        <a href="index.html">New In</a>
-        <a href="index.html">Women</a>
-        <a href="index.html">Men</a>
-        <a href="index.html">Sale</a>
+    <a href="index.html" class="logo">ZIVA</a>
+
+    <nav>
+      <a href="index.html">New In</a>
+      <a href="index.html#women-section">Women</a>
+      <a href="index.html#mens-section">Men</a>
+      <a href="index.html#trending-section">Trending</a>
+      <a href="index.html#sale-section">Sale</a>
     </nav>
 
     <div class="header-actions">
-        <button class="icon-btn">⌕</button>
-        <button class="icon-btn">♡</button>
-        <button class="cart-btn" id="cartButton">🛍 Cart (0)</button>
+
+      <button
+        class="icon-btn"
+        type="button"
+        onclick="openSearch()"
+        aria-label="Search"
+      >
+        ⌕
+      </button>
+
+      <button
+        class="icon-btn"
+        type="button"
+        onclick="openAccount()"
+        id="accountButton"
+      >
+        👤 Login
+      </button>
+
+      <button
+        class="cart-btn"
+        type="button"
+        onclick="window.location.href='cart.html'"
+        id="cartButton"
+      >
+        🛍 Cart (0)
+      </button>
+
     </div>
 
-</header>
+  </header>
 
-<main class="cart-page">
 
-    <div class="cart-title">
-        <p>ZIVA SHOPPING</p>
-        <h1>Your Cart</h1>
+  <!-- =========================
+       CART PAGE
+  ========================= -->
+
+  <main class="cart-page">
+
+    <div class="cart-heading">
+      <h1>YOUR BAG</h1>
+      <p>Review your selected pieces before checkout.</p>
     </div>
 
-    <div id="cartItems"></div>
+    <div id="cartContent"></div>
 
-    <div class="cart-summary">
-        <div class="cart-total">
-            Total: ₹<span id="cartTotal">0</span>
+  </main>
+
+
+  <!-- =========================
+       MODAL
+  ========================= -->
+
+  <div
+    class="ziva-cart-overlay"
+    id="zivaCartOverlay"
+    onclick="closeCartModal(event)"
+  >
+
+    <div
+      class="ziva-cart-modal"
+      onclick="event.stopPropagation()"
+    >
+
+      <button
+        class="modal-close"
+        type="button"
+        onclick="closeCartModal()"
+      >
+        ×
+      </button>
+
+      <h3 id="cartModalTitle">ZIVA</h3>
+
+      <p id="cartModalText"></p>
+
+      <button
+        id="cartModalPrimary"
+        class="modal-main-btn"
+        type="button"
+        onclick="cartModalPrimaryAction()"
+      >
+        CONTINUE
+      </button>
+
+      <button
+        id="cartModalSecondary"
+        class="modal-secondary-btn"
+        type="button"
+        onclick="closeCartModal()"
+      >
+        CANCEL
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       CART SCRIPT
+  ========================= -->
+
+  <script>
+
+    const ZIVA_CART_KEY = "zivaCart";
+    const ZIVA_BUY_NOW_KEY = "zivaBuyNowProduct";
+
+    let cartModalAction = null;
+
+
+    /* =========================
+       CART STORAGE
+    ========================= */
+
+    function getZivaCart() {
+      try {
+        const saved = localStorage.getItem(ZIVA_CART_KEY);
+        const cart = saved ? JSON.parse(saved) : [];
+
+        return Array.isArray(cart) ? cart : [];
+
+      } catch (error) {
+        console.error("ZIVA cart error:", error);
+        return [];
+      }
+    }
+
+
+    function saveZivaCart(cart) {
+      localStorage.setItem(
+        ZIVA_CART_KEY,
+        JSON.stringify(cart)
+      );
+    }
+
+
+    /* =========================
+       LOGIN
+    ========================= */
+
+    function isZivaUserLoggedIn() {
+      return localStorage.getItem("zivaLoggedIn") === "true";
+    }
+
+
+    /* =========================
+       MONEY
+    ========================= */
+
+    function formatPrice(price) {
+
+      const number = Number(price) || 0;
+
+      return "₹" + number.toLocaleString("en-IN");
+    }
+
+
+    /* =========================
+       CART COUNT
+    ========================= */
+
+    function updateZivaCartCount() {
+
+      const cart = getZivaCart();
+
+      const count = cart.reduce(
+        (total, item) => {
+          return total + (Number(item.quantity) || 1);
+        },
+        0
+      );
+
+      const cartButton =
+        document.getElementById("cartButton");
+
+      if (cartButton) {
+        cartButton.textContent =
+          "🛍 Cart (" + count + ")";
+      }
+    }
+
+
+    /* =========================
+       BUY NOW SUPPORT
+    ========================= */
+
+    function loadBuyNowProduct() {
+
+      const buyNow =
+        localStorage.getItem(ZIVA_BUY_NOW_KEY);
+
+      if (!buyNow) return;
+
+      let cart = getZivaCart();
+
+      /*
+        Buy Now product ko tabhi add karo
+        jab cart mein already same product na ho.
+      */
+
+      try {
+
+        const product = JSON.parse(buyNow);
+
+        if (product && product.name) {
+
+          const existingIndex = cart.findIndex(
+            item =>
+              item.name === product.name &&
+              item.tshirtSize === product.tshirtSize &&
+              item.pantSize === product.pantSize
+          );
+
+          if (existingIndex === -1) {
+
+            cart.push({
+              ...product,
+              quantity: Number(product.quantity) || 1
+            });
+
+          } else {
+
+            cart[existingIndex].quantity +=
+              Number(product.quantity) || 1;
+
+          }
+
+          saveZivaCart(cart);
+
+          localStorage.removeItem(
+            ZIVA_BUY_NOW_KEY
+          );
+        }
+
+      } catch (error) {
+
+        console.error(
+          "Buy Now error:",
+          error
+        );
+
+      }
+    }
+
+
+    /* =========================
+       PRODUCT IMAGE
+    ========================= */
+
+    function getProductImage(item) {
+
+      if (item.image) {
+        return item.image;
+      }
+
+      if (
+        Array.isArray(item.images) &&
+        item.images.length > 0
+      ) {
+        return item.images[0];
+      }
+
+      return "images/men-outfit.jpeg";
+    }
+
+
+    /* =========================
+       SIZE DISPLAY
+    ========================= */
+
+    function getSizeTags(item) {
+
+      let html = "";
+
+      if (item.tshirtSize) {
+
+        html += `
+          <span class="size-tag">
+            T-Shirt: ${escapeHTML(item.tshirtSize)}
+          </span>
+        `;
+      }
+
+      if (item.pantSize) {
+
+        html += `
+          <span class="size-tag">
+            Waist: ${escapeHTML(item.pantSize)}
+          </span>
+        `;
+      }
+
+      if (item.size && !item.tshirtSize && !item.pantSize) {
+
+        html += `
+          <span class="size-tag">
+            Size: ${escapeHTML(item.size)}
+          </span>
+        `;
+      }
+
+      return html;
+    }
+
+
+    /* =========================
+       ESCAPE HTML
+    ========================= */
+
+    function escapeHTML(value) {
+
+      return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+
+    /* =========================
+       DISPLAY CART
+    ========================= */
+
+    function renderZivaCart() {
+
+      const container =
+        document.getElementById("cartContent");
+
+      if (!container) return;
+
+      const cart = getZivaCart();
+
+      updateZivaCartCount();
+
+
+      /* EMPTY CART */
+
+      if (cart.length === 0) {
+
+        container.innerHTML = `
+
+          <div class="empty-cart">
+
+            <div class="empty-cart-icon">
+              🛍
+            </div>
+
+            <h2>Your bag is empty</h2>
+
+            <p>
+              Looks like you haven't added anything
+              to your ZIVA bag yet.
+            </p>
+
+            <a
+              href="index.html"
+              class="shop-btn"
+            >
+              CONTINUE SHOPPING
+            </a>
+
+          </div>
+
+        `;
+
+        return;
+      }
+
+
+      /* TOTAL */
+
+      let subtotal = 0;
+
+      cart.forEach(item => {
+
+        const price =
+          Number(item.price) || 0;
+
+        const quantity =
+          Number(item.quantity) || 1;
+
+        subtotal += price * quantity;
+
+      });
+
+
+      const delivery = 0;
+
+      const total =
+        subtotal + delivery;
+
+
+      /* ITEMS HTML */
+
+      let itemsHTML = "";
+
+      cart.forEach((item, index) => {
+
+        const price =
+          Number(item.price) || 0;
+
+        const quantity =
+          Number(item.quantity) || 1;
+
+        const itemTotal =
+          price * quantity;
+
+        const image =
+          getProductImage(item);
+
+        const name =
+          item.name || "ZIVA Product";
+
+        const category =
+          item.category || "Fashion";
+
+
+        itemsHTML += `
+
+          <article class="cart-item">
+
+            <div class="cart-item-image">
+
+              <img
+                src="${escapeHTML(image)}"
+                alt="${escapeHTML(name)}"
+                onerror="
+                  this.onerror=null;
+                  this.src='images/men-outfit.jpeg';
+                "
+              >
+
+            </div>
+
+
+            <div class="cart-item-info">
+
+              <div class="cart-item-category">
+                ${escapeHTML(category)}
+              </div>
+
+              <div class="cart-item-name">
+                ${escapeHTML(name)}
+              </div>
+
+              <div class="cart-item-price">
+                ${formatPrice(price)}
+              </div>
+
+
+              <div class="size-tags">
+
+                ${getSizeTags(item)}
+
+              </div>
+
+
+              <div class="quantity-control">
+
+                <button
+                  type="button"
+                  onclick="changeZivaQuantity(${index}, -1)"
+                  aria-label="Decrease quantity"
+                >
+                  −
+                </button>
+
+                <span class="quantity-number">
+                  ${quantity}
+                </span>
+
+                <button
+                  type="button"
+                  onclick="changeZivaQuantity(${index}, 1)"
+                  aria-label="Increase quantity"
+                >
+                  +
+                </button>
+
+              </div>
+
+            </div>
+
+
+            <div class="cart-item-right">
+
+              <div class="item-total">
+                ${formatPrice(itemTotal)}
+              </div>
+
+              <button
+                type="button"
+                class="remove-item"
+                onclick="removeZivaItem(${index})"
+              >
+                Remove
+              </button>
+
+            </div>
+
+          </article>
+
+        `;
+
+      });
+
+
+      container.innerHTML = `
+
+        <div class="cart-layout">
+
+
+          <!-- CART ITEMS -->
+
+          <section class="cart-items-box">
+
+            <div class="cart-topbar">
+
+              <h2>Shopping Bag</h2>
+
+              <span class="cart-count-text">
+                ${cart.length}
+                ${cart.length === 1 ? "item" : "items"}
+              </span>
+
+            </div>
+
+            ${itemsHTML}
+
+          </section>
+
+
+          <!-- SUMMARY -->
+
+          <aside class="cart-summary">
+
+            <h2>Order Summary</h2>
+
+
+            <div class="summary-row">
+
+              <span>Subtotal</span>
+
+              <strong>
+                ${formatPrice(subtotal)}
+              </strong>
+
+            </div>
+
+
+            <div class="summary-row">
+
+              <span>Delivery</span>
+
+              <strong class="free-delivery">
+                FREE
+              </strong>
+
+            </div>
+
+
+            <div class="summary-row total">
+
+              <span>Total</span>
+
+              <strong>
+                ${formatPrice(total)}
+              </strong>
+
+            </div>
+
+
+            <button
+              class="checkout-btn-ziva"
+              type="button"
+              onclick="proceedZivaCheckout()"
+            >
+              PROCEED TO CHECKOUT
+            </button>
+
+
+            <a
+              href="index.html"
+              class="continue-shopping"
+            >
+              ← Continue Shopping
+            </a>
+
+
+            <div class="secure-note">
+
+              🔒 Secure checkout<br>
+              Your order details are handled securely by ZIVA.
+
+            </div>
+
+          </aside>
+
         </div>
 
-        <button class="checkout-btn">
-            PROCEED TO CHECKOUT
-        </button>
-    </div>
+      `;
+    }
 
-</main>
 
-<footer>
+    /* =========================
+       CHANGE QUANTITY
+    ========================= */
 
-    <div class="footer-logo">ZIVA</div>
+    function changeZivaQuantity(index, change) {
 
-    <p>Modern fashion for everyone.</p>
+      const cart = getZivaCart();
 
-    <div class="footer-links">
-        <a href="index.html">Home</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
-        <a href="#">Privacy</a>
-        <a href="#">Terms</a>
-    </div>
+      if (!cart[index]) return;
 
-    <small>© 2026 ZIVA. All Rights Reserved.</small>
+      const current =
+        Number(cart[index].quantity) || 1;
 
-</footer>
+      const newQuantity =
+        current + Number(change);
 
-<script src="script.js"></script>
+      if (newQuantity < 1) {
+        return;
+      }
+
+      cart[index].quantity =
+        newQuantity;
+
+      saveZivaCart(cart);
+
+      renderZivaCart();
+    }
+
+
+    /* =========================
+       REMOVE ITEM
+    ========================= */
+
+    function removeZivaItem(index) {
+
+      const cart = getZivaCart();
+
+      if (!cart[index]) return;
+
+      const itemName =
+        cart[index].name || "this item";
+
+      showCartModal(
+        "Remove Item?",
+        `Do you want to remove ${itemName} from your bag?`,
+        "REMOVE",
+        function() {
+
+          cart.splice(index, 1);
+
+          saveZivaCart(cart);
+
+          renderZivaCart();
+
+        },
+        "KEEP ITEM"
+      );
+    }
+
+
+    /* =========================
+       PROCEED TO CHECKOUT
+    ========================= */
+
+    function proceedZivaCheckout() {
+
+      const cart = getZivaCart();
+
+      /* Empty cart */
+
+      if (cart.length === 0) {
+
+        showCartModal(
+          "Your Bag Is Empty",
+          "Please add a product to your bag before checkout.",
+          "SHOP NOW",
+          function() {
+            window.location.href = "index.html";
+          },
+          "CLOSE"
+        );
+
+        return;
+      }
+
+
+      /* Login required */
+
+      if (!isZivaUserLoggedIn()) {
+
+        localStorage.setItem(
+          "zivaCheckoutPending",
+          "true"
+        );
+
+        showCartModal(
+          "Login Required",
+          "Please login or create your ZIVA account before continuing to checkout.",
+          "LOGIN",
+          function() {
+
+            window.location.href =
+              "login.html";
+
+          },
+          "SIGN UP"
+        );
+
+        /*
+          Sign Up ke liye secondary button
+          change karenge below.
+        */
+
+        document.getElementById(
+          "cartModalSecondary"
+        ).onclick = function() {
+
+          localStorage.setItem(
+            "zivaOpenSignup",
+            "true"
+          );
+
+          window.location.href =
+            "login.html";
+
+        };
+
+        return;
+      }
+
+
+      /* Logged in */
+
+      window.location.href =
+        "checkout.html";
+    }
+
+
+    /* =========================
+       MODAL
+    ========================= */
+
+    function showCartModal(
+      title,
+      text,
+      primaryText,
+      primaryAction,
+      secondaryText = "CANCEL"
+    ) {
+
+      const overlay =
+        document.getElementById(
+          "zivaCartOverlay"
+        );
+
+      const titleElement =
+        document.getElementById(
+          "cartModalTitle"
+        );
+
+      const textElement =
+        document.getElementById(
+          "cartModalText"
+        );
+
+      const primaryButton =
+        document.getElementById(
+          "cartModalPrimary"
+        );
+
+      const secondaryButton =
+        document.getElementById(
+          "cartModalSecondary"
+        );
+
+
+      titleElement.textContent =
+        title;
+
+      textElement.textContent =
+        text;
+
+      primaryButton.textContent =
+        primaryText;
+
+      secondaryButton.textContent =
+        secondaryText;
+
+
+      /*
+        Reset secondary button
+        to normal modal close.
+      */
+
+      secondaryButton.onclick =
+        closeCartModal;
+
+
+      cartModalAction =
+        typeof primaryAction === "function"
+          ? primaryAction
+          : null;
+
+
+      overlay.classList.add("active");
+    }
+
+
+    function cartModalPrimaryAction() {
+
+      if (typeof cartModalAction === "function") {
+
+        const action =
+          cartModalAction;
+
+        cartModalAction = null;
+
+        action();
+
+        return;
+      }
+
+      closeCartModal();
+    }
+
+
+    function closeCartModal(event) {
+
+      if (
+        event &&
+        event.target &&
+        event.target.id !==
+          "zivaCartOverlay"
+      ) {
+        return;
+      }
+
+      const overlay =
+        document.getElementById(
+          "zivaCartOverlay"
+        );
+
+      overlay.classList.remove("active");
+
+      cartModalAction = null;
+    }
+
+
+    /* =========================
+       ACCOUNT BUTTON
+    ========================= */
+
+    function updateZivaAccountButton() {
+
+      const button =
+        document.getElementById(
+          "accountButton"
+        );
+
+      if (!button) return;
+
+      if (isZivaUserLoggedIn()) {
+
+        let user = null;
+
+        try {
+
+          user = JSON.parse(
+            localStorage.getItem(
+              "zivaCurrentUser"
+            )
+          );
+
+        } catch (error) {
+          user = null;
+        }
+
+
+        const name =
+          user?.name || "Account";
+
+        button.textContent =
+          "👤 " + name;
+
+      } else {
+
+        button.textContent =
+          "👤 Login";
+
+      }
+    }
+
+
+    /* =========================
+       ACCOUNT
+    ========================= */
+
+    function openAccount() {
+
+      if (isZivaUserLoggedIn()) {
+
+        window.location.href =
+          "login.html";
+
+        return;
+      }
+
+      window.location.href =
+        "login.html";
+    }
+
+
+    /* =========================
+       SEARCH
+       script.js normally handles
+       this. Fallback only.
+    ========================= */
+
+    function openSearch() {
+
+      if (
+        typeof window.createSearchOverlay ===
+        "function"
+      ) {
+        window.createSearchOverlay();
+      }
+
+      if (
+        typeof window.openZivaSearch ===
+        "function"
+      ) {
+        window.openZivaSearch();
+        return;
+      }
+
+      /*
+        Main script.js ke openSearch()
+        ko call karne ki koshish.
+      */
+
+      if (
+        typeof window.zivaOpenSearch ===
+        "function"
+      ) {
+        window.zivaOpenSearch();
+      }
+
+    }
+
+
+    /* =========================
+       ESCAPE KEY
+    ========================= */
+
+    document.addEventListener(
+      "keydown",
+      function(event) {
+
+        if (event.key === "Escape") {
+
+          closeCartModal();
+
+        }
+
+      }
+    );
+
+
+    /* =========================
+       INITIALIZE
+    ========================= */
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      function() {
+
+        loadBuyNowProduct();
+
+        renderZivaCart();
+
+        updateZivaCartCount();
+
+        updateZivaAccountButton();
+
+      }
+    );
+
+  </script>
 
 </body>
 </html>

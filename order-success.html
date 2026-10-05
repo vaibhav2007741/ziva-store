@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Order Confirmed | ZIVA</title>
+  <meta
+    name="description"
+    content="Your ZIVA order has been successfully placed."
+  >
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #f8f3ed;
+      color: #171313;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .success-page {
+      min-height: calc(100vh - 80px);
+      padding: 60px 20px 80px;
+    }
+
+    .success-container {
+      max-width: 900px;
+      margin: auto;
+    }
+
+    /* SUCCESS HEADER */
+
+    .success-card {
+      background: #fff;
+      border: 1px solid #e7ddd4;
+      border-radius: 20px;
+      padding: 45px 30px;
+      text-align: center;
+      box-shadow: 0 10px 35px rgba(40, 25, 15, .05);
+    }
+
+    .success-icon {
+      width: 75px;
+      height: 75px;
+      margin: 0 auto 22px;
+      border-radius: 50%;
+      background: #e9f2e9;
+      color: #426647;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      font-weight: 700;
+    }
+
+    .success-card h1 {
+      margin: 0 0 12px;
+      font-size: 34px;
+      letter-spacing: 1px;
+    }
+
+    .success-card p {
+      margin: 0 auto;
+      max-width: 600px;
+      color: #756b64;
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    .order-id {
+      margin-top: 22px;
+      display: inline-block;
+      padding: 10px 17px;
+      border-radius: 7px;
+      background: #f7f0e9;
+      color: #4e443d;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .5px;
+    }
+
+    /* ORDER DETAILS */
+
+    .details-grid {
+      margin-top: 25px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+    }
+
+    .details-card {
+      background: #fff;
+      border: 1px solid #e7ddd4;
+      border-radius: 18px;
+      padding: 27px;
+    }
+
+    .details-card h2 {
+      margin: 0 0 20px;
+      font-size: 20px;
+    }
+
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 10px 0;
+      border-bottom: 1px solid #eee5dd;
+      font-size: 14px;
+    }
+
+    .detail-row:last-child {
+      border-bottom: none;
+    }
+
+    .detail-label {
+      color: #81766e;
+    }
+
+    .detail-value {
+      color: #171313;
+      font-weight: 600;
+      text-align: right;
+    }
+
+    /* PRODUCTS */
+
+    .products-card {
+      margin-top: 25px;
+      background: #fff;
+      border: 1px solid #e7ddd4;
+      border-radius: 18px;
+      padding: 27px;
+    }
+
+    .products-card h2 {
+      margin: 0 0 20px;
+      font-size: 20px;
+    }
+
+    .order-product {
+      display: grid;
+      grid-template-columns: 80px 1fr auto;
+      gap: 16px;
+      align-items: center;
+      padding: 15px 0;
+      border-bottom: 1px solid #eee5dd;
+    }
+
+    .order-product:last-child {
+      border-bottom: none;
+    }
+
+    .order-product-image {
+      width: 80px;
+      height: 95px;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #f2eae2;
+    }
+
+    .order-product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .order-product-name {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .order-product-meta {
+      color: #81766e;
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .order-product-price {
+      font-weight: 700;
+      font-size: 15px;
+      white-space: nowrap;
+    }
+
+    /* TOTAL */
+
+    .total-card {
+      margin-top: 25px;
+      background: #171313;
+      color: #fff;
+      border-radius: 18px;
+      padding: 28px;
+    }
+
+    .total-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 9px 0;
+      color: #ddd5cf;
+      font-size: 14px;
+    }
+
+    .total-row.final {
+      margin-top: 12px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,.18);
+      color: #fff;
+      font-size: 21px;
+      font-weight: 700;
+    }
+
+    /* DELIVERY */
+
+    .delivery-card {
+      margin-top: 25px;
+      background: #fff;
+      border: 1px solid #e7ddd4;
+      border-radius: 18px;
+      padding: 27px;
+    }
+
+    .delivery-card h2 {
+      margin: 0 0 12px;
+      font-size: 20px;
+    }
+
+    .delivery-card p {
+      margin: 6px 0;
+      color: #756b64;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* BUTTONS */
+
+    .success-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 30px;
+    }
+
+    .success-btn {
+      border: none;
+      background: #171313;
+      color: #fff;
+      padding: 15px 27px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      cursor: pointer;
+    }
+
+    .success-btn.secondary {
+      background: #fff;
+      color: #171313;
+      border: 1px solid #d9cec4;
+    }
+
+    .success-btn:hover {
+      opacity: .9;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 700px) {
+
+      .success-page {
+        padding: 35px 15px 60px;
+      }
+
+      .success-card {
+        padding: 35px 20px;
+      }
+
+      .success-card h1 {
+        font-size: 28px;
+      }
+
+      .details-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .order-product {
+        grid-template-columns: 65px 1fr;
+      }
+
+      .order-product-image {
+        width: 65px;
+        height: 80px;
+      }
+
+      .order-product-price {
+        grid-column: 2;
+      }
+
+      .success-actions {
+        flex-direction: column;
+      }
+
+      .success-btn {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+
+  <header class="header">
+
+    <a href="index.html" class="logo">
+      ZIVA
+    </a>
+
+    <nav>
+      <a href="index.html">New In</a>
+      <a href="index.html#women-section">Women</a>
+      <a href="index.html#mens-section">Men</a>
+      <a href="index.html#trending-section">Trending</a>
+      <a href="index.html#sale-section">Sale</a>
+    </nav>
+
+    <div class="header-actions">
+
+      <button
+        class="icon-btn"
+        type="button"
+        onclick="openSearch()"
+      >
+        ⌕
+      </button>
+
+      <button
+        class="icon-btn"
+        type="button"
+        onclick="openAccount()"
+      >
+        👤 Account
+      </button>
+
+      <button
+        class="cart-btn"
+        type="button"
+        onclick="window.location.href='cart.html'"
+      >
+        🛍 Cart
+      </button>
+
+    </div>
+
+  </header>
+
+
+  <!-- PAGE -->
+
+  <main class="success-page">
+
+    <div class="success-container">
+
+
+      <!-- SUCCESS -->
+
+      <section class="success-card">
+
+        <div class="success-icon">
+          ✓
+        </div>
+
+        <h1>ORDER CONFIRMED</h1>
+
+        <p>
+          Thank you for shopping with ZIVA.
+          Your order has been successfully placed.
+          We’ll keep you updated about your order.
+        </p>
+
+        <div
+          class="order-id"
+          id="orderId"
+        >
+          Order ID: ZIVA-LOADING
+        </div>
+
+      </section>
+
+
+      <!-- CUSTOMER + PAYMENT -->
+
+      <div class="details-grid">
+
+
+        <!-- CUSTOMER -->
+
+        <section class="details-card">
+
+          <h2>Customer Details</h2>
+
+          <div class="detail-row">
+
+            <span class="detail-label">
+              Name
+            </span>
+
+            <span
+              class="detail-value"
+              id="customerName"
+            >
+              —
+            </span>
+
+          </div>
+
+          <div class="detail-row">
+
+            <span class="detail-label">
+              Mobile
+            </span>
+
+            <span
+              class="detail-value"
+              id="customerPhone"
+            >
+              —
+            </span>
+
+          </div>
+
+          <div class="detail-row">
+
+            <span class="detail-label">
+              Email
+            </span>
+
+            <span
+              class="detail-value"
+              id="customerEmail"
+            >
+              —
+            </span>
+
+          </div>
+
+        </section>
+
+
+        <!-- PAYMENT -->
+
+        <section class="details-card">
+
+          <h2>Payment</h2>
+
+          <div class="detail-row">
+
+            <span class="detail-label">
+              Method
+            </span>
+
+            <span
+              class="detail-value"
+              id="paymentMethod"
+            >
+              —
+            </span>
+
+          </div>
+
+          <div class="detail-row">
+
+            <span class="detail-label">
+              Payment Status
+            </span>
+
+            <span
+              class="detail-value"
+              id="paymentStatus"
+            >
+              —
+            </span>
+
+          </div>
+
+          <div class="detail-row">
+
+            <span class="detail-label">
+              Delivery
+            </span>
+
+            <span class="detail-value">
+              FREE
+            </span>
+
+          </div>
+
+        </section>
+
+      </div>
+
+
+      <!-- PRODUCTS -->
+
+      <section class="products-card">
+
+        <h2>Your Order</h2>
+
+        <div id="orderedProducts"></div>
+
+      </section>
+
+
+      <!-- TOTAL -->
+
+      <section class="total-card">
+
+        <div class="total-row">
+
+          <span>
+            Subtotal
+          </span>
+
+          <strong id="orderSubtotal">
+            ₹0
+          </strong>
+
+        </div>
+
+
+        <div class="total-row">
+
+          <span>
+            Delivery
+          </span>
+
+          <strong>
+            FREE
+          </strong>
+
+        </div>
+
+
+        <div class="total-row final">
+
+          <span>
+            Total Order Value
+          </span>
+
+          <strong id="orderTotal">
+            ₹0
+          </strong>
+
+        </div>
+
+      </section>
+
+
+      <!-- DELIVERY -->
+
+      <section class="delivery-card">
+
+        <h2>Delivery Details</h2>
+
+        <p id="deliveryAddress">
+          —
+        </p>
+
+        <p id="deliveryCity">
+          —
+        </p>
+
+        <p id="deliveryState">
+          —
+        </p>
+
+        <p id="deliveryPin">
+          —
+        </p>
+
+        <p>
+          🚚 Estimated delivery:
+          <strong>
+            3–7 business days
+          </strong>
+        </p>
+
+      </section>
+
+
+      <!-- ACTIONS -->
+
+      <div class="success-actions">
+
+        <a
+          href="index.html"
+          class="success-btn"
+        >
+          CONTINUE SHOPPING
+        </a>
+
+        <a
+          href="index.html"
+          class="success-btn secondary"
+        >
+          BACK TO HOME
+        </a>
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <!-- SCRIPT -->
+
+  <script>
+
+    /* =========================
+       HELPERS
+    ========================= */
+
+    function formatPrice(price) {
+
+      return "₹" +
+        Number(price || 0)
+          .toLocaleString("en-IN");
+
+    }
+
+
+    function escapeHTML(value) {
+
+      return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+    }
+
+
+    /* =========================
+       GET ORDER
+    ========================= */
+
+    function getLastZivaOrder() {
+
+      try {
+
+        const saved =
+          localStorage.getItem("zivaLastOrder");
+
+        if (saved) {
+
+          return JSON.parse(saved);
+
+        }
+
+      } catch (error) {
+
+        console.error(
+          "Order loading error:",
+          error
+        );
+
+      }
+
+      return null;
+    }
+
+
+    /* =========================
+       DISPLAY ORDER
+    ========================= */
+
+    function renderOrder() {
+
+      const order =
+        getLastZivaOrder();
+
+
+      /*
+        Abhi agar checkout se order data
+        nahi aaya hai to demo information
+        show hogi.
+      */
+
+      if (!order) {
+
+        document.getElementById(
+          "orderId"
+        ).textContent =
+          "Order ID: ZIVA-TEST";
+
+        document.getElementById(
+          "paymentMethod"
+        ).textContent =
+          "Testing Mode";
+
+        document.getElementById(
+          "paymentStatus"
+        ).textContent =
+          "Pending";
+
+        document.getElementById(
+          "orderedProducts"
+        ).innerHTML = `
+
+          <p style="
+            color:#81766e;
+            font-size:14px;
+            line-height:1.6;
+          ">
+            Your order details will appear here
+            after the checkout system is connected.
+          </p>
+
+        `;
+
+        return;
+      }
+
+
+      /* ORDER ID */
+
+      document.getElementById(
+        "orderId"
+      ).textContent =
+        "Order ID: " +
+        (order.orderId || "ZIVA-ORDER");
+
+
+      /* CUSTOMER */
+
+      document.getElementById(
+        "customerName"
+      ).textContent =
+        order.customer?.name || "—";
+
+      document.getElementById(
+        "customerPhone"
+      ).textContent =
+        order.customer?.phone || "—";
+
+      document.getElementById(
+        "customerEmail"
+      ).textContent =
+        order.customer?.email || "—";
+
+
+      /* PAYMENT */
+
+      document.getElementById(
+        "paymentMethod"
+      ).textContent =
+        order.paymentMethod || "—";
+
+      document.getElementById(
+        "paymentStatus"
+      ).textContent =
+        order.paymentStatus || "Pending";
+
+
+      /* ADDRESS */
+
+      document.getElementById(
+        "deliveryAddress"
+      ).textContent =
+        order.address?.fullAddress || "—";
+
+      document.getElementById(
+        "deliveryCity"
+      ).textContent =
+        "City: " +
+        (order.address?.city || "—");
+
+      document.getElementById(
+        "deliveryState"
+      ).textContent =
+        "State: " +
+        (order.address?.state || "—");
+
+      document.getElementById(
+        "deliveryPin"
+      ).textContent =
+        "PIN: " +
+        (order.address?.pin || "—");
+
+
+      /* PRODUCTS */
+
+      const products =
+        Array.isArray(order.items)
+          ? order.items
+          : [];
+
+      let subtotal = 0;
+
+      let productsHTML = "";
+
+
+      products.forEach(item => {
+
+        const price =
+          Number(item.price) || 0;
+
+        const quantity =
+          Number(item.quantity) || 1;
+
+        subtotal +=
+          price * quantity;
+
+
+        let sizeText = "";
+
+        if (item.tshirtSize) {
+
+          sizeText +=
+            "T-Shirt: " +
+            item.tshirtSize;
+
+        }
+
+        if (item.pantSize) {
+
+          if (sizeText) {
+            sizeText += " • ";
+          }
+
+          sizeText +=
+            "Waist: " +
+            item.pantSize;
+
+        }
+
+
+        productsHTML += `
+
+          <div class="order-product">
+
+            <div class="order-product-image">
+
+              <img
+                src="${escapeHTML(
+                  item.image ||
+                  "images/men-outfit.jpeg"
+                )}"
+                alt="${escapeHTML(
+                  item.name ||
+                  "ZIVA Product"
+                )}"
+                onerror="
+                  this.onerror=null;
+                  this.src='images/men-outfit.jpeg';
+                "
+              >
+
+            </div>
+
+
+            <div>
+
+              <div class="order-product-name">
+
+                ${escapeHTML(
+                  item.name ||
+                  "ZIVA Product"
+                )}
+
+              </div>
+
+              <div class="order-product-meta">
+
+                Quantity:
+                ${quantity}
+
+                ${
+                  sizeText
+                    ? "<br>" +
+                      escapeHTML(sizeText)
+                    : ""
+                }
+
+              </div>
+
+            </div>
+
+
+            <div class="order-product-price">
+
+              ${formatPrice(
+                price * quantity
+              )}
+
+            </div>
+
+          </div>
+
+        `;
+
+      });
+
+
+      document.getElementById(
+        "orderedProducts"
+      ).innerHTML =
+        productsHTML ||
+        "<p>No products found.</p>";
+
+
+      /* TOTAL */
+
+      document.getElementById(
+        "orderSubtotal"
+      ).textContent =
+        formatPrice(subtotal);
+
+      document.getElementById(
+        "orderTotal"
+      ).textContent =
+        formatPrice(
+          Number(order.total) || subtotal
+        );
+
+    }
+
+
+    /* =========================
+       LOAD
+    ========================= */
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      function() {
+
+        renderOrder();
+
+      }
+    );
+
+
+    /* =========================
+       ACCOUNT
+    ========================= */
+
+    function openAccount() {
+
+      window.location.href =
+        "login.html";
+
+    }
+
+
+    /* =========================
+       SEARCH
+    ========================= */
+
+    function openSearch() {
+
+      /*
+        script.js ka search system
+        normally yahan available hoga.
+      */
+
+      if (
+        typeof window.zivaOpenSearch ===
+        "function"
+      ) {
+
+        window.zivaOpenSearch();
+
+      } else if (
+        typeof window.openSearch ===
+        "function" &&
+        window.openSearch !== openSearch
+      ) {
+
+        window.openSearch();
+
+      }
+
+    }
+
+  </script>
+
+</body>
+</html>

@@ -1,277 +1,2977 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>ZIVA | Product</title>
+  <title>ZIVA | Product</title>
+  <meta name="description" content="Shop premium fashion at ZIVA.">
 
-    <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css">
 
-    <style>
-        .product-page {
-            min-height: 80vh;
-            padding: 70px 7%;
-            background: #fff8f3;
-        }
+  <style>
+    /* =========================================================
+       ZIVA PRODUCT PAGE
+       ========================================================= */
 
-        .product-detail {
-            max-width: 1150px;
-            margin: auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
+    * {
+      box-sizing: border-box;
+    }
 
-        .product-photo {
-            height: 600px;
-            overflow: hidden;
-            background: #f3e5dc;
-        }
+    body {
+      margin: 0;
+      background: #faf7f3;
+      color: #171717;
+      font-family: Arial, Helvetica, sans-serif;
+    }
 
-        .product-photo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
 
-        .product-details .category {
-            color: #b17b68;
-            font-size: 12px;
-            letter-spacing: 3px;
-            font-weight: bold;
-        }
+    button {
+      cursor: pointer;
+    }
 
-        .product-details h1 {
-            font-size: 42px;
-            margin: 15px 0;
-            color: #241b19;
-        }
+    .product-page {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 30px 22px 70px;
+    }
 
-        .product-rating {
-            color: #c6a15b;
-            letter-spacing: 3px;
-            margin: 15px 0;
-        }
+    /* Breadcrumb */
 
-        .product-price {
-            font-size: 28px;
-            font-weight: bold;
-            color: #8b4f55;
-        }
+    .ziva-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 28px;
+      font-size: 13px;
+      color: #777;
+    }
 
-        .product-price del {
-            font-size: 16px;
-            color: #999;
-            margin-left: 10px;
-        }
+    .ziva-breadcrumb a {
+      color: #555;
+      text-decoration: none;
+    }
 
-        .product-description {
-            color: #665a56;
-            line-height: 1.7;
-            margin: 25px 0;
-        }
+    .ziva-breadcrumb a:hover {
+      color: #000;
+    }
 
-        .size-title {
-            font-weight: bold;
-            margin-bottom: 12px;
-        }
+    /* Product */
 
-        .sizes {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 25px;
-        }
+    .product-main {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(360px, .9fr);
+      gap: 55px;
+      align-items: start;
+    }
 
-        .size-btn {
-            width: 48px;
-            height: 42px;
-            background: white;
-            border: 1px solid #d8c6bd;
-            color: #241b19;
-        }
+    /* Gallery */
 
-        .size-btn:hover {
-            background: #241b19;
-            color: white;
-        }
+    .product-gallery {
+      position: sticky;
+      top: 20px;
+    }
 
-        .buy-btn {
-            width: 100%;
-            padding: 16px;
-            border: none;
-            background: #241b19;
-            color: white;
-            font-weight: bold;
-            letter-spacing: 1px;
-            margin-bottom: 12px;
-        }
+    .main-image-wrap {
+      position: relative;
+      width: 100%;
+      background: #eee8e1;
+      border-radius: 4px;
+      overflow: hidden;
+    }
 
-        .buy-btn:hover {
-            background: #8b4f55;
-        }
+    .main-product-image {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      display: block;
+      object-fit: cover;
+    }
 
-        .wishlist-btn {
-            width: 100%;
-            padding: 15px;
-            background: transparent;
-            border: 1px solid #241b19;
-            color: #241b19;
-            font-weight: bold;
-        }
+    .gallery-thumbnails {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      margin-top: 12px;
+    }
 
-        .wishlist-btn:hover {
-            background: #e8a0a8;
-            border-color: #e8a0a8;
-        }
+    .gallery-thumb {
+      border: 1px solid transparent;
+      background: #eee8e1;
+      padding: 0;
+      overflow: hidden;
+      border-radius: 3px;
+    }
 
-        .product-info-box {
-            margin-top: 30px;
-            border-top: 1px solid #dfcec5;
-            padding-top: 20px;
-        }
+    .gallery-thumb.active {
+      border-color: #171717;
+    }
 
-        .product-info-box p {
-            margin: 8px 0;
-            color: #665a56;
-            font-size: 14px;
-        }
+    .gallery-thumb img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      display: block;
+      object-fit: cover;
+    }
 
-        @media (max-width: 800px) {
-            .product-page {
-                padding: 40px 20px;
-            }
+    /* Product details */
 
-            .product-detail {
-                grid-template-columns: 1fr;
-                gap: 35px;
-            }
+    .product-category {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #8b7465;
+      margin-bottom: 12px;
+    }
 
-            .product-photo {
-                height: 480px;
-            }
+    .product-title {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(30px, 4vw, 48px);
+      font-weight: 500;
+      line-height: 1.08;
+    }
 
-            .product-details h1 {
-                font-size: 32px;
-            }
-        }
-    </style>
+    .product-rating-summary {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 17px 0;
+      flex-wrap: wrap;
+    }
+
+    .stars {
+      letter-spacing: 2px;
+      color: #b88735;
+      font-size: 17px;
+    }
+
+    .rating-number {
+      font-weight: 600;
+    }
+
+    .review-link {
+      color: #666;
+      text-decoration: underline;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .price-row {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      margin: 20px 0;
+    }
+
+    .current-price {
+      font-size: 25px;
+      font-weight: 700;
+    }
+
+    .old-price {
+      color: #999;
+      text-decoration: line-through;
+      font-size: 16px;
+    }
+
+    .sale-badge {
+      background: #171717;
+      color: white;
+      padding: 5px 9px;
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .product-description {
+      color: #666;
+      line-height: 1.8;
+      font-size: 15px;
+      margin-bottom: 28px;
+    }
+
+    /* Size selectors */
+
+    .selection-block {
+      margin: 25px 0;
+    }
+
+    .selection-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 11px;
+    }
+
+    .selection-heading strong {
+      font-size: 14px;
+    }
+
+    .size-guide-btn {
+      border: 0;
+      background: transparent;
+      text-decoration: underline;
+      color: #666;
+      font-size: 12px;
+      padding: 0;
+    }
+
+    .size-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .size-btn {
+      min-width: 48px;
+      height: 43px;
+      padding: 0 13px;
+      background: white;
+      border: 1px solid #d7d0ca;
+      color: #222;
+      transition: .2s ease;
+    }
+
+    .size-btn:hover {
+      border-color: #171717;
+    }
+
+    .size-btn.active {
+      background: #171717;
+      color: white;
+      border-color: #171717;
+    }
+
+    .size-error {
+      color: #a33;
+      font-size: 12px;
+      margin-top: 8px;
+      display: none;
+    }
+
+    /* Quantity */
+
+    .quantity-area {
+      margin: 25px 0;
+    }
+
+    .quantity-control {
+      display: flex;
+      width: 145px;
+      height: 45px;
+      border: 1px solid #d7d0ca;
+      background: white;
+    }
+
+    .quantity-control button {
+      width: 43px;
+      border: 0;
+      background: transparent;
+      font-size: 20px;
+    }
+
+    .quantity-control span {
+      flex: 1;
+      display: grid;
+      place-items: center;
+      font-weight: 600;
+    }
+
+    /* Actions */
+
+    .product-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .ziva-action {
+      min-height: 52px;
+      border: 1px solid #171717;
+      background: transparent;
+      color: #171717;
+      font-weight: 600;
+      letter-spacing: .4px;
+    }
+
+    .ziva-action.primary {
+      background: #171717;
+      color: white;
+    }
+
+    .ziva-action.full {
+      grid-column: 1 / -1;
+    }
+
+    .ziva-action:hover {
+      opacity: .88;
+    }
+
+    /* Service info */
+
+    .service-box {
+      border-top: 1px solid #ded7d0;
+      margin-top: 30px;
+      padding-top: 20px;
+      display: grid;
+      gap: 15px;
+    }
+
+    .service-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .service-icon {
+      width: 32px;
+      height: 32px;
+      border: 1px solid #ddd3ca;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .service-item strong {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 3px;
+    }
+
+    .service-item span {
+      color: #777;
+      font-size: 12px;
+    }
+
+    /* Product information */
+
+    .product-information {
+      margin-top: 80px;
+      padding-top: 45px;
+      border-top: 1px solid #ddd5ce;
+    }
+
+    .section-heading {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 30px;
+      font-weight: 500;
+      margin: 0 0 25px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
+    .info-card {
+      background: white;
+      border: 1px solid #e4ddd7;
+      padding: 23px;
+    }
+
+    .info-card strong {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .info-card p {
+      color: #777;
+      font-size: 14px;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    /* =========================================================
+       REVIEWS
+       ========================================================= */
+
+    .reviews-section {
+      margin-top: 80px;
+      padding-top: 45px;
+      border-top: 1px solid #ddd5ce;
+    }
+
+    .reviews-header {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 45px;
+      margin-bottom: 45px;
+    }
+
+    .rating-overview {
+      background: white;
+      border: 1px solid #e4ddd7;
+      padding: 28px;
+      text-align: center;
+    }
+
+    .big-rating {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 55px;
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    .big-stars {
+      color: #b88735;
+      letter-spacing: 3px;
+      font-size: 19px;
+      margin-bottom: 8px;
+    }
+
+    .rating-count {
+      color: #777;
+      font-size: 13px;
+    }
+
+    .rating-bars {
+      display: grid;
+      gap: 9px;
+      align-content: center;
+    }
+
+    .rating-bar-row {
+      display: grid;
+      grid-template-columns: 30px 1fr 35px;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+    }
+
+    .bar {
+      height: 7px;
+      background: #e9e2dc;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    .bar-fill {
+      height: 100%;
+      background: #b88735;
+      width: 0;
+      transition: width .3s ease;
+    }
+
+    /* Write review */
+
+    .write-review-box {
+      background: white;
+      border: 1px solid #e4ddd7;
+      padding: 28px;
+      margin-bottom: 35px;
+    }
+
+    .write-review-box h3 {
+      margin: 0 0 20px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 24px;
+      font-weight: 500;
+    }
+
+    .review-form {
+      display: grid;
+      gap: 18px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .review-input,
+    .review-textarea {
+      width: 100%;
+      border: 1px solid #d8d0c9;
+      background: #fff;
+      padding: 13px 14px;
+      outline: none;
+    }
+
+    .review-input:focus,
+    .review-textarea:focus {
+      border-color: #171717;
+    }
+
+    .review-textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .review-star-selector {
+      display: flex;
+      gap: 5px;
+    }
+
+    .review-star {
+      border: 0;
+      background: transparent;
+      padding: 2px;
+      font-size: 29px;
+      color: #cfc7c0;
+    }
+
+    .review-star.active {
+      color: #b88735;
+    }
+
+    /* Upload */
+
+    .photo-upload-area {
+      border: 1px dashed #cfc6be;
+      padding: 18px;
+      background: #fcfaf8;
+    }
+
+    .photo-upload-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid #171717;
+      padding: 10px 15px;
+      cursor: pointer;
+      background: white;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    #reviewPhotos {
+      display: none;
+    }
+
+    .photo-help {
+      color: #888;
+      font-size: 11px;
+      margin: 10px 0 0;
+    }
+
+    .photo-preview-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 14px;
+    }
+
+    .photo-preview {
+      position: relative;
+      width: 78px;
+      height: 78px;
+      overflow: hidden;
+      border: 1px solid #ddd5ce;
+    }
+
+    .photo-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .remove-photo {
+      position: absolute;
+      right: 3px;
+      top: 3px;
+      width: 22px;
+      height: 22px;
+      border: 0;
+      background: rgba(0,0,0,.75);
+      color: white;
+      border-radius: 50%;
+      font-size: 12px;
+    }
+
+    /* Reviews list */
+
+    .reviews-list {
+      display: grid;
+      gap: 20px;
+    }
+
+    .review-card {
+      background: white;
+      border: 1px solid #e4ddd7;
+      padding: 24px;
+    }
+
+    .review-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .review-user {
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .review-date {
+      color: #999;
+      font-size: 12px;
+      margin-top: 4px;
+    }
+
+    .review-card-stars {
+      color: #b88735;
+      letter-spacing: 2px;
+    }
+
+    .review-text {
+      color: #555;
+      font-size: 14px;
+      line-height: 1.75;
+      margin: 15px 0 0;
+    }
+
+    .review-images {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 17px;
+    }
+
+    .review-images img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border: 1px solid #e2d9d1;
+      cursor: pointer;
+    }
+
+    .no-reviews {
+      background: white;
+      border: 1px solid #e4ddd7;
+      padding: 35px;
+      text-align: center;
+      color: #777;
+    }
+
+    /* ZIVA modal */
+
+    .ziva-page-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.52);
+      z-index: 99999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .ziva-page-modal.active {
+      display: flex;
+    }
+
+    .ziva-modal-card {
+      width: min(440px, 100%);
+      background: #fff;
+      padding: 30px;
+      position: relative;
+      box-shadow: 0 20px 60px rgba(0,0,0,.18);
+    }
+
+    .ziva-modal-close {
+      position: absolute;
+      right: 14px;
+      top: 12px;
+      border: 0;
+      background: transparent;
+      font-size: 22px;
+      color: #555;
+    }
+
+    .ziva-modal-card h3 {
+      margin: 0 0 10px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 27px;
+      font-weight: 500;
+    }
+
+    .ziva-modal-card p {
+      color: #666;
+      line-height: 1.6;
+      font-size: 14px;
+      margin-bottom: 22px;
+    }
+
+    .modal-buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .modal-buttons button {
+      flex: 1;
+      min-height: 45px;
+      border: 1px solid #171717;
+      background: #171717;
+      color: white;
+      font-weight: 600;
+    }
+
+    .modal-buttons button.secondary {
+      background: white;
+      color: #171717;
+    }
+
+    /* Toast */
+
+    .ziva-toast {
+      position: fixed;
+      left: 50%;
+      bottom: 25px;
+      transform: translate(-50%, 20px);
+      background: #171717;
+      color: white;
+      padding: 13px 20px;
+      font-size: 13px;
+      z-index: 100000;
+      opacity: 0;
+      pointer-events: none;
+      transition: .25s ease;
+    }
+
+    .ziva-toast.show {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    /* Responsive */
+
+    @media (max-width: 900px) {
+      .product-main {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .product-gallery {
+        position: static;
+      }
+
+      .reviews-header {
+        grid-template-columns: 1fr;
+        gap: 25px;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .product-page {
+        padding: 20px 14px 50px;
+      }
+
+      .gallery-thumbnails {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 6px;
+      }
+
+      .product-actions {
+        grid-template-columns: 1fr;
+      }
+
+      .ziva-action.full {
+        grid-column: auto;
+      }
+
+      .reviews-section,
+      .product-information {
+        margin-top: 50px;
+        padding-top: 30px;
+      }
+
+      .write-review-box,
+      .review-card,
+      .rating-overview {
+        padding: 20px;
+      }
+
+      .big-rating {
+        font-size: 45px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<header class="header">
+  <!-- =========================================================
+       HEADER
+       ========================================================= -->
 
-    <div class="logo">ZIVA</div>
+  <header class="header">
 
-    <nav class="nav">
-        <a href="index.html">Home</a>
-        <a href="index.html">New In</a>
-        <a href="index.html">Women</a>
-        <a href="index.html">Men</a>
-        <a href="index.html">Sale</a>
+    <a href="index.html" class="logo">ZIVA</a>
+
+    <nav>
+      <a href="index.html#new-in">New In</a>
+      <a href="index.html#women-section">Women</a>
+      <a href="index.html#mens-section">Men</a>
+      <a href="index.html#trending-section">Trending</a>
+      <a href="index.html#sale-section">Sale</a>
     </nav>
 
     <div class="header-actions">
-        <button class="icon-btn">⌕</button>
-        <button class="icon-btn">♡</button>
-        <button class="cart-btn" id="cartButton">🛍 Cart (0)</button>
+      <button class="icon-btn" onclick="openSearch()">⌕</button>
+      <button class="icon-btn" id="accountButton" onclick="openAccount()">👤 Login</button>
+      <button class="cart-btn" id="cartButton">🛍 Cart (0)</button>
     </div>
 
-</header>
+  </header>
 
 
-<main class="product-page">
+  <!-- =========================================================
+       PRODUCT PAGE
+       ========================================================= -->
 
-    <div class="product-detail">
+  <main class="product-page">
 
-        <div class="product-photo">
-            <img
-                src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=900&q=85"
-                alt="ZIVA Fashion Dress">
+    <div class="ziva-breadcrumb">
+      <a href="index.html">Home</a>
+      <span>/</span>
+      <span id="breadcrumbProduct">Product</span>
+    </div>
+
+
+    <section class="product-main">
+
+      <!-- GALLERY -->
+
+      <div class="product-gallery">
+
+        <div class="main-image-wrap">
+          <img
+            id="mainProductImage"
+            class="main-product-image"
+            src=""
+            alt="ZIVA Product"
+          >
+        </div>
+
+        <div id="galleryThumbnails" class="gallery-thumbnails"></div>
+
+      </div>
+
+
+      <!-- DETAILS -->
+
+      <div class="product-details">
+
+        <div id="productCategory" class="product-category">
+          ZIVA COLLECTION
+        </div>
+
+        <h1 id="productTitle" class="product-title">
+          Product
+        </h1>
+
+        <div class="product-rating-summary">
+
+          <span id="topStars" class="stars">
+            ★★★★★
+          </span>
+
+          <span id="topRating" class="rating-number">
+            0.0
+          </span>
+
+          <span
+            id="topReviewCount"
+            class="review-link"
+            onclick="scrollToReviews()"
+          >
+            0 Reviews
+          </span>
+
         </div>
 
 
-        <div class="product-details">
+        <div class="price-row">
 
-            <p class="category">WOMEN</p>
+          <span id="productPrice" class="current-price">
+            ₹0
+          </span>
 
-            <h1>Classic Fashion Dress</h1>
+          <span id="productOldPrice" class="old-price">
+            ₹0
+          </span>
 
-            <div class="product-rating">
-                ★★★★★
-            </div>
-
-            <div class="product-price">
-                ₹799
-                <del>₹999</del>
-            </div>
-
-            <p class="product-description">
-                A stylish and comfortable fashion dress designed
-                for modern everyday looks. Perfect for casual
-                outings, shopping and special occasions.
-            </p>
-
-
-            <div class="size-title">
-                Select Size
-            </div>
-
-            <div class="sizes">
-                <button class="size-btn">S</button>
-                <button class="size-btn">M</button>
-                <button class="size-btn">L</button>
-                <button class="size-btn">XL</button>
-            </div>
-
-
-            <button class="buy-btn" onclick="addToCart()">
-                ADD TO BAG
-            </button>
-
-            <button class="wishlist-btn">
-                ♡ ADD TO WISHLIST
-            </button>
-
-
-            <div class="product-info-box">
-                <p>✓ Premium quality fabric</p>
-                <p>✓ Comfortable fit</p>
-                <p>✓ Easy returns available</p>
-                <p>✓ Secure payment</p>
-            </div>
+          <span id="productSale" class="sale-badge">
+            SALE
+          </span>
 
         </div>
 
+
+        <p id="productDescription" class="product-description">
+          Premium ZIVA fashion piece designed for everyday style.
+        </p>
+
+
+        <!-- T-SHIRT SIZE -->
+
+        <div id="tshirtSizeBlock" class="selection-block">
+
+          <div class="selection-heading">
+
+            <strong>T-Shirt Size</strong>
+
+            <button
+              class="size-guide-btn"
+              type="button"
+              onclick="showSizeGuide('tshirt')"
+            >
+              Size Guide
+            </button>
+
+          </div>
+
+          <div class="size-options">
+
+            <button class="size-btn" onclick="selectTshirtSize(this, 'XS')">XS</button>
+            <button class="size-btn" onclick="selectTshirtSize(this, 'S')">S</button>
+            <button class="size-btn" onclick="selectTshirtSize(this, 'M')">M</button>
+            <button class="size-btn" onclick="selectTshirtSize(this, 'L')">L</button>
+            <button class="size-btn" onclick="selectTshirtSize(this, 'XL')">XL</button>
+            <button class="size-btn" onclick="selectTshirtSize(this, 'XXL')">XXL</button>
+
+          </div>
+
+          <div id="tshirtSizeError" class="size-error">
+            Please select a T-shirt size.
+          </div>
+
+        </div>
+
+
+        <!-- PANT SIZE -->
+
+        <div id="pantSizeBlock" class="selection-block">
+
+          <div class="selection-heading">
+
+            <strong>Pant Waist Size</strong>
+
+            <button
+              class="size-guide-btn"
+              type="button"
+              onclick="showSizeGuide('pant')"
+            >
+              Size Guide
+            </button>
+
+          </div>
+
+          <div class="size-options">
+
+            <button class="size-btn" onclick="selectPantSize(this, '28')">28</button>
+            <button class="size-btn" onclick="selectPantSize(this, '30')">30</button>
+            <button class="size-btn" onclick="selectPantSize(this, '32')">32</button>
+            <button class="size-btn" onclick="selectPantSize(this, '34')">34</button>
+            <button class="size-btn" onclick="selectPantSize(this, '36')">36</button>
+            <button class="size-btn" onclick="selectPantSize(this, '38')">38</button>
+
+          </div>
+
+          <div id="pantSizeError" class="size-error">
+            Please select a pant waist size.
+          </div>
+
+        </div>
+
+
+        <!-- QUANTITY -->
+
+        <div class="quantity-area">
+
+          <div class="selection-heading">
+            <strong>Quantity</strong>
+          </div>
+
+          <div class="quantity-control">
+
+            <button type="button" onclick="changeProductQuantity(-1)">
+              −
+            </button>
+
+            <span id="productQuantity">1</span>
+
+            <button type="button" onclick="changeProductQuantity(1)">
+              +
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- ACTIONS -->
+
+        <div class="product-actions">
+
+          <button
+            class="ziva-action primary full"
+            type="button"
+            onclick="addCurrentProductToBag()"
+          >
+            ADD TO BAG
+          </button>
+
+          <button
+            class="ziva-action"
+            type="button"
+            onclick="wishlistCurrentProduct()"
+          >
+            ♡ WISHLIST
+          </button>
+
+          <button
+            class="ziva-action"
+            type="button"
+            onclick="buyCurrentProduct()"
+          >
+            BUY NOW
+          </button>
+
+        </div>
+
+
+        <!-- SERVICE -->
+
+        <div class="service-box">
+
+          <div class="service-item">
+            <div class="service-icon">✓</div>
+            <div>
+              <strong>Quality Checked</strong>
+              <span>Every ZIVA product is checked before dispatch.</span>
+            </div>
+          </div>
+
+          <div class="service-item">
+            <div class="service-icon">↻</div>
+            <div>
+              <strong>Easy Returns</strong>
+              <span>Return policy will be available after full backend setup.</span>
+            </div>
+          </div>
+
+          <div class="service-item">
+            <div class="service-icon">▱</div>
+            <div>
+              <strong>Secure Shopping</strong>
+              <span>Your cart and account experience is protected within ZIVA.</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         PRODUCT INFORMATION
+         ========================================================= -->
+
+    <section class="product-information">
+
+      <h2 class="section-heading">
+        Product Information
+      </h2>
+
+      <div class="info-grid">
+
+        <div class="info-card">
+          <strong>Premium Quality</strong>
+          <p>
+            Carefully selected fashion pieces with a clean,
+            modern ZIVA aesthetic.
+          </p>
+        </div>
+
+        <div class="info-card">
+          <strong>Size & Fit</strong>
+          <p>
+            Select your T-shirt size and pant waist separately
+            whenever the product supports both.
+          </p>
+        </div>
+
+        <div class="info-card">
+          <strong>ZIVA Collection</strong>
+          <p>
+            Designed for customers who want a premium,
+            simple and modern fashion experience.
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         REVIEWS
+         ========================================================= -->
+
+    <section id="reviewsSection" class="reviews-section">
+
+      <h2 class="section-heading">
+        Customer Reviews
+      </h2>
+
+
+      <!-- RATING SUMMARY -->
+
+      <div class="reviews-header">
+
+        <div class="rating-overview">
+
+          <div id="bigRating" class="big-rating">
+            0.0
+          </div>
+
+          <div id="bigStars" class="big-stars">
+            ☆☆☆☆☆
+          </div>
+
+          <div id="ratingCount" class="rating-count">
+            Based on 0 reviews
+          </div>
+
+        </div>
+
+
+        <div class="rating-bars">
+
+          <div class="rating-bar-row">
+            <span>5★</span>
+            <div class="bar">
+              <div id="bar5" class="bar-fill"></div>
+            </div>
+            <span id="count5">0</span>
+          </div>
+
+          <div class="rating-bar-row">
+            <span>4★</span>
+            <div class="bar">
+              <div id="bar4" class="bar-fill"></div>
+            </div>
+            <span id="count4">0</span>
+          </div>
+
+          <div class="rating-bar-row">
+            <span>3★</span>
+            <div class="bar">
+              <div id="bar3" class="bar-fill"></div>
+            </div>
+            <span id="count3">0</span>
+          </div>
+
+          <div class="rating-bar-row">
+            <span>2★</span>
+            <div class="bar">
+              <div id="bar2" class="bar-fill"></div>
+            </div>
+            <span id="count2">0</span>
+          </div>
+
+          <div class="rating-bar-row">
+            <span>1★</span>
+            <div class="bar">
+              <div id="bar1" class="bar-fill"></div>
+            </div>
+            <span id="count1">0</span>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- WRITE REVIEW -->
+
+      <div class="write-review-box">
+
+        <h3>
+          Write a Review
+        </h3>
+
+        <form
+          id="reviewForm"
+          class="review-form"
+          onsubmit="submitZivaReview(event)"
+        >
+
+          <div>
+
+            <label class="form-label">
+              Your Name
+            </label>
+
+            <input
+              id="reviewName"
+              class="review-input"
+              type="text"
+              maxlength="50"
+              placeholder="Enter your name"
+              required
+            >
+
+          </div>
+
+
+          <div>
+
+            <label class="form-label">
+              Your Rating
+            </label>
+
+            <div class="review-star-selector">
+
+              <button type="button" class="review-star" data-rating="1" onclick="selectReviewRating(1)">★</button>
+
+              <button type="button" class="review-star" data-rating="2" onclick="selectReviewRating(2)">★</button>
+
+              <button type="button" class="review-star" data-rating="3" onclick="selectReviewRating(3)">★</button>
+
+              <button type="button" class="review-star" data-rating="4" onclick="selectReviewRating(4)">★</button>
+
+              <button type="button" class="review-star" data-rating="5" onclick="selectReviewRating(5)">★</button>
+
+            </div>
+
+          </div>
+
+
+          <div>
+
+            <label class="form-label">
+              Your Review
+            </label>
+
+            <textarea
+              id="reviewText"
+              class="review-textarea"
+              maxlength="1000"
+              placeholder="Tell other customers about this product..."
+              required
+            ></textarea>
+
+          </div>
+
+
+          <!-- PHOTO UPLOAD -->
+
+          <div>
+
+            <label class="form-label">
+              Add Photos
+            </label>
+
+            <div class="photo-upload-area">
+
+              <label
+                for="reviewPhotos"
+                class="photo-upload-label"
+              >
+                📷 Add Photos
+              </label>
+
+              <input
+                id="reviewPhotos"
+                type="file"
+                accept="image/jpeg,image/png,image/webp"
+                multiple
+                onchange="handleReviewPhotos(event)"
+              >
+
+              <p class="photo-help">
+                Add up to 3 product photos. JPG, PNG or WEBP.
+              </p>
+
+              <div
+                id="photoPreviewList"
+                class="photo-preview-list"
+              ></div>
+
+            </div>
+
+          </div>
+
+
+          <button
+            class="ziva-action primary"
+            type="submit"
+          >
+            SUBMIT REVIEW
+          </button>
+
+        </form>
+
+      </div>
+
+
+      <!-- REVIEWS -->
+
+      <div id="reviewsList" class="reviews-list"></div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================================================
+       ZIVA MODAL
+       ========================================================= -->
+
+  <div
+    id="zivaProductModal"
+    class="ziva-page-modal"
+    onclick="closeZivaProductModal(event)"
+  >
+
+    <div
+      class="ziva-modal-card"
+      onclick="event.stopPropagation()"
+    >
+
+      <button
+        class="ziva-modal-close"
+        onclick="closeZivaProductModal()"
+        type="button"
+      >
+        ×
+      </button>
+
+      <h3 id="zivaModalTitle">
+        ZIVA
+      </h3>
+
+      <p id="zivaModalText">
+        Message
+      </p>
+
+      <div id="zivaModalButtons" class="modal-buttons"></div>
+
     </div>
 
-</main>
+  </div>
 
 
-<footer>
+  <!-- TOAST -->
 
-    <div class="footer-logo">ZIVA</div>
-
-    <p>Modern fashion for everyone.</p>
-
-    <div class="footer-links">
-        <a href="index.html">Home</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
-        <a href="#">Privacy</a>
-        <a href="#">Terms</a>
-    </div>
-
-    <small>
-        © 2026 ZIVA. All Rights Reserved.
-    </small>
-
-</footer>
+  <div id="zivaToast" class="ziva-toast">
+    Added
+  </div>
 
 
-<script src="script.js"></script>
+  <!-- Existing ZIVA JS -->
+
+  <script src="script.js"></script>
+
+
+  <!-- =========================================================
+       PRODUCT PAGE JAVASCRIPT
+       ========================================================= -->
+
+  <script>
+
+    /* =========================================================
+       PRODUCT
+       ========================================================= */
+
+    let currentProduct = null;
+
+    let selectedTshirtSize = "";
+    let selectedPantSize = "";
+    let productQuantity = 1;
+
+    let selectedReviewRating = 0;
+    let reviewPhotos = [];
+
+
+    function getSelectedProduct() {
+
+      try {
+
+        const saved = localStorage.getItem("zivaSelectedProduct");
+
+        if (saved) {
+          return JSON.parse(saved);
+        }
+
+      } catch (error) {
+        console.log("ZIVA product data error:", error);
+      }
+
+      return {
+
+        id: "classic-ziva-product",
+
+        name: "ZIVA Classic Fashion",
+
+        price: 799,
+
+        oldPrice: 999,
+
+        category: "ZIVA Collection",
+
+        type: "tshirt",
+
+        image:
+          "images/WhatsApp Image 2026-10-03 at 9.58.39 PM (1).jpeg",
+
+        description:
+          "A premium ZIVA fashion piece created for a clean, modern and effortless look."
+
+      };
+
+    }
+
+
+    function setupProduct() {
+
+      currentProduct = getSelectedProduct();
+
+      if (!currentProduct.id) {
+        currentProduct.id =
+          currentProduct.name
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, "-");
+      }
+
+
+      document.title =
+        "ZIVA | " + (currentProduct.name || "Product");
+
+
+      document.getElementById("breadcrumbProduct").textContent =
+        currentProduct.name || "Product";
+
+
+      document.getElementById("productCategory").textContent =
+        currentProduct.category || "ZIVA COLLECTION";
+
+
+      document.getElementById("productTitle").textContent =
+        currentProduct.name || "ZIVA Product";
+
+
+      document.getElementById("productPrice").textContent =
+        "₹" + Number(currentProduct.price || 0).toLocaleString("en-IN");
+
+
+      if (currentProduct.oldPrice) {
+
+        document.getElementById("productOldPrice").textContent =
+          "₹" + Number(currentProduct.oldPrice).toLocaleString("en-IN");
+
+      } else {
+
+        document.getElementById("productOldPrice").style.display = "none";
+
+      }
+
+
+      document.getElementById("productDescription").textContent =
+        currentProduct.description ||
+        "Premium ZIVA fashion piece designed for everyday style.";
+
+
+      setupProductType();
+
+      setupGallery();
+
+      loadReviewData();
+
+    }
+
+
+    /* =========================================================
+       PRODUCT TYPE
+       ========================================================= */
+
+    function setupProductType() {
+
+      const type =
+        String(
+          currentProduct.type ||
+          currentProduct.productType ||
+          ""
+        ).toLowerCase();
+
+
+      const tshirtBlock =
+        document.getElementById("tshirtSizeBlock");
+
+      const pantBlock =
+        document.getElementById("pantSizeBlock");
+
+
+      /*
+        Product types:
+
+        tshirt
+        pant
+        set
+
+        If old products don't have type,
+        show both selectors for compatibility.
+      */
+
+      if (type === "tshirt" || type === "shirt") {
+
+        tshirtBlock.style.display = "block";
+        pantBlock.style.display = "none";
+
+      } else if (type === "pant" || type === "pants") {
+
+        tshirtBlock.style.display = "none";
+        pantBlock.style.display = "block";
+
+      } else if (
+        type === "set" ||
+        type === "co-ord" ||
+        type === "combo"
+      ) {
+
+        tshirtBlock.style.display = "block";
+        pantBlock.style.display = "block";
+
+      } else {
+
+        tshirtBlock.style.display = "block";
+        pantBlock.style.display = "block";
+
+      }
+
+    }
+
+
+    /* =========================================================
+       GALLERY
+       ========================================================= */
+
+    function setupGallery() {
+
+      const mainImage =
+        document.getElementById("mainProductImage");
+
+      const thumbnailBox =
+        document.getElementById("galleryThumbnails");
+
+
+      const images = [];
+
+
+      if (currentProduct.image) {
+        images.push(currentProduct.image);
+      }
+
+
+      if (Array.isArray(currentProduct.images)) {
+
+        currentProduct.images.forEach(function(image) {
+
+          if (
+            image &&
+            !images.includes(image)
+          ) {
+
+            images.push(image);
+
+          }
+
+        });
+
+      }
+
+
+      if (images.length === 0) {
+
+        images.push(
+          "images/WhatsApp Image 2026-10-03 at 9.58.39 PM (1).jpeg"
+        );
+
+      }
+
+
+      mainImage.src = images[0];
+
+
+      thumbnailBox.innerHTML = "";
+
+
+      images.slice(0, 5).forEach(function(image, index) {
+
+        const button =
+          document.createElement("button");
+
+        button.className =
+          "gallery-thumb" +
+          (index === 0 ? " active" : "");
+
+        button.type = "button";
+
+        button.innerHTML =
+          '<img src="' +
+          escapeAttribute(image) +
+          '" alt="Product image">';
+
+
+        button.addEventListener("click", function() {
+
+          mainImage.src = image;
+
+          document
+            .querySelectorAll(".gallery-thumb")
+            .forEach(function(item) {
+              item.classList.remove("active");
+            });
+
+          button.classList.add("active");
+
+        });
+
+
+        thumbnailBox.appendChild(button);
+
+      });
+
+    }
+
+
+    function escapeAttribute(value) {
+
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/"/g, "&quot;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+
+    }
+
+
+    /* =========================================================
+       SIZE
+       ========================================================= */
+
+    function selectTshirtSize(button, size) {
+
+      selectedTshirtSize = size;
+
+
+      document
+        .querySelectorAll("#tshirtSizeBlock .size-btn")
+        .forEach(function(item) {
+          item.classList.remove("active");
+        });
+
+
+      button.classList.add("active");
+
+
+      document.getElementById("tshirtSizeError").style.display =
+        "none";
+
+    }
+
+
+    function selectPantSize(button, size) {
+
+      selectedPantSize = size;
+
+
+      document
+        .querySelectorAll("#pantSizeBlock .size-btn")
+        .forEach(function(item) {
+          item.classList.remove("active");
+        });
+
+
+      button.classList.add("active");
+
+
+      document.getElementById("pantSizeError").style.display =
+        "none";
+
+    }
+
+
+    function validateProductSizes() {
+
+      const type =
+        String(
+          currentProduct.type ||
+          currentProduct.productType ||
+          ""
+        ).toLowerCase();
+
+
+      let valid = true;
+
+
+      const needsTshirt =
+        !["pant", "pants"].includes(type);
+
+
+      const needsPant =
+        [
+          "pant",
+          "pants",
+          "set",
+          "co-ord",
+          "combo"
+        ].includes(type);
+
+
+      if (
+        needsTshirt &&
+        document.getElementById("tshirtSizeBlock").style.display !== "none" &&
+        !selectedTshirtSize
+      ) {
+
+        document.getElementById("tshirtSizeError").style.display =
+          "block";
+
+        valid = false;
+
+      }
+
+
+      if (
+        needsPant &&
+        document.getElementById("pantSizeBlock").style.display !== "none" &&
+        !selectedPantSize
+      ) {
+
+        document.getElementById("pantSizeError").style.display =
+          "block";
+
+        valid = false;
+
+      }
+
+
+      return valid;
+
+    }
+
+
+    /* =========================================================
+       QUANTITY
+       ========================================================= */
+
+    function changeProductQuantity(change) {
+
+      productQuantity += change;
+
+
+      if (productQuantity < 1) {
+        productQuantity = 1;
+      }
+
+
+      if (productQuantity > 10) {
+        productQuantity = 10;
+      }
+
+
+      document.getElementById("productQuantity").textContent =
+        productQuantity;
+
+    }
+
+
+    /* =========================================================
+       LOGIN CHECK
+       ========================================================= */
+
+    function isZivaUserLoggedIn() {
+
+      return localStorage.getItem("zivaLoggedIn") === "true";
+
+    }
+
+
+    function requireZivaLogin(action) {
+
+      if (isZivaUserLoggedIn()) {
+        action();
+        return;
+      }
+
+
+      openZivaProductModal(
+        "Login Required",
+        "Please login or create your ZIVA account before continuing.",
+        [
+          {
+            text: "LOGIN",
+            primary: true,
+            action: function() {
+              window.location.href = "login.html";
+            }
+          },
+          {
+            text: "SIGN UP",
+            primary: false,
+            action: function() {
+              localStorage.setItem("zivaOpenSignup", "true");
+              window.location.href = "login.html";
+            }
+          }
+        ]
+      );
+
+    }
+
+
+    /* =========================================================
+       ADD TO BAG
+       ========================================================= */
+
+    function addCurrentProductToBag() {
+
+      if (!validateProductSizes()) {
+        showZivaToast("Please select your size.");
+        return;
+      }
+
+
+      requireZivaLogin(function() {
+
+        const product = {
+
+          ...currentProduct,
+
+          quantity: productQuantity,
+
+          tshirtSize: selectedTshirtSize || "",
+
+          pantSize: selectedPantSize || ""
+
+        };
+
+
+        let cart = [];
+
+        try {
+
+          cart =
+            JSON.parse(
+              localStorage.getItem("zivaCart") || "[]"
+            );
+
+          if (!Array.isArray(cart)) {
+            cart = [];
+          }
+
+        } catch (error) {
+
+          cart = [];
+
+        }
+
+
+        const existingIndex =
+          cart.findIndex(function(item) {
+
+            return (
+              item.id === product.id &&
+              item.tshirtSize === product.tshirtSize &&
+              item.pantSize === product.pantSize
+            );
+
+          });
+
+
+        if (existingIndex !== -1) {
+
+          cart[existingIndex].quantity =
+            Number(cart[existingIndex].quantity || 0) +
+            product.quantity;
+
+        } else {
+
+          cart.push(product);
+
+        }
+
+
+        localStorage.setItem(
+          "zivaCart",
+          JSON.stringify(cart)
+        );
+
+
+        if (
+          typeof updateCartCount === "function"
+        ) {
+
+          updateCartCount();
+
+        }
+
+
+        showZivaProductModal(
+          "Added to Bag",
+          "Your selected product has been added to your ZIVA bag.",
+          [
+            {
+              text: "CONTINUE SHOPPING",
+              primary: false,
+              action: closeZivaProductModal
+            },
+            {
+              text: "VIEW BAG",
+              primary: true,
+              action: function() {
+                window.location.href = "cart.html";
+              }
+            }
+          ]
+        );
+
+      });
+
+    }
+
+
+    /* =========================================================
+       BUY NOW
+       ========================================================= */
+
+    function buyCurrentProduct() {
+
+      if (!validateProductSizes()) {
+        showZivaToast("Please select your size.");
+        return;
+      }
+
+
+      requireZivaLogin(function() {
+
+        const product = {
+
+          ...currentProduct,
+
+          quantity: productQuantity,
+
+          tshirtSize: selectedTshirtSize || "",
+
+          pantSize: selectedPantSize || ""
+
+        };
+
+
+        localStorage.setItem(
+          "zivaBuyNowProduct",
+          JSON.stringify(product)
+        );
+
+
+        window.location.href = "cart.html";
+
+      });
+
+    }
+
+
+    /* =========================================================
+       WISHLIST
+       ========================================================= */
+
+    function wishlistCurrentProduct() {
+
+      requireZivaLogin(function() {
+
+        let wishlist = [];
+
+        try {
+
+          wishlist =
+            JSON.parse(
+              localStorage.getItem("zivaWishlist") || "[]"
+            );
+
+          if (!Array.isArray(wishlist)) {
+            wishlist = [];
+          }
+
+        } catch (error) {
+
+          wishlist = [];
+
+        }
+
+
+        const exists =
+          wishlist.some(function(item) {
+
+            return item.id === currentProduct.id;
+
+          });
+
+
+        if (!exists) {
+
+          wishlist.push(currentProduct);
+
+          localStorage.setItem(
+            "zivaWishlist",
+            JSON.stringify(wishlist)
+          );
+
+          showZivaToast(
+            "Added to your wishlist."
+          );
+
+        } else {
+
+          showZivaToast(
+            "Already in your wishlist."
+          );
+
+        }
+
+      });
+
+    }
+
+
+    /* =========================================================
+       REVIEWS STORAGE
+       ========================================================= */
+
+    function getReviewStorageKey() {
+
+      return (
+        "zivaReviews_" +
+        String(currentProduct.id)
+      );
+
+    }
+
+
+    function getReviews() {
+
+      try {
+
+        const reviews =
+          JSON.parse(
+            localStorage.getItem(
+              getReviewStorageKey()
+            ) || "[]"
+          );
+
+
+        return Array.isArray(reviews)
+          ? reviews
+          : [];
+
+      } catch (error) {
+
+        return [];
+
+      }
+
+    }
+
+
+    function saveReviews(reviews) {
+
+      localStorage.setItem(
+        getReviewStorageKey(),
+        JSON.stringify(reviews)
+      );
+
+    }
+
+
+    /* =========================================================
+       REVIEW RATING
+       ========================================================= */
+
+    function selectReviewRating(rating) {
+
+      selectedReviewRating = rating;
+
+
+      document
+        .querySelectorAll(".review-star")
+        .forEach(function(button) {
+
+          const value =
+            Number(
+              button.dataset.rating
+            );
+
+
+          button.classList.toggle(
+            "active",
+            value <= rating
+          );
+
+        });
+
+    }
+
+
+    /* =========================================================
+       PHOTO UPLOAD
+       ========================================================= */
+
+    function handleReviewPhotos(event) {
+
+      const files =
+        Array.from(
+          event.target.files || []
+        );
+
+
+      if (files.length === 0) {
+        return;
+      }
+
+
+      const allowedFiles =
+        files.slice(0, 3);
+
+
+      reviewPhotos = [];
+
+
+      let completed = 0;
+
+
+      allowedFiles.forEach(function(file) {
+
+        if (!file.type.startsWith("image/")) {
+          completed++;
+          return;
+        }
+
+
+        const reader =
+          new FileReader();
+
+
+        reader.onload = function(e) {
+
+          reviewPhotos.push({
+            name: file.name,
+            data: e.target.result
+          });
+
+
+          completed++;
+
+
+          if (
+            completed === allowedFiles.length
+          ) {
+
+            renderPhotoPreviews();
+
+          }
+
+        };
+
+
+        reader.readAsDataURL(file);
+
+      });
+
+
+      if (files.length > 3) {
+
+        showZivaToast(
+          "Only 3 photos can be added."
+        );
+
+      }
+
+    }
+
+
+    function renderPhotoPreviews() {
+
+      const container =
+        document.getElementById(
+          "photoPreviewList"
+        );
+
+
+      container.innerHTML = "";
+
+
+      reviewPhotos.forEach(function(photo, index) {
+
+        const wrapper =
+          document.createElement("div");
+
+        wrapper.className =
+          "photo-preview";
+
+
+        wrapper.innerHTML =
+          '<img src="' +
+          escapeAttribute(photo.data) +
+          '" alt="Review photo">' +
+          '<button type="button" class="remove-photo" onclick="removeReviewPhoto(' +
+          index +
+          ')">×</button>';
+
+
+        container.appendChild(wrapper);
+
+      });
+
+    }
+
+
+    function removeReviewPhoto(index) {
+
+      reviewPhotos.splice(index, 1);
+
+      renderPhotoPreviews();
+
+    }
+
+
+    /* =========================================================
+       SUBMIT REVIEW
+       ========================================================= */
+
+    function submitZivaReview(event) {
+
+      event.preventDefault();
+
+
+      if (!selectedReviewRating) {
+
+        showZivaToast(
+          "Please select a rating."
+        );
+
+        return;
+
+      }
+
+
+      const name =
+        document
+          .getElementById("reviewName")
+          .value
+          .trim();
+
+
+      const text =
+        document
+          .getElementById("reviewText")
+          .value
+          .trim();
+
+
+      if (!name || !text) {
+
+        showZivaToast(
+          "Please complete your review."
+        );
+
+        return;
+
+      }
+
+
+      const review = {
+
+        id:
+          Date.now().toString(),
+
+        name: name,
+
+        rating:
+          selectedReviewRating,
+
+        text: text,
+
+        photos:
+          reviewPhotos.map(function(photo) {
+            return photo.data;
+          }),
+
+        date:
+          new Date().toISOString()
+
+      };
+
+
+      const reviews =
+        getReviews();
+
+
+      reviews.unshift(review);
+
+
+      saveReviews(reviews);
+
+
+      document
+        .getElementById("reviewForm")
+        .reset();
+
+
+      selectedReviewRating = 0;
+
+      reviewPhotos = [];
+
+
+      document
+        .querySelectorAll(".review-star")
+        .forEach(function(button) {
+          button.classList.remove("active");
+        });
+
+
+      document
+        .getElementById("photoPreviewList")
+        .innerHTML = "";
+
+
+      loadReviewData();
+
+
+      showZivaProductModal(
+        "Review Submitted",
+        "Thank you for sharing your experience with ZIVA.",
+        [
+          {
+            text: "DONE",
+            primary: true,
+            action: closeZivaProductModal
+          }
+        ]
+      );
+
+    }
+
+
+    /* =========================================================
+       LOAD REVIEW DATA
+       ========================================================= */
+
+    function loadReviewData() {
+
+      const reviews =
+        getReviews();
+
+
+      updateRatingSummary(reviews);
+
+      renderReviews(reviews);
+
+    }
+
+
+    /* =========================================================
+       RATING SUMMARY
+       ========================================================= */
+
+    function updateRatingSummary(reviews) {
+
+      const count =
+        reviews.length;
+
+
+      let total = 0;
+
+
+      reviews.forEach(function(review) {
+
+        total +=
+          Number(review.rating || 0);
+
+      });
+
+
+      const average =
+        count
+          ? total / count
+          : 0;
+
+
+      const formatted =
+        average.toFixed(1);
+
+
+      document.getElementById("bigRating").textContent =
+        formatted;
+
+
+      document.getElementById("ratingCount").textContent =
+        "Based on " +
+        count +
+        (count === 1 ? " review" : " reviews");
+
+
+      document.getElementById("topRating").textContent =
+        formatted;
+
+
+      document.getElementById("topReviewCount").textContent =
+        count +
+        (count === 1 ? " Review" : " Reviews");
+
+
+      document.getElementById("bigStars").textContent =
+        makeStars(average);
+
+
+      document.getElementById("topStars").textContent =
+        makeStars(average);
+
+
+      const counts = {
+        1: 0,
+        2: 0,
+        3: 0,
+        4: 0,
+        5: 0
+      };
+
+
+      reviews.forEach(function(review) {
+
+        const rating =
+          Number(review.rating);
+
+        if (counts[rating] !== undefined) {
+          counts[rating]++;
+        }
+
+      });
+
+
+      [1, 2, 3, 4, 5].forEach(function(rating) {
+
+        const percentage =
+          count
+            ? (counts[rating] / count) * 100
+            : 0;
+
+
+        document.getElementById(
+          "bar" + rating
+        ).style.width =
+          percentage + "%";
+
+
+        document.getElementById(
+          "count" + rating
+        ).textContent =
+          counts[rating];
+
+      });
+
+    }
+
+
+    function makeStars(rating) {
+
+      const rounded =
+        Math.round(Number(rating || 0));
+
+
+      let result = "";
+
+
+      for (let i = 1; i <= 5; i++) {
+
+        result +=
+          i <= rounded
+            ? "★"
+            : "☆";
+
+      }
+
+
+      return result;
+
+    }
+
+
+    /* =========================================================
+       RENDER REVIEWS
+       ========================================================= */
+
+    function renderReviews(reviews) {
+
+      const container =
+        document.getElementById("reviewsList");
+
+
+      container.innerHTML = "";
+
+
+      if (!reviews.length) {
+
+        container.innerHTML = `
+          <div class="no-reviews">
+            <strong>No reviews yet.</strong>
+            <p>Be the first customer to review this product.</p>
+          </div>
+        `;
+
+        return;
+
+      }
+
+
+      reviews.forEach(function(review) {
+
+        const card =
+          document.createElement("article");
+
+        card.className =
+          "review-card";
+
+
+        const safeName =
+          escapeHtml(review.name);
+
+
+        const safeText =
+          escapeHtml(review.text);
+
+
+        const date =
+          formatReviewDate(review.date);
+
+
+        let photosHTML = "";
+
+
+        if (
+          Array.isArray(review.photos) &&
+          review.photos.length
+        ) {
+
+          photosHTML =
+            '<div class="review-images">' +
+            review.photos
+              .map(function(photo) {
+
+                return `
+                  <img
+                    src="${escapeAttribute(photo)}"
+                    alt="Customer review photo"
+                    onclick="openReviewPhoto('${escapeAttribute(photo)}')"
+                  >
+                `;
+
+              })
+              .join("") +
+            "</div>";
+
+        }
+
+
+        card.innerHTML = `
+
+          <div class="review-top">
+
+            <div>
+              <div class="review-user">
+                ${safeName}
+              </div>
+
+              <div class="review-date">
+                ${date}
+              </div>
+            </div>
+
+            <div class="review-card-stars">
+              ${makeStars(review.rating)}
+            </div>
+
+          </div>
+
+          <p class="review-text">
+            ${safeText}
+          </p>
+
+          ${photosHTML}
+
+        `;
+
+
+        container.appendChild(card);
+
+      });
+
+    }
+
+
+    function escapeHtml(value) {
+
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+    }
+
+
+    function formatReviewDate(date) {
+
+      if (!date) {
+        return "";
+      }
+
+
+      const d =
+        new Date(date);
+
+
+      if (Number.isNaN(d.getTime())) {
+        return "";
+      }
+
+
+      return d.toLocaleDateString(
+        "en-IN",
+        {
+          day: "numeric",
+          month: "short",
+          year: "numeric"
+        }
+      );
+
+    }
+
+
+    /* =========================================================
+       REVIEW PHOTO VIEWER
+       ========================================================= */
+
+    function openReviewPhoto(image) {
+
+      openZivaProductModal(
+        "Customer Photo",
+        "",
+        [
+          {
+            text: "CLOSE",
+            primary: true,
+            action: closeZivaProductModal
+          }
+        ],
+        image
+      );
+
+    }
+
+
+    /* =========================================================
+       SIZE GUIDE
+       ========================================================= */
+
+    function showSizeGuide(type) {
+
+      let title = "Size Guide";
+
+      let text = "";
+
+
+      if (type === "tshirt") {
+
+        title =
+          "T-Shirt Size Guide";
+
+        text =
+          "XS • S • M • L • XL • XXL";
+
+      } else {
+
+        title =
+          "Pant Waist Guide";
+
+        text =
+          "28 • 30 • 32 • 34 • 36 • 38";
+
+      }
+
+
+      openZivaProductModal(
+        title,
+        text,
+        [
+          {
+            text: "CLOSE",
+            primary: true,
+            action: closeZivaProductModal
+          }
+        ]
+      );
+
+    }
+
+
+    /* =========================================================
+       ZIVA MODAL
+       ========================================================= */
+
+    function openZivaProductModal(
+      title,
+      text,
+      buttons,
+      image
+    ) {
+
+      const modal =
+        document.getElementById(
+          "zivaProductModal"
+        );
+
+
+      const titleElement =
+        document.getElementById(
+          "zivaModalTitle"
+        );
+
+
+      const textElement =
+        document.getElementById(
+          "zivaModalText"
+        );
+
+
+      const buttonContainer =
+        document.getElementById(
+          "zivaModalButtons"
+        );
+
+
+      titleElement.textContent =
+        title;
+
+
+      textElement.innerHTML =
+        image
+          ? '<img src="' +
+            escapeAttribute(image) +
+            '" alt="Review photo" style="width:100%;max-height:420px;object-fit:contain;">'
+          : escapeHtml(text);
+
+
+      buttonContainer.innerHTML = "";
+
+
+      buttons.forEach(function(buttonData) {
+
+        const button =
+          document.createElement("button");
+
+
+        button.type = "button";
+
+        button.textContent =
+          buttonData.text;
+
+
+        if (!buttonData.primary) {
+          button.classList.add("secondary");
+        }
+
+
+        button.addEventListener(
+          "click",
+          function() {
+
+            if (
+              typeof buttonData.action ===
+              "function"
+            ) {
+
+              buttonData.action();
+
+            }
+
+          }
+        );
+
+
+        buttonContainer.appendChild(button);
+
+      });
+
+
+      modal.classList.add("active");
+
+    }
+
+
+    function closeZivaProductModal(event) {
+
+      if (
+        event &&
+        event.target !==
+        document.getElementById("zivaProductModal")
+      ) {
+
+        return;
+
+      }
+
+
+      document
+        .getElementById("zivaProductModal")
+        .classList.remove("active");
+
+    }
+
+
+    /* =========================================================
+       TOAST
+       ========================================================= */
+
+    let zivaToastTimer;
+
+
+    function showZivaToast(message) {
+
+      const toast =
+        document.getElementById("zivaToast");
+
+
+      toast.textContent =
+        message;
+
+
+      toast.classList.add("show");
+
+
+      clearTimeout(zivaToastTimer);
+
+
+      zivaToastTimer =
+        setTimeout(function() {
+
+          toast.classList.remove("show");
+
+        }, 2500);
+
+    }
+
+
+    /* =========================================================
+       REVIEW SCROLL
+       ========================================================= */
+
+    function scrollToReviews() {
+
+      document
+        .getElementById("reviewsSection")
+        .scrollIntoView({
+          behavior: "smooth"
+        });
+
+    }
+
+
+    /* =========================================================
+       ESC KEY
+       ========================================================= */
+
+    document.addEventListener(
+      "keydown",
+      function(event) {
+
+        if (event.key === "Escape") {
+
+          closeZivaProductModal();
+
+        }
+
+      }
+    );
+
+
+    /* =========================================================
+       INITIALIZE
+       ========================================================= */
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      function() {
+
+        setupProduct();
+
+
+        /*
+          Existing script.js functions.
+          We don't replace your ZIVA global system.
+        */
+
+        if (
+          typeof updateCartCount === "function"
+        ) {
+
+          updateCartCount();
+
+        }
+
+
+        if (
+          typeof updateAccountButton === "function"
+        ) {
+
+          updateAccountButton();
+
+        }
+
+
+        const cartButton =
+          document.getElementById(
+            "cartButton"
+          );
+
+
+        if (cartButton) {
+
+          cartButton.addEventListener(
+            "click",
+            function() {
+
+              window.location.href =
+                "cart.html";
+
+            }
+          );
+
+        }
+
+      }
+    );
+
+  </script>
 
 </body>
 </html>

@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZIVA Admin Dashboard</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f7f2ed;
+    color:#171717;
+}
+
+button{
+    font-family:inherit;
+    cursor:pointer;
+}
+
+.admin-header{
+    background:#111;
+    color:#fff;
+    padding:18px 5%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.admin-logo{
+    color:#fff;
+    text-decoration:none;
+    font-size:25px;
+    font-weight:800;
+    letter-spacing:4px;
+}
+
+.admin-header-right{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.store-btn,
+.logout-btn{
+    border:1px solid #777;
+    background:transparent;
+    color:#fff;
+    padding:9px 15px;
+    border-radius:8px;
+}
+
+.logout-btn{
+    background:#fff;
+    color:#111;
+    border-color:#fff;
+}
+
+.container{
+    width:90%;
+    max-width:1400px;
+    margin:35px auto;
+}
+
+.dashboard-title{
+    margin-bottom:25px;
+}
+
+.dashboard-title h1{
+    font-size:32px;
+    margin-bottom:7px;
+}
+
+.dashboard-title p{
+    color:#777;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+    margin-bottom:30px;
+}
+
+.stat-card{
+    background:#fff;
+    border:1px solid #e5ddd6;
+    border-radius:15px;
+    padding:23px;
+    box-shadow:0 5px 18px rgba(0,0,0,.04);
+}
+
+.stat-icon{
+    font-size:25px;
+    margin-bottom:15px;
+}
+
+.stat-card span{
+    color:#777;
+    font-size:14px;
+}
+
+.stat-card h2{
+    font-size:28px;
+    margin-top:7px;
+}
+
+.admin-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:22px;
+    margin-bottom:25px;
+}
+
+.panel{
+    background:#fff;
+    border:1px solid #e5ddd6;
+    border-radius:15px;
+    padding:22px;
+    box-shadow:0 5px 18px rgba(0,0,0,.04);
+}
+
+.panel-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.panel-header h2{
+    font-size:20px;
+}
+
+.refresh-btn{
+    border:1px solid #ccc;
+    background:#fafafa;
+    padding:8px 13px;
+    border-radius:7px;
+}
+
+.order-card{
+    border:1px solid #eee;
+    border-radius:12px;
+    padding:16px;
+    margin-bottom:12px;
+}
+
+.order-top{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+}
+
+.order-id{
+    font-weight:700;
+}
+
+.order-date{
+    color:#888;
+    font-size:12px;
+    margin-top:5px;
+}
+
+.status{
+    padding:6px 10px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:700;
+    background:#f1eee9;
+}
+
+.order-info{
+    margin-top:13px;
+    color:#555;
+    font-size:14px;
+    line-height:1.6;
+}
+
+.order-actions{
+    display:flex;
+    gap:8px;
+    margin-top:14px;
+    flex-wrap:wrap;
+}
+
+.status-select{
+    border:1px solid #ccc;
+    padding:8px;
+    border-radius:7px;
+    background:#fff;
+}
+
+.view-btn{
+    background:#111;
+    color:#fff;
+    border:0;
+    padding:8px 13px;
+    border-radius:7px;
+}
+
+.customer-card{
+    border-bottom:1px solid #eee;
+    padding:13px 0;
+}
+
+.customer-card:last-child{
+    border-bottom:0;
+}
+
+.customer-name{
+    font-weight:700;
+}
+
+.customer-id{
+    color:#777;
+    font-size:13px;
+    margin-top:4px;
+}
+
+.products-panel{
+    margin-bottom:25px;
+}
+
+.product-table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.product-table th,
+.product-table td{
+    text-align:left;
+    padding:13px;
+    border-bottom:1px solid #eee;
+}
+
+.product-table th{
+    font-size:13px;
+    color:#777;
+}
+
+.empty{
+    text-align:center;
+    color:#888;
+    padding:35px 10px;
+}
+
+.notice{
+    background:#fff8e8;
+    border:1px solid #ead8a8;
+    border-radius:12px;
+    padding:16px;
+    color:#725d22;
+    margin-bottom:25px;
+    line-height:1.5;
+}
+
+.modal-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.55);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:500;
+    padding:20px;
+}
+
+.modal{
+    background:#fff;
+    width:100%;
+    max-width:550px;
+    max-height:90vh;
+    overflow:auto;
+    border-radius:16px;
+    padding:25px;
+}
+
+.modal-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.close-btn{
+    border:0;
+    background:#eee;
+    width:35px;
+    height:35px;
+    border-radius:50%;
+}
+
+.detail-row{
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    padding:10px 0;
+    border-bottom:1px solid #eee;
+}
+
+.detail-row span:first-child{
+    color:#777;
+}
+
+@media(max-width:900px){
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .admin-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:600px){
+    .admin-header{
+        padding:15px;
+    }
+
+    .admin-logo{
+        font-size:20px;
+    }
+
+    .store-btn{
+        display:none;
+    }
+
+    .container{
+        width:94%;
+        margin:25px auto;
+    }
+
+    .dashboard-title h1{
+        font-size:27px;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+        gap:10px;
+    }
+
+    .stat-card{
+        padding:17px;
+    }
+
+    .stat-card h2{
+        font-size:23px;
+    }
+
+    .product-table{
+        font-size:13px;
+    }
+
+    .product-table th,
+    .product-table td{
+        padding:9px 6px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="admin-header">
+
+    <a href="index.html" class="admin-logo">ZIVA</a>
+
+    <div class="admin-header-right">
+        <button class="store-btn" onclick="window.location.href='index.html'">
+            ← View Store
+        </button>
+
+        <button class="logout-btn" onclick="adminLogout()">
+            Logout
+        </button>
+    </div>
+
+</header>
+
+
+<main class="container">
+
+    <section class="dashboard-title">
+        <h1>Admin Dashboard</h1>
+        <p>Manage ZIVA orders, customers and store activity.</p>
+    </section>
+
+
+    <div class="notice">
+        <strong>Testing Mode:</strong>
+        This dashboard currently uses browser localStorage.
+        Real customer/order management will require a secure backend and database before launch.
+    </div>
+
+
+    <!-- STATS -->
+
+    <section class="stats">
+
+        <div class="stat-card">
+            <div class="stat-icon">📦</div>
+            <span>Total Orders</span>
+            <h2 id="totalOrders">0</h2>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon">👤</div>
+            <span>Customers</span>
+            <h2 id="totalCustomers">0</h2>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon">💰</div>
+            <span>Total Sales</span>
+            <h2 id="totalSales">₹0</h2>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon">🚚</div>
+            <span>Pending Orders</span>
+            <h2 id="pendingOrders">0</h2>
+        </div>
+
+    </section>
+
+
+    <!-- ORDERS + CUSTOMERS -->
+
+    <section class="admin-grid">
+
+        <div class="panel">
+
+            <div class="panel-header">
+                <h2>Recent Orders</h2>
+
+                <button class="refresh-btn" onclick="loadDashboard()">
+                    ↻ Refresh
+                </button>
+            </div>
+
+            <div id="ordersContainer"></div>
+
+        </div>
+
+
+        <div class="panel">
+
+            <div class="panel-header">
+                <h2>Customers</h2>
+            </div>
+
+            <div id="customersContainer"></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PRODUCTS -->
+
+    <section class="panel products-panel">
+
+        <div class="panel-header">
+            <h2>Store Products</h2>
+        </div>
+
+        <div style="overflow-x:auto;">
+
+            <table class="product-table">
+
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody id="productsContainer"></tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- ORDER DETAIL MODAL -->
+
+<div class="modal-overlay" id="orderModal">
+
+    <div class="modal">
+
+        <div class="modal-header">
+
+            <h2>Order Details</h2>
+
+            <button class="close-btn" onclick="closeOrderModal()">
+                ×
+            </button>
+
+        </div>
+
+        <div id="orderDetails"></div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================================
+   ADMIN ACCESS
+========================================= */
+
+function checkAdmin(){
+
+    const adminLoggedIn =
+        localStorage.getItem("zivaAdminLoggedIn");
+
+    if(adminLoggedIn !== "true"){
+
+        const password = prompt("Enter ZIVA Admin Password");
+
+        /*
+          TESTING PASSWORD ONLY.
+          Real production admin authentication
+          must be handled by a secure backend.
+        */
+
+        if(password !== "ZIVA@123"){
+
+            alert("Invalid admin password.");
+
+            window.location.href = "index.html";
+
+            return false;
+        }
+
+        localStorage.setItem(
+            "zivaAdminLoggedIn",
+            "true"
+        );
+    }
+
+    return true;
+}
+
+
+/* =========================================
+   LOGOUT
+========================================= */
+
+function adminLogout(){
+
+    localStorage.removeItem("zivaAdminLoggedIn");
+
+    window.location.href = "index.html";
+}
+
+
+/* =========================================
+   GET ORDERS
+========================================= */
+
+function getOrders(){
+
+    try{
+
+        return JSON.parse(
+            localStorage.getItem("zivaOrders") || "[]"
+        );
+
+    }catch(error){
+
+        return [];
+    }
+}
+
+
+/* =========================================
+   GET USERS
+========================================= */
+
+function getUsers(){
+
+    const users = [];
+
+    try{
+
+        const user =
+            JSON.parse(
+                localStorage.getItem("zivaUser") || "null"
+            );
+
+        if(user){
+            users.push(user);
+        }
+
+    }catch(error){}
+
+    return users;
+}
+
+
+/* =========================================
+   FORMAT MONEY
+========================================= */
+
+function money(amount){
+
+    return "₹" + Number(amount || 0).toLocaleString("en-IN");
+}
+
+
+/* =========================================
+   FORMAT DATE
+========================================= */
+
+function formatDate(date){
+
+    if(!date) return "—";
+
+    const d = new Date(date);
+
+    if(isNaN(d.getTime())) return date;
+
+    return d.toLocaleDateString("en-IN",{
+        day:"2-digit",
+        month:"short",
+        year:"numeric"
+    });
+}
+
+
+/* =========================================
+   DASHBOARD
+========================================= */
+
+function loadDashboard(){
+
+    const orders = getOrders();
+
+    document.getElementById("totalOrders").textContent =
+        orders.length;
+
+
+    /*
+      Unique customers
+    */
+
+    const customerMap = {};
+
+    orders.forEach(order => {
+
+        const identifier =
+            order.phone ||
+            order.email ||
+            order.customer?.phone ||
+            order.customer?.email ||
+            order.customer?.identifier ||
+            "unknown";
+
+        if(identifier !== "unknown"){
+            customerMap[identifier] = {
+                name:
+                    order.name ||
+                    order.customer?.name ||
+                    "Customer",
+
+                identifier:identifier
+            };
+        }
+
+    });
+
+
+    const storedUsers = getUsers();
+
+    storedUsers.forEach(user => {
+
+        if(user.identifier){
+
+            customerMap[user.identifier] = {
+
+                name:user.name || "Customer",
+
+                identifier:user.identifier
+
+            };
+        }
+
+    });
+
+
+    const customers =
+        Object.values(customerMap);
+
+
+    document.getElementById("totalCustomers").textContent =
+        customers.length;
+
+
+    /*
+      Sales
+    */
+
+    let totalSales = 0;
+
+    orders.forEach(order => {
+
+        totalSales += Number(
+            order.total ||
+            order.totalAmount ||
+            order.subtotal ||
+            order.amount ||
+            0
+        );
+
+    });
+
+
+    document.getElementById("totalSales").textContent =
+        money(totalSales);
+
+
+    /*
+      Pending
+    */
+
+    const pending =
+        orders.filter(order => {
+
+            const status =
+                String(order.status || "Placed")
+                .toLowerCase();
+
+            return status !== "delivered";
+
+        }).length;
+
+
+    document.getElementById("pendingOrders").textContent =
+        pending;
+
+
+    renderOrders(orders);
+
+    renderCustomers(customers);
+
+    renderProducts();
+
+}
+
+
+/* =========================================
+   ORDERS
+========================================= */
+
+function renderOrders(orders){
+
+    const container =
+        document.getElementById("ordersContainer");
+
+
+    if(!orders.length){
+
+        container.innerHTML = `
+            <div class="empty">
+                No orders yet.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    const recent =
+        [...orders].reverse();
+
+
+    container.innerHTML =
+        recent.map((order,index) => {
+
+            const orderId =
+                order.id ||
+                order.orderId ||
+                ("ZIVA-" + (1000 + index));
+
+
+            const customerName =
+                order.name ||
+                order.customer?.name ||
+                "Customer";
+
+
+            const total =
+                order.total ||
+                order.totalAmount ||
+                order.subtotal ||
+                order.amount ||
+                0;
+
+
+            const status =
+                order.status ||
+                "Placed";
+
+
+            return `
+
+                <div class="order-card">
+
+                    <div class="order-top">
+
+                        <div>
+
+                            <div class="order-id">
+                                ${escapeHTML(orderId)}
+                            </div>
+
+                            <div class="order-date">
+                                ${formatDate(
+                                    order.date ||
+                                    order.createdAt
+                                )}
+                            </div>
+
+                        </div>
+
+                        <span class="status">
+                            ${escapeHTML(status)}
+                        </span>
+
+                    </div>
+
+
+                    <div class="order-info">
+
+                        <strong>
+                            ${escapeHTML(customerName)}
+                        </strong>
+
+                        <br>
+
+                        Order Value:
+                        <strong>${money(total)}</strong>
+
+                    </div>
+
+
+                    <div class="order-actions">
+
+                        <select
+                            class="status-select"
+                            onchange="changeOrderStatus(
+                                '${escapeJS(orderId)}',
+                                this.value
+                            )"
+                        >
+
+                            ${statusOptions(status)}
+
+                        </select>
+
+
+                        <button
+                            class="view-btn"
+                            onclick="viewOrder('${escapeJS(orderId)}',${index})"
+                        >
+                            View Details
+                        </button>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }).join("");
+
+}
+
+
+/* =========================================
+   STATUS OPTIONS
+========================================= */
+
+function statusOptions(current){
+
+    const statuses = [
+        "Placed",
+        "Confirmed",
+        "Shipped",
+        "Out for Delivery",
+        "Delivered"
+    ];
+
+    return statuses.map(status => {
+
+        return `
+            <option
+                value="${status}"
+                ${status === current ? "selected" : ""}
+            >
+                ${status}
+            </option>
+        `;
+
+    }).join("");
+
+}
+
+
+/* =========================================
+   CHANGE STATUS
+========================================= */
+
+function changeOrderStatus(orderId,newStatus){
+
+    const orders = getOrders();
+
+    let changed = false;
+
+    orders.forEach(order => {
+
+        const id =
+            order.id ||
+            order.orderId;
+
+        if(String(id) === String(orderId)){
+
+            order.status = newStatus;
+
+            changed = true;
+        }
+
+    });
+
+
+    if(changed){
+
+        localStorage.setItem(
+            "zivaOrders",
+            JSON.stringify(orders)
+        );
+
+        loadDashboard();
+
+    }
+
+}
+
+
+/* =========================================
+   VIEW ORDER
+========================================= */
+
+function viewOrder(orderId,index){
+
+    const orders = getOrders();
+
+    let order =
+        orders.find(o =>
+            String(o.id || o.orderId) ===
+            String(orderId)
+        );
+
+
+    if(!order && orders[index]){
+        order = orders[index];
+    }
+
+
+    if(!order) return;
+
+
+    const container =
+        document.getElementById("orderDetails");
+
+
+    const customerName =
+        order.name ||
+        order.customer?.name ||
+        "Customer";
+
+
+    const phone =
+        order.phone ||
+        order.customer?.phone ||
+        "—";
+
+
+    const email =
+        order.email ||
+        order.customer?.email ||
+        "—";
+
+
+    const address =
+        order.address ||
+        order.deliveryAddress ||
+        order.customer?.address ||
+        "—";
+
+
+    const city =
+        order.city ||
+        order.customer?.city ||
+        "—";
+
+
+    const state =
+        order.state ||
+        order.customer?.state ||
+        "—";
+
+
+    const pin =
+        order.pin ||
+        order.pincode ||
+        order.customer?.pin ||
+        "—";
+
+
+    const payment =
+        order.paymentMethod ||
+        order.payment ||
+        "—";
+
+
+    const total =
+        order.total ||
+        order.totalAmount ||
+        order.subtotal ||
+        order.amount ||
+        0;
+
+
+    container.innerHTML = `
+
+        <div class="detail-row">
+            <span>Order ID</span>
+            <strong>
+                ${escapeHTML(
+                    order.id ||
+                    order.orderId ||
+                    orderId
+                )}
+            </strong>
+        </div>
+
+        <div class="detail-row">
+            <span>Customer</span>
+            <strong>${escapeHTML(customerName)}</strong>
+        </div>
+
+        <div class="detail-row">
+            <span>Phone</span>
+            <strong>${escapeHTML(phone)}</strong>
+        </div>
+
+        <div class="detail-row">
+            <span>Email</span>
+            <strong>${escapeHTML(email)}</strong>
+        </div>
+
+        <div class="detail-row">
+            <span>Address</span>
+            <strong>${escapeHTML(address)}</strong>
+        </div>
+
+        <div class="detail-row">
+            <span>City</span>
+            <strong>${escapeHTML(city)}</strong>
+        </div>
+
+        <div class="detail-row">
+            <span>State</span>
+            <strong>${escapeHTML(state)}</strong>
+        </div>
+
+        <div class="detail-row">
+            <span>PIN</span>
+            <strong>${escapeHTML(pin)}</strong>
+        </div>
+
+        <div class="detail-row">
+            <span>Payment</span>
+            <strong>${escapeHTML(payment)}</strong>
+        </div>
+
+        <div class="detail-row">
+            <span>Order Value</span>
+            <strong>${money(total)}</strong>
+        </div>
+
+    `;
+
+
+    document.getElementById("orderModal")
+        .style.display = "flex";
+
+}
+
+
+/* =========================================
+   CLOSE MODAL
+========================================= */
+
+function closeOrderModal(){
+
+    document.getElementById("orderModal")
+        .style.display = "none";
+
+}
+
+
+/* =========================================
+   CUSTOMERS
+========================================= */
+
+function renderCustomers(customers){
+
+    const container =
+        document.getElementById("customersContainer");
+
+
+    if(!customers.length){
+
+        container.innerHTML = `
+            <div class="empty">
+                No customers yet.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    container.innerHTML =
+        customers.map(customer => {
+
+            return `
+
+                <div class="customer-card">
+
+                    <div class="customer-name">
+                        ${escapeHTML(
+                            customer.name ||
+                            "Customer"
+                        )}
+                    </div>
+
+                    <div class="customer-id">
+                        ${escapeHTML(
+                            customer.identifier ||
+                            "—"
+                        )}
+                    </div>
+
+                </div>
+
+            `;
+
+        }).join("");
+
+}
+
+
+/* =========================================
+   PRODUCTS
+========================================= */
+
+function renderProducts(){
+
+    const container =
+        document.getElementById("productsContainer");
+
+
+    /*
+      Demo product list.
+      Your actual product catalog can later
+      be connected to a database/backend.
+    */
+
+    const products = [
+
+        {
+            name:"Women's Look 01",
+            category:"Women",
+            price:1999
+        },
+
+        {
+            name:"Women's Look 02",
+            category:"Women",
+            price:1999
+        },
+
+        {
+            name:"Men's Look 01",
+            category:"Men",
+            price:1999
+        },
+
+        {
+            name:"Men's Look 03",
+            category:"Men",
+            price:1999
+        },
+
+        {
+            name:"Men's Look 04",
+            category:"Men",
+            price:1999
+        },
+
+        {
+            name:"Men's Look 05",
+            category:"Men",
+            price:1999
+        }
+
+    ];
+
+
+    container.innerHTML =
+        products.map(product => {
+
+            return `
+
+                <tr>
+
+                    <td>
+                        <strong>
+                            ${escapeHTML(product.name)}
+                        </strong>
+                    </td>
+
+                    <td>
+                        ${escapeHTML(product.category)}
+                    </td>
+
+                    <td>
+                        ${money(product.price)}
+                    </td>
+
+                    <td>
+                        <span class="status">
+                            Active
+                        </span>
+                    </td>
+
+                </tr>
+
+            `;
+
+        }).join("");
+
+}
+
+
+/* =========================================
+   SECURITY HELPERS
+========================================= */
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+function escapeJS(value){
+
+    return String(value ?? "")
+        .replace(/\\/g,"\\\\")
+        .replace(/'/g,"\\'")
+        .replace(/"/g,'\\"');
+
+}
+
+
+/* =========================================
+   CLOSE MODAL ON OUTSIDE CLICK
+========================================= */
+
+document.getElementById("orderModal")
+.addEventListener("click",function(event){
+
+    if(event.target === this){
+
+        closeOrderModal();
+
+    }
+
+});
+
+
+/* =========================================
+   START
+========================================= */
+
+if(checkAdmin()){
+
+    loadDashboard();
+
+}
+
+</script>
+
+</body>
+</html>
