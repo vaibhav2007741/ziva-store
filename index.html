@@ -3,42 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZIVA — Fashion Store</title>
+
+    <title>ZIVA | Fashion Store</title>
+
     <link rel="stylesheet" href="style.css">
+
+    <!-- Mobile app style icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
 </head>
 
 <body>
 
-<!-- ================= HEADER ================= -->
+<!-- =====================================================
+     ZIVA MOBILE TOP BAR
+===================================================== -->
+
+<div class="ziva-mobile-top">
+
+    <div class="ziva-mobile-brand">
+        <a href="index.html">ZIVA</a>
+    </div>
+
+    <div class="ziva-mobile-actions">
+
+        <button onclick="openSearch()" aria-label="Search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+
+        <button onclick="openAccount()" aria-label="Account">
+            <i class="fa-regular fa-user"></i>
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     ZIVA MOBILE SEARCH
+===================================================== -->
+
+<div class="ziva-mobile-search">
+
+    <button onclick="openSearch()">
+        <i class="fa-solid fa-magnifying-glass"></i>
+
+        <span>Search ZIVA products</span>
+
+    </button>
+
+</div>
+
+
+<!-- =====================================================
+     DELIVERY / LOCATION
+===================================================== -->
+
+<div class="ziva-delivery-bar">
+
+    <div>
+
+        <i class="fa-solid fa-location-dot"></i>
+
+        <span>
+            Deliver to
+            <strong>India</strong>
+        </span>
+
+    </div>
+
+    <span class="delivery-arrow">›</span>
+
+</div>
+
+
+<!-- =====================================================
+     DESKTOP HEADER
+===================================================== -->
 
 <header class="header">
 
-    <a href="index.html" class="logo">ZIVA</a>
+    <a href="index.html" class="logo">
+        ZIVA
+    </a>
 
     <nav class="nav">
-        <a href="#new-in">New In</a>
-        <a href="#mens-section">Men</a>
-        <a href="#trending-section">Trending</a>
-        <a href="#sale-section">Sale</a>
+
+        <a href="#new-in">
+            New In
+        </a>
+
+        <a href="#mens-section">
+            Men
+        </a>
+
+        <a href="#trending-section">
+            Trending
+        </a>
+
+        <a href="#sale-section">
+            Sale
+        </a>
+
     </nav>
+
 
     <div class="header-actions">
 
-        <button class="icon-btn" onclick="openSearch()">
+        <button
+            class="icon-btn"
+            onclick="openSearch()">
+
             ⌕
+
         </button>
+
 
         <button
             class="icon-btn"
             id="accountButton"
             onclick="openAccount()">
+
             👤 Login
+
         </button>
+
 
         <button
             class="cart-btn"
             id="cartButton">
+
             🛍 Cart (0)
+
         </button>
 
     </div>
@@ -46,14 +145,91 @@
 </header>
 
 
-<!-- ================= HERO ================= -->
+<!-- =====================================================
+     MOBILE CATEGORY BAR
+===================================================== -->
 
-<section class="hero" id="new-in">
+<div class="ziva-mobile-categories">
+
+    <a href="#new-in">
+
+        <div class="mobile-category-icon">
+            ✦
+        </div>
+
+        <span>
+            New In
+        </span>
+
+    </a>
+
+
+    <a href="#mens-section">
+
+        <div class="mobile-category-icon">
+            👕
+        </div>
+
+        <span>
+            Men
+        </span>
+
+    </a>
+
+
+    <a href="#trending-section">
+
+        <div class="mobile-category-icon">
+            ♡
+        </div>
+
+        <span>
+            Trending
+        </span>
+
+    </a>
+
+
+    <a href="#sale-section">
+
+        <div class="mobile-category-icon">
+            %
+        </div>
+
+        <span>
+            Sale
+        </span>
+
+    </a>
+
+
+    <a href="#categories">
+
+        <div class="mobile-category-icon">
+            ⋮
+        </div>
+
+        <span>
+            More
+        </span>
+
+    </a>
+
+</div>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section
+    class="hero"
+    id="new-in">
 
     <div class="hero-content">
 
         <p class="hero-small">
-            NEW SEASON • NEW STYLE
+            ZIVA • NEW SEASON
         </p>
 
         <h1>
@@ -65,16 +241,32 @@
             Discover your next favourite look with ZIVA.
         </p>
 
+
         <div class="hero-buttons">
 
             <button
-                onclick="document.getElementById('mens-section').scrollIntoView({behavior:'smooth'})">
+                onclick="
+                document
+                .getElementById('mens-section')
+                .scrollIntoView({
+                    behavior:'smooth'
+                })">
+
                 SHOP MEN
+
             </button>
 
+
             <button
-                onclick="document.getElementById('trending-section').scrollIntoView({behavior:'smooth'})">
+                onclick="
+                document
+                .getElementById('trending-section')
+                .scrollIntoView({
+                    behavior:'smooth'
+                })">
+
                 TRENDING
+
             </button>
 
         </div>
@@ -84,33 +276,105 @@
 </section>
 
 
-<!-- ================= CATEGORY ================= -->
+<!-- =====================================================
+     MOBILE QUICK ACTIONS
+===================================================== -->
 
-<section class="categories-section">
+<section class="ziva-mobile-quick">
+
+    <a href="#mens-section">
+
+        <span>👕</span>
+
+        <strong>
+            Men's Fashion
+        </strong>
+
+        <small>
+            Explore →
+        </small>
+
+    </a>
+
+
+    <a href="#trending-section">
+
+        <span>🔥</span>
+
+        <strong>
+            Trending
+        </strong>
+
+        <small>
+            Shop Now →
+        </small>
+
+    </a>
+
+
+    <a href="#sale-section">
+
+        <span>%</span>
+
+        <strong>
+            ZIVA Sale
+        </strong>
+
+        <small>
+            View Deals →
+        </small>
+
+    </a>
+
+</section>
+
+
+<!-- =====================================================
+     CATEGORY
+===================================================== -->
+
+<section
+    class="categories-section"
+    id="categories">
 
     <div class="section-heading">
 
-        <p>EXPLORE</p>
+        <p>
+            EXPLORE ZIVA
+        </p>
 
-        <h2>Shop By Category</h2>
+        <h2>
+            Shop By Category
+        </h2>
 
     </div>
+
 
     <div class="category-grid">
 
+
         <div
             class="category-card"
-            onclick="document.getElementById('mens-section').scrollIntoView({behavior:'smooth'})">
+            onclick="
+            document
+            .getElementById('mens-section')
+            .scrollIntoView({
+                behavior:'smooth'
+            })">
 
             <img
                 src="images/men-outfit.jpeg"
-                alt="Men Fashion">
+                alt="ZIVA Men Fashion">
 
             <div class="category-overlay">
 
-                <h3>Men</h3>
+                <h3>
+                    Men
+                </h3>
 
-                <span>Shop Now →</span>
+                <span>
+                    Shop Now →
+                </span>
 
             </div>
 
@@ -119,17 +383,26 @@
 
         <div
             class="category-card"
-            onclick="document.getElementById('trending-section').scrollIntoView({behavior:'smooth'})">
+            onclick="
+            document
+            .getElementById('trending-section')
+            .scrollIntoView({
+                behavior:'smooth'
+            })">
 
             <img
                 src="images/WhatsApp Image 2026-10-03 at 9.58.48 PM (1).jpeg"
-                alt="Trending Men Fashion">
+                alt="ZIVA Trending">
 
             <div class="category-overlay">
 
-                <h3>Trending</h3>
+                <h3>
+                    Trending
+                </h3>
 
-                <span>Explore →</span>
+                <span>
+                    Explore →
+                </span>
 
             </div>
 
@@ -138,17 +411,26 @@
 
         <div
             class="category-card"
-            onclick="document.getElementById('sale-section').scrollIntoView({behavior:'smooth'})">
+            onclick="
+            document
+            .getElementById('sale-section')
+            .scrollIntoView({
+                behavior:'smooth'
+            })">
 
             <img
                 src="images/WhatsApp Image 2026-10-03 at 9.58.39 PM.jpeg"
-                alt="Sale">
+                alt="ZIVA Sale">
 
             <div class="category-overlay">
 
-                <h3>Sale</h3>
+                <h3>
+                    Sale
+                </h3>
 
-                <span>Shop Now →</span>
+                <span>
+                    Shop Now →
+                </span>
 
             </div>
 
@@ -159,88 +441,33 @@
 </section>
 
 
-<!-- ================= MEN'S COLLECTION ================= -->
+<!-- =====================================================
+     TRENDING MINI BANNER
+===================================================== -->
 
-<section
-    class="products-section"
-    id="mens-section">
+<section class="ziva-fashion-banner">
 
-    <div class="section-heading">
+    <div>
 
-        <p>ZIVA MEN</p>
-
-        <h2>Men's Collection</h2>
-
-    </div>
-
-    <div
-        class="product-grid"
-        id="menProductGrid">
-    </div>
-
-</section>
-
-
-<!-- ================= TRENDING ================= -->
-
-<section
-    class="products-section"
-    id="trending-section">
-
-    <div class="section-heading">
-
-        <p>MOST LOVED</p>
-
-        <h2>Trending Now</h2>
-
-    </div>
-
-    <div
-        class="product-grid"
-        id="trendingProductGrid">
-    </div>
-
-</section>
-
-
-<!-- ================= SALE ================= -->
-
-<section
-    class="products-section"
-    id="sale-section">
-
-    <div class="section-heading">
-
-        <p>DON'T MISS OUT</p>
-
-        <h2>Sale</h2>
-
-    </div>
-
-    <div
-        class="product-grid"
-        id="saleProductGrid">
-    </div>
-
-</section>
-
-
-<!-- ================= BANNER ================= -->
-
-<section class="banner-section">
-
-    <div class="banner-content">
-
-        <p>ZIVA EXCLUSIVE</p>
+        <p>
+            ZIVA EDIT
+        </p>
 
         <h2>
-            FIND YOUR<br>
-            PERFECT STYLE
+            THE LOOK<br>
+            EVERYONE WANTS
         </h2>
 
         <button
-            onclick="document.getElementById('mens-section').scrollIntoView({behavior:'smooth'})">
-            SHOP NOW
+            onclick="
+            document
+            .getElementById('trending-section')
+            .scrollIntoView({
+                behavior:'smooth'
+            })">
+
+            SHOP TRENDING
+
         </button>
 
     </div>
@@ -248,15 +475,156 @@
 </section>
 
 
-<!-- ================= FOOTER ================= -->
+<!-- =====================================================
+     MEN'S COLLECTION
+===================================================== -->
+
+<section
+    class="products-section"
+    id="mens-section">
+
+    <div class="section-heading">
+
+        <p>
+            ZIVA MEN
+        </p>
+
+        <h2>
+            Men's Collection
+        </h2>
+
+        <span class="mobile-section-link">
+            View All →
+        </span>
+
+    </div>
+
+
+    <div
+        class="product-grid"
+        id="menProductGrid">
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     TRENDING
+===================================================== -->
+
+<section
+    class="products-section"
+    id="trending-section">
+
+    <div class="section-heading">
+
+        <p>
+            MOST LOVED
+        </p>
+
+        <h2>
+            Trending Now
+        </h2>
+
+        <span class="mobile-section-link">
+            View All →
+        </span>
+
+    </div>
+
+
+    <div
+        class="product-grid"
+        id="trendingProductGrid">
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SALE
+===================================================== -->
+
+<section
+    class="products-section"
+    id="sale-section">
+
+    <div class="section-heading">
+
+        <p>
+            DON'T MISS OUT
+        </p>
+
+        <h2>
+            ZIVA Sale
+        </h2>
+
+        <span class="mobile-section-link">
+            View All →
+        </span>
+
+    </div>
+
+
+    <div
+        class="product-grid"
+        id="saleProductGrid">
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FINAL BANNER
+===================================================== -->
+
+<section class="banner-section">
+
+    <div class="banner-content">
+
+        <p>
+            ZIVA EXCLUSIVE
+        </p>
+
+        <h2>
+            FIND YOUR<br>
+            PERFECT STYLE
+        </h2>
+
+        <button
+            onclick="
+            document
+            .getElementById('mens-section')
+            .scrollIntoView({
+                behavior:'smooth'
+            })">
+
+            SHOP NOW
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
 
 <footer class="footer">
 
     <div class="footer-grid">
 
+
         <div class="footer-brand">
 
-            <h2>ZIVA</h2>
+            <h2>
+                ZIVA
+            </h2>
 
             <p>
                 Fashion that feels like you.
@@ -267,7 +635,9 @@
 
         <div class="footer-links">
 
-            <h3>SHOP</h3>
+            <h3>
+                SHOP
+            </h3>
 
             <a href="#mens-section">
                 Men
@@ -286,7 +656,9 @@
 
         <div class="footer-links">
 
-            <h3>HELP</h3>
+            <h3>
+                HELP
+            </h3>
 
             <a href="contact.html">
                 Contact
@@ -309,7 +681,9 @@
 
         <div class="footer-links">
 
-            <h3>ACCOUNT</h3>
+            <h3>
+                ACCOUNT
+            </h3>
 
             <a href="login.html">
                 Login / Sign Up
@@ -317,6 +691,10 @@
 
             <a href="cart.html">
                 My Cart
+            </a>
+
+            <a href="my-orders.html">
+                My Orders
             </a>
 
         </div>
@@ -336,8 +714,102 @@
 
 
 <!-- =====================================================
-     ALL ZIVA PRODUCTS
-     ALL PRODUCTS ARE MEN'S PRODUCTS
+     MOBILE BOTTOM NAVIGATION
+===================================================== -->
+
+<nav class="ziva-bottom-nav">
+
+
+    <a
+        href="index.html"
+        class="ziva-bottom-item active">
+
+        <span class="bottom-icon">
+            <i class="fa-solid fa-house"></i>
+        </span>
+
+        <span>
+            Home
+        </span>
+
+    </a>
+
+
+    <a
+        href="#categories"
+        class="ziva-bottom-item">
+
+        <span class="bottom-icon">
+            <i class="fa-solid fa-grid-2"></i>
+        </span>
+
+        <span>
+            Categories
+        </span>
+
+    </a>
+
+
+    <a
+        href="javascript:void(0)"
+        class="ziva-bottom-item"
+        onclick="zivaOpenWishlist()">
+
+        <span class="bottom-icon">
+            <i class="fa-regular fa-heart"></i>
+        </span>
+
+        <span>
+            Wishlist
+        </span>
+
+    </a>
+
+
+    <a
+        href="javascript:void(0)"
+        class="ziva-bottom-item"
+        onclick="openAccount()">
+
+        <span class="bottom-icon">
+            <i class="fa-regular fa-user"></i>
+        </span>
+
+        <span>
+            Account
+        </span>
+
+    </a>
+
+
+    <a
+        href="javascript:void(0)"
+        class="ziva-bottom-item cart-bottom-item"
+        id="zivaMobileCartButton">
+
+        <span class="bottom-icon">
+
+            <i class="fa-solid fa-bag-shopping"></i>
+
+            <b
+                id="zivaMobileCartCount">
+                0
+            </b>
+
+        </span>
+
+        <span>
+            Cart
+        </span>
+
+    </a>
+
+
+</nav>
+
+
+<!-- =====================================================
+     PRODUCT DATABASE
 ===================================================== -->
 
 <script>
@@ -799,9 +1271,6 @@ function createProductCard(product) {
     card.className =
         "product-card";
 
-    card.style.cursor =
-        "pointer";
-
 
     card.innerHTML = `
 
@@ -814,17 +1283,22 @@ function createProductCard(product) {
 
             <button
                 class="heart"
-                type="button">
+                type="button"
+                aria-label="Add to wishlist">
+
                 ♡
+
             </button>
 
         </div>
+
 
         <div class="product-info">
 
             <h3>
                 ${product.name}
             </h3>
+
 
             <p class="product-price">
 
@@ -837,22 +1311,28 @@ function createProductCard(product) {
                     margin-left:6px;
                     font-size:13px;
                     ">
+
                     ₹${product.oldPrice}
+
                 </span>
 
             </p>
 
+
             <button
                 class="add-btn"
                 type="button">
+
                 ADD TO BAG
+
             </button>
 
         </div>
+
     `;
 
 
-    /* OPEN PRODUCT */
+    /* PRODUCT */
 
     card.addEventListener(
         "click",
@@ -870,16 +1350,18 @@ function createProductCard(product) {
     );
 
 
-    /* HEART */
+    /* WISHLIST */
 
     const heart =
         card.querySelector(".heart");
 
+
     heart.addEventListener(
         "click",
-        function(e) {
+        function(event) {
 
-            e.stopPropagation();
+            event.stopPropagation();
+
 
             if (
                 typeof addToWishlist ===
@@ -894,14 +1376,16 @@ function createProductCard(product) {
                     JSON.parse(
                         localStorage.getItem(
                             "zivaWishlist"
-                        )
-                    ) || [];
+                        ) || "[]"
+                    );
+
 
                 const exists =
                     wishlist.some(
                         item =>
                             item.id === product.id
                     );
+
 
                 if (!exists) {
 
@@ -910,16 +1394,6 @@ function createProductCard(product) {
                     localStorage.setItem(
                         "zivaWishlist",
                         JSON.stringify(wishlist)
-                    );
-
-                    alert(
-                        "Added to wishlist ❤️"
-                    );
-
-                } else {
-
-                    alert(
-                        "Already in your wishlist ❤️"
                     );
 
                 }
@@ -935,11 +1409,13 @@ function createProductCard(product) {
     const addButton =
         card.querySelector(".add-btn");
 
+
     addButton.addEventListener(
         "click",
-        function(e) {
+        function(event) {
 
-            e.stopPropagation();
+            event.stopPropagation();
+
 
             if (
                 typeof addToCart ===
@@ -947,12 +1423,6 @@ function createProductCard(product) {
             ) {
 
                 addToCart(product);
-
-            } else {
-
-                alert(
-                    "Please wait..."
-                );
 
             }
 
@@ -966,7 +1436,7 @@ function createProductCard(product) {
 
 
 /* =====================================================
-   LOAD MEN PRODUCTS
+   LOAD PRODUCTS
 ===================================================== */
 
 document.addEventListener(
@@ -978,10 +1448,12 @@ document.addEventListener(
                 "menProductGrid"
             );
 
+
         const trendingGrid =
             document.getElementById(
                 "trendingProductGrid"
             );
+
 
         const saleGrid =
             document.getElementById(
@@ -989,15 +1461,16 @@ document.addEventListener(
             );
 
 
-        /* ALL PRODUCTS IN MEN */
+        if (!menGrid) return;
+
+
+        /* MEN */
 
         window.zivaProducts.forEach(
             function(product) {
 
                 menGrid.appendChild(
-                    createProductCard(
-                        product
-                    )
+                    createProductCard(product)
                 );
 
             }
@@ -1007,14 +1480,12 @@ document.addEventListener(
         /* TRENDING */
 
         window.zivaProducts
-            .slice(0, 8)
+            .slice(0,8)
             .forEach(
                 function(product) {
 
                     trendingGrid.appendChild(
-                        createProductCard(
-                            product
-                        )
+                        createProductCard(product)
                     );
 
                 }
@@ -1034,14 +1505,12 @@ document.addEventListener(
 
                 }
             )
-            .slice(0, 8)
+            .slice(0,8)
             .forEach(
                 function(product) {
 
                     saleGrid.appendChild(
-                        createProductCard(
-                            product
-                        )
+                        createProductCard(product)
                     );
 
                 }
@@ -1050,76 +1519,151 @@ document.addEventListener(
     }
 );
 
-</script>
 
+/* =====================================================
+   MOBILE WISHLIST
+===================================================== */
 
-<!-- ================= ACCOUNT ================= -->
+function zivaOpenWishlist() {
 
-<script>
-
-function openAccount() {
-
-    const loggedIn =
-        localStorage.getItem(
-            "zivaLoggedIn"
-        );
-
-    const user =
+    const wishlist =
         JSON.parse(
             localStorage.getItem(
-                "zivaCurrentUser"
-            ) || "null"
+                "zivaWishlist"
+            ) || "[]"
         );
 
 
-    if (
-        loggedIn === "true" &&
-        user
-    ) {
+    if (!wishlist.length) {
 
-        const logout =
-            confirm(
-                "Welcome " +
-                user.name +
-                "!\n\nOK = Logout\nCancel = Stay Logged In"
-            );
+        alert(
+            "Your ZIVA wishlist is empty ❤️"
+        );
 
-
-        if (logout) {
-
-            localStorage.removeItem(
-                "zivaLoggedIn"
-            );
-
-            localStorage.removeItem(
-                "zivaCurrentUser"
-            );
-
-            alert(
-                "You have been logged out."
-            );
-
-            window.location.href =
-                "index.html";
-
-        }
-
-    } else {
-
-        window.location.href =
-            "login.html";
+        return;
 
     }
+
+
+    alert(
+        "You have " +
+        wishlist.length +
+        " item(s) in your wishlist ❤️"
+    );
 
 }
 
 
-function updateAccountButton() {
+/* =====================================================
+   MOBILE CART
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        const mobileCart =
+            document.getElementById(
+                "zivaMobileCartButton"
+            );
+
+
+        if (mobileCart) {
+
+            mobileCart.addEventListener(
+                "click",
+                function() {
+
+                    window.location.href =
+                        "cart.html";
+
+                }
+            );
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   MOBILE CART COUNT
+===================================================== */
+
+function updateZivaMobileCartCount() {
+
+    const badge =
+        document.getElementById(
+            "zivaMobileCartCount"
+        );
+
+
+    if (!badge) return;
+
+
+    let cart = [];
+
+
+    try {
+
+        cart =
+            JSON.parse(
+                localStorage.getItem(
+                    "zivaCart"
+                ) || "[]"
+            );
+
+    } catch(error) {
+
+        cart = [];
+
+    }
+
+
+    let count = 0;
+
+
+    cart.forEach(
+        function(item) {
+
+            count +=
+                Number(item.quantity || 1);
+
+        }
+    );
+
+
+    badge.textContent =
+        count > 99
+        ? "99+"
+        : count;
+
+}
+
+
+document.addEventListener(
+    "DOMContentLoaded",
+    updateZivaMobileCartCount
+);
+
+
+window.addEventListener(
+    "storage",
+    updateZivaMobileCartCount
+);
+
+
+/* =====================================================
+   ACCOUNT BUTTON
+===================================================== */
+
+function updateIndexAccountButton() {
 
     const button =
         document.getElementById(
             "accountButton"
         );
+
 
     if (!button) return;
 
@@ -1128,6 +1672,7 @@ function updateAccountButton() {
         localStorage.getItem(
             "zivaLoggedIn"
         );
+
 
     const user =
         JSON.parse(
@@ -1143,7 +1688,8 @@ function updateAccountButton() {
     ) {
 
         button.innerText =
-            "👤 " + user.name;
+            "👤 " +
+            (user.name || "Account");
 
     } else {
 
@@ -1157,13 +1703,15 @@ function updateAccountButton() {
 
 document.addEventListener(
     "DOMContentLoaded",
-    updateAccountButton
+    updateIndexAccountButton
 );
 
 </script>
 
 
-<!-- ================= SCRIPT ================= -->
+<!-- =====================================================
+     MAIN ZIVA SCRIPT
+===================================================== -->
 
 <script src="script.js"></script>
 
