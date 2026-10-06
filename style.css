@@ -1,441 +1,1139 @@
+/* =========================================================
+   ZIVA — GLOBAL
+========================================================= */
+
 * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    margin: 0;
     font-family: Arial, Helvetica, sans-serif;
     background: #fff8f3;
     color: #241b19;
+    line-height: 1.5;
+    overflow-x: hidden;
+}
+
+button,
+a {
+    font-family: inherit;
 }
 
 button {
-    font-family: inherit;
     cursor: pointer;
 }
 
-/* HEADER */
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+
+/* =========================================================
+   DESKTOP HEADER
+========================================================= */
 
 .header {
-    height: 78px;
-    padding: 0 5%;
+    width: 100%;
+    min-height: 78px;
+    padding: 0 6%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: #241b19;
-    color: white;
+    gap: 30px;
+    background: rgba(255, 248, 243, 0.97);
+    border-bottom: 1px solid rgba(36, 27, 25, 0.08);
     position: sticky;
     top: 0;
-    z-index: 10;
+    z-index: 1000;
+    backdrop-filter: blur(14px);
 }
 
 .logo {
-    font-size: 29px;
-    font-weight: 800;
+    font-size: 30px;
+    font-weight: 900;
     letter-spacing: 5px;
-    color: #f4d6b8;
 }
 
 .nav {
     display: flex;
-    gap: 32px;
+    align-items: center;
+    gap: 34px;
 }
 
 .nav a {
-    text-decoration: none;
-    color: #fff;
     font-size: 13px;
-    font-weight: 600;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: 0.25s ease;
 }
 
 .nav a:hover {
-    color: #e8a0a8;
+    color: #b87973;
 }
 
 .header-actions {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
 }
 
-.icon-btn {
-    background: none;
-    border: none;
-    color: white;
-    padding: 10px;
-    font-size: 22px;
+.icon-btn,
+.cart-btn {
+    border: 0;
+    background: transparent;
+    color: #241b19;
+    font-size: 14px;
+    padding: 10px 12px;
+}
+
+.icon-btn:hover,
+.cart-btn:hover {
+    color: #b87973;
 }
 
 .cart-btn {
-    background: #e8a0a8;
-    color: #241b19;
-    border: none;
-    padding: 11px 17px;
-    font-weight: bold;
+    border: 1px solid #241b19;
+    border-radius: 30px;
+    font-weight: 700;
 }
 
-/* HERO */
+
+/* =========================================================
+   MOBILE TOP AREA
+========================================================= */
+
+.ziva-mobile-top,
+.ziva-mobile-search,
+.ziva-delivery-bar,
+.ziva-mobile-categories,
+.ziva-mobile-quick,
+.ziva-bottom-nav {
+    display: none;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
 
 .hero {
     min-height: 650px;
-    position: relative;
     display: flex;
     align-items: center;
-    padding: 60px 8%;
-    background-image:
-        linear-gradient(90deg, rgba(36,27,25,.75), rgba(36,27,25,.08)),
-        url("https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1600&q=85");
-    background-size: cover;
-    background-position: center;
+    padding: 80px 8%;
+    position: relative;
+    overflow: hidden;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(36,27,25,.86),
+            rgba(36,27,25,.30),
+            rgba(36,27,25,.08)
+        ),
+        url("images/men-outfit.jpeg") center/cover no-repeat;
 }
 
-.hero-text {
-    color: white;
-    max-width: 550px;
+.hero-content {
+    max-width: 620px;
+    color: #fff;
 }
 
-.hero-text p {
-    color: #f4d6b8;
-    letter-spacing: 4px;
+.hero-small {
     font-size: 12px;
-    font-weight: bold;
+    font-weight: 800;
+    letter-spacing: 3px;
+    margin-bottom: 18px;
 }
 
-.hero-text h1 {
-    font-size: 76px;
+.hero h1 {
+    font-size: clamp(55px, 8vw, 100px);
     line-height: .9;
-    margin: 20px 0;
-    letter-spacing: -2px;
+    letter-spacing: -4px;
+    margin-bottom: 24px;
 }
 
-.hero-text span {
+.hero-content > p:not(.hero-small) {
+    max-width: 440px;
     font-size: 17px;
+    margin-bottom: 30px;
 }
 
 .hero-buttons {
-    margin-top: 30px;
     display: flex;
     gap: 12px;
+    flex-wrap: wrap;
 }
 
 .hero-buttons button,
-.banner button {
-    border: none;
-    background: #e8a0a8;
-    color: #241b19;
+.banner-content button,
+.ziva-fashion-banner button {
+    border: 0;
     padding: 15px 25px;
-    font-weight: bold;
+    background: #fff;
+    color: #241b19;
+    font-weight: 800;
     letter-spacing: 1px;
+    transition: .25s ease;
 }
 
 .hero-buttons button:hover,
-.banner button:hover {
-    background: #f4d6b8;
+.banner-content button:hover,
+.ziva-fashion-banner button:hover {
+    transform: translateY(-2px);
+    background: #e8a0a8;
 }
 
-.hero-buttons .light-btn {
-    background: transparent;
-    color: white;
-    border: 1px solid white;
-}
 
-/* SECTIONS */
-
-.categories-section,
-.products-section {
-    padding: 90px 7%;
-}
-
-.categories-section {
-    background: #fff8f3;
-}
+/* =========================================================
+   SECTION HEADING
+========================================================= */
 
 .section-heading {
-    text-align: center;
-    margin-bottom: 45px;
+    position: relative;
+    margin-bottom: 30px;
 }
 
 .section-heading p {
+    color: #b87973;
     font-size: 11px;
-    letter-spacing: 4px;
-    font-weight: bold;
-    color: #b17b68;
+    font-weight: 900;
+    letter-spacing: 3px;
+    margin-bottom: 5px;
 }
 
 .section-heading h2 {
-    font-size: 38px;
-    margin: 10px 0;
-    color: #241b19;
+    font-size: clamp(30px, 4vw, 48px);
+    line-height: 1;
+    letter-spacing: -1.5px;
 }
 
-/* CATEGORY */
+.mobile-section-link {
+    display: none;
+}
+
+
+/* =========================================================
+   CATEGORY
+========================================================= */
+
+.categories-section {
+    padding: 90px 6%;
+}
 
 .category-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 22px;
+    gap: 20px;
 }
 
 .category-card {
-    height: 450px;
+    height: 430px;
     position: relative;
     overflow: hidden;
-    background: #eadbd3;
+    cursor: pointer;
+    border-radius: 4px;
+    background: #f4d6b8;
 }
 
 .category-card img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: .5s;
+    transition: transform .6s ease;
 }
 
 .category-card:hover img {
-    transform: scale(1.05);
+    transform: scale(1.06);
 }
 
-.category-card div {
+.category-overlay {
     position: absolute;
+    left: 0;
+    right: 0;
     bottom: 0;
-    width: 100%;
-    padding: 30px;
-    color: white;
-    background: linear-gradient(transparent, rgba(36,27,25,.85));
+    padding: 35px 25px 25px;
+    color: #fff;
+    background: linear-gradient(
+        transparent,
+        rgba(0,0,0,.72)
+    );
 }
 
-.category-card h3 {
-    font-size: 27px;
-    margin: 0 0 8px;
+.category-overlay h3 {
+    font-size: 30px;
 }
 
-.category-card span {
+.category-overlay span {
     font-size: 13px;
-    color: #f4d6b8;
+    font-weight: 700;
 }
 
-/* PRODUCTS */
+
+/* =========================================================
+   PRODUCTS
+========================================================= */
 
 .products-section {
-    background: #f3e5dc;
+    padding: 80px 6%;
 }
 
 .product-grid {
-    max-width: 1200px;
-    margin: auto;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 22px;
 }
 
 .product-card {
     background: #fff;
-    border: 1px solid #eadbd3;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(36,27,25,.09);
 }
 
 .product-image {
-    height: 430px;
     position: relative;
+    aspect-ratio: 3 / 4;
     overflow: hidden;
-    background: #eadbd3;
+    background: #f3eee9;
 }
 
 .product-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: .4s;
+    transition: transform .45s ease;
 }
 
 .product-card:hover .product-image img {
     transform: scale(1.04);
 }
 
-.sale {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    background: #e8a0a8;
-    color: #241b19;
-    padding: 7px 11px;
-    font-size: 10px;
-    font-weight: bold;
-}
-
 .heart {
     position: absolute;
     top: 12px;
     right: 12px;
-    border: none;
-    background: white;
-    color: #8b4f55;
+    width: 40px;
+    height: 40px;
+    border: 0;
     border-radius: 50%;
-    width: 38px;
-    height: 38px;
-    font-size: 20px;
+    background: rgba(255,255,255,.92);
+    font-size: 22px;
+    color: #241b19;
+    z-index: 5;
+}
+
+.heart:hover {
+    color: #b87973;
 }
 
 .product-info {
-    padding: 20px;
-}
-
-.category-name {
-    font-size: 10px;
-    letter-spacing: 2px;
-    color: #b17b68;
+    padding: 16px 12px 18px;
 }
 
 .product-info h3 {
-    font-size: 17px;
-    margin: 8px 0;
-    color: #241b19;
+    font-size: 15px;
+    margin-bottom: 7px;
+    font-weight: 700;
 }
 
-.rating {
-    font-size: 12px;
-    letter-spacing: 2px;
-    color: #c6a15b;
-}
-
-.rating span {
-    color: #888;
-    letter-spacing: 0;
-}
-
-.product-info strong {
-    font-size: 19px;
-    color: #8b4f55;
-}
-
-.product-info del {
-    color: #999;
-    margin-left: 8px;
-    font-size: 13px;
+.product-price {
+    font-size: 15px;
+    font-weight: 800;
+    margin-bottom: 13px;
 }
 
 .add-btn {
     width: 100%;
-    margin-top: 15px;
-    padding: 13px;
-    border: none;
+    border: 1px solid #241b19;
     background: #241b19;
-    color: white;
-    font-weight: bold;
-    letter-spacing: 1px;
+    color: #fff;
+    padding: 12px 10px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    transition: .25s ease;
 }
 
 .add-btn:hover {
-    background: #8b4f55;
+    background: #e8a0a8;
+    border-color: #e8a0a8;
+    color: #241b19;
 }
 
-/* BANNER */
 
-.banner {
-    min-height: 420px;
+/* =========================================================
+   ZIVA FASHION BANNER
+========================================================= */
+
+.ziva-fashion-banner {
+    min-height: 360px;
+    margin: 40px 6%;
+    padding: 60px;
     display: flex;
     align-items: center;
-    padding: 50px 10%;
-    color: white;
-    background-image:
-        linear-gradient(rgba(36,27,25,.55), rgba(36,27,25,.55)),
-        url("https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1600&q=85");
-    background-size: cover;
-    background-position: center;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(36,27,25,.85),
+            rgba(36,27,25,.25)
+        ),
+        url("images/men-outfit3.jpeg") center/cover no-repeat;
+    color: #fff;
 }
 
-.banner p {
-    color: #f4d6b8;
-    letter-spacing: 4px;
-    font-weight: bold;
+.ziva-fashion-banner p,
+.banner-content p {
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
 }
 
-.banner h2 {
-    font-size: 50px;
-    line-height: 1;
-    margin: 15px 0 25px;
+.ziva-fashion-banner h2 {
+    font-size: clamp(34px, 5vw, 65px);
+    line-height: .95;
+    margin-bottom: 25px;
 }
 
-/* FOOTER */
 
-footer {
+/* =========================================================
+   FINAL BANNER
+========================================================= */
+
+.banner-section {
+    min-height: 420px;
+    margin-top: 50px;
+    padding: 70px 8%;
+    display: flex;
+    align-items: center;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(36,27,25,.92),
+            rgba(36,27,25,.25)
+        ),
+        url("images/men-outfit7.jpeg") center/cover no-repeat;
+    color: #fff;
+}
+
+.banner-content h2 {
+    font-size: clamp(38px, 6vw, 72px);
+    line-height: .95;
+    margin-bottom: 25px;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer {
     background: #241b19;
-    color: white;
-    text-align: center;
-    padding: 60px 20px;
+    color: #fff;
+    padding: 70px 6% 25px;
+    margin-top: 70px;
 }
 
-.footer-logo {
-    font-size: 30px;
-    font-weight: bold;
-    letter-spacing: 6px;
-    color: #f4d6b8;
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 45px;
+}
+
+.footer-brand h2 {
+    font-size: 32px;
+    letter-spacing: 4px;
+    margin-bottom: 12px;
+}
+
+.footer-brand p {
+    color: rgba(255,255,255,.65);
 }
 
 .footer-links {
-    margin: 25px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.footer-links h3 {
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
 }
 
 .footer-links a {
-    color: white;
-    text-decoration: none;
-    margin: 0 12px;
     font-size: 13px;
+    color: rgba(255,255,255,.68);
+    transition: .2s;
 }
 
 .footer-links a:hover {
     color: #e8a0a8;
 }
 
-footer small {
-    color: #a99b96;
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,.12);
+    margin-top: 50px;
+    padding-top: 20px;
+    color: rgba(255,255,255,.5);
+    font-size: 12px;
 }
 
-/* MOBILE */
 
-@media (max-width: 800px) {
+/* =========================================================
+   TABLET
+========================================================= */
 
-    .header {
-        height: auto;
-        padding: 18px;
-        flex-wrap: wrap;
-        gap: 15px;
-    }
+@media (max-width: 900px) {
 
     .nav {
-        order: 3;
-        width: 100%;
-        justify-content: center;
-        gap: 18px;
-        overflow-x: auto;
+        gap: 16px;
     }
+
+    .nav a {
+        font-size: 11px;
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .category-card:last-child {
+        grid-column: span 2;
+    }
+
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE APP EXPERIENCE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    body {
+        padding-bottom: 76px;
+    }
+
+
+    /* -----------------------------------------------------
+       DESKTOP HEADER HIDDEN
+    ----------------------------------------------------- */
+
+    .header {
+        display: none;
+    }
+
+
+    /* -----------------------------------------------------
+       MOBILE TOP BAR
+    ----------------------------------------------------- */
+
+    .ziva-mobile-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 62px;
+        padding: 0 17px;
+        background: #fff8f3;
+        position: sticky;
+        top: 0;
+        z-index: 1100;
+        border-bottom: 1px solid rgba(36,27,25,.08);
+    }
+
+    .ziva-mobile-brand a {
+        font-size: 25px;
+        font-weight: 900;
+        letter-spacing: 4px;
+    }
+
+    .ziva-mobile-actions {
+        display: flex;
+        gap: 5px;
+    }
+
+    .ziva-mobile-actions button {
+        width: 40px;
+        height: 40px;
+        border: 0;
+        background: transparent;
+        color: #241b19;
+        font-size: 18px;
+        border-radius: 50%;
+    }
+
+    .ziva-mobile-actions button:active {
+        background: #f4d6b8;
+    }
+
+
+    /* -----------------------------------------------------
+       MOBILE SEARCH
+    ----------------------------------------------------- */
+
+    .ziva-mobile-search {
+        display: block;
+        padding: 9px 14px 10px;
+        background: #fff8f3;
+    }
+
+    .ziva-mobile-search button {
+        width: 100%;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        padding: 0 15px;
+        border: 0;
+        border-radius: 10px;
+        background: #f1e8e1;
+        color: #766965;
+        text-align: left;
+        font-size: 13px;
+    }
+
+    .ziva-mobile-search button i {
+        font-size: 14px;
+    }
+
+
+    /* -----------------------------------------------------
+       DELIVERY
+    ----------------------------------------------------- */
+
+    .ziva-delivery-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 9px 15px;
+        background: #fff;
+        border-top: 1px solid rgba(36,27,25,.06);
+        border-bottom: 1px solid rgba(36,27,25,.06);
+        font-size: 11px;
+    }
+
+    .ziva-delivery-bar > div {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .ziva-delivery-bar i {
+        color: #b87973;
+    }
+
+    .ziva-delivery-bar strong {
+        margin-left: 3px;
+    }
+
+    .delivery-arrow {
+        font-size: 20px;
+        color: #8b7d78;
+    }
+
+
+    /* -----------------------------------------------------
+       MOBILE CATEGORIES
+    ----------------------------------------------------- */
+
+    .ziva-mobile-categories {
+        display: flex;
+        gap: 8px;
+        padding: 11px 12px;
+        background: #fff;
+        overflow-x: auto;
+        scrollbar-width: none;
+        border-bottom: 1px solid rgba(36,27,25,.07);
+    }
+
+    .ziva-mobile-categories::-webkit-scrollbar {
+        display: none;
+    }
+
+    .ziva-mobile-categories a {
+        min-width: 72px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+        font-size: 10px;
+        font-weight: 700;
+        white-space: nowrap;
+    }
+
+    .mobile-category-icon {
+        width: 42px;
+        height: 42px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: #f8e5df;
+        font-size: 17px;
+    }
+
+
+    /* -----------------------------------------------------
+       HERO
+    ----------------------------------------------------- */
 
     .hero {
-        min-height: 570px;
-        padding: 40px 25px;
+        min-height: 430px;
+        padding: 45px 20px;
+        background-position: center;
     }
 
-    .hero-text h1 {
+    .hero-content {
+        max-width: 330px;
+    }
+
+    .hero-small {
+        font-size: 9px;
+        letter-spacing: 2px;
+        margin-bottom: 12px;
+    }
+
+    .hero h1 {
         font-size: 55px;
+        letter-spacing: -2px;
+        margin-bottom: 17px;
     }
 
-    .category-grid,
-    .product-grid {
-        grid-template-columns: 1fr;
+    .hero-content > p:not(.hero-small) {
+        font-size: 13px;
+        margin-bottom: 20px;
     }
 
-    .category-card {
-        height: 400px;
+    .hero-buttons {
+        gap: 8px;
     }
 
-    .product-image {
-        height: 480px;
+    .hero-buttons button {
+        padding: 12px 17px;
+        font-size: 10px;
     }
+
+
+    /* -----------------------------------------------------
+       QUICK CARDS
+    ----------------------------------------------------- */
+
+    .ziva-mobile-quick {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 7px;
+        padding: 12px;
+        background: #fff;
+    }
+
+    .ziva-mobile-quick a {
+        min-height: 105px;
+        padding: 12px 8px;
+        border-radius: 10px;
+        background: #fff8f3;
+        border: 1px solid rgba(36,27,25,.07);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .ziva-mobile-quick span {
+        font-size: 20px;
+    }
+
+    .ziva-mobile-quick strong {
+        font-size: 11px;
+        line-height: 1.2;
+    }
+
+    .ziva-mobile-quick small {
+        font-size: 9px;
+        color: #b87973;
+        font-weight: 700;
+    }
+
+
+    /* -----------------------------------------------------
+       SECTIONS
+    ----------------------------------------------------- */
 
     .categories-section,
     .products-section {
-        padding: 60px 20px;
+        padding: 38px 13px;
     }
 
-    .banner h2 {
-        font-size: 38px;
+    .section-heading {
+        margin-bottom: 18px;
+        padding-right: 65px;
     }
+
+    .section-heading p {
+        font-size: 9px;
+        letter-spacing: 2px;
+    }
+
+    .section-heading h2 {
+        font-size: 25px;
+        letter-spacing: -.8px;
+    }
+
+    .mobile-section-link {
+        display: block;
+        position: absolute;
+        right: 0;
+        bottom: 2px;
+        color: #b87973;
+        font-size: 10px;
+        font-weight: 800;
+    }
+
+
+    /* -----------------------------------------------------
+       CATEGORY GRID
+    ----------------------------------------------------- */
+
+    .category-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    .category-card {
+        height: 230px;
+        border-radius: 8px;
+    }
+
+    .category-card:last-child {
+        grid-column: span 2;
+        height: 190px;
+    }
+
+    .category-overlay {
+        padding: 28px 12px 12px;
+    }
+
+    .category-overlay h3 {
+        font-size: 20px;
+    }
+
+    .category-overlay span {
+        font-size: 10px;
+    }
+
+
+    /* -----------------------------------------------------
+       FASHION BANNER
+    ----------------------------------------------------- */
+
+    .ziva-fashion-banner {
+        min-height: 270px;
+        margin: 8px 13px 30px;
+        padding: 30px 20px;
+        border-radius: 10px;
+        background-position: center;
+    }
+
+    .ziva-fashion-banner p {
+        font-size: 9px;
+        letter-spacing: 2px;
+    }
+
+    .ziva-fashion-banner h2 {
+        font-size: 30px;
+    }
+
+    .ziva-fashion-banner button {
+        padding: 11px 15px;
+        font-size: 10px;
+    }
+
+
+    /* -----------------------------------------------------
+       PRODUCT GRID
+    ----------------------------------------------------- */
+
+    .product-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 9px;
+    }
+
+    .product-card {
+        border-radius: 7px;
+    }
+
+    .product-card:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    .product-image {
+        aspect-ratio: 0.78;
+    }
+
+    .heart {
+        width: 34px;
+        height: 34px;
+        top: 7px;
+        right: 7px;
+        font-size: 19px;
+    }
+
+    .product-info {
+        padding: 10px 9px 11px;
+    }
+
+    .product-info h3 {
+        font-size: 11px;
+        line-height: 1.35;
+        min-height: 30px;
+        margin-bottom: 5px;
+    }
+
+    .product-price {
+        font-size: 12px;
+        margin-bottom: 9px;
+    }
+
+    .product-price span {
+        font-size: 9px !important;
+        margin-left: 3px !important;
+    }
+
+    .add-btn {
+        padding: 10px 5px;
+        font-size: 9px;
+        border-radius: 4px;
+    }
+
+
+    /* -----------------------------------------------------
+       FINAL BANNER
+    ----------------------------------------------------- */
+
+    .banner-section {
+        min-height: 300px;
+        margin-top: 20px;
+        padding: 35px 20px;
+    }
+
+    .banner-content h2 {
+        font-size: 36px;
+    }
+
+    .banner-content p {
+        font-size: 9px;
+    }
+
+    .banner-content button {
+        padding: 12px 18px;
+        font-size: 10px;
+    }
+
+
+    /* -----------------------------------------------------
+       FOOTER
+    ----------------------------------------------------- */
+
+    .footer {
+        padding: 45px 20px 100px;
+        margin-top: 30px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px 20px;
+    }
+
+    .footer-brand {
+        grid-column: span 2;
+    }
+
+    .footer-brand h2 {
+        font-size: 26px;
+    }
+
+    .footer-links h3 {
+        font-size: 10px;
+    }
+
+    .footer-links a {
+        font-size: 11px;
+    }
+
+    .footer-bottom {
+        margin-top: 30px;
+    }
+
+
+    /* -----------------------------------------------------
+       FIXED ZIVA BOTTOM NAV
+    ----------------------------------------------------- */
+
+    .ziva-bottom-nav {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 69px;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        align-items: stretch;
+        background: rgba(255,255,255,.97);
+        border-top: 1px solid rgba(36,27,25,.1);
+        box-shadow: 0 -8px 30px rgba(36,27,25,.08);
+        backdrop-filter: blur(18px);
+        z-index: 2000;
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    .ziva-bottom-item {
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 4px;
+        color: #776b67;
+        font-size: 9px;
+        font-weight: 700;
+        transition: .2s ease;
+        position: relative;
+    }
+
+    .ziva-bottom-item .bottom-icon {
+        position: relative;
+        width: 25px;
+        height: 25px;
+        display: grid;
+        place-items: center;
+        font-size: 17px;
+    }
+
+    .ziva-bottom-item.active {
+        color: #241b19;
+    }
+
+    .ziva-bottom-item.active .bottom-icon {
+        color: #b87973;
+    }
+
+    .ziva-bottom-item:active {
+        transform: scale(.92);
+    }
+
+    .cart-bottom-item b {
+        position: absolute;
+        top: -7px;
+        right: -10px;
+        min-width: 16px;
+        height: 16px;
+        padding: 0 4px;
+        display: grid;
+        place-items: center;
+        border-radius: 20px;
+        background: #b87973;
+        color: #fff;
+        font-size: 8px;
+        line-height: 1;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .hero h1 {
+        font-size: 48px;
+    }
+
+    .ziva-mobile-quick {
+        gap: 5px;
+        padding: 9px;
+    }
+
+    .ziva-mobile-quick a {
+        padding: 9px 6px;
+    }
+
+    .ziva-mobile-quick strong {
+        font-size: 10px;
+    }
+
+    .product-grid {
+        gap: 7px;
+    }
+
+    .product-info h3 {
+        font-size: 10px;
+    }
+
+    .add-btn {
+        font-size: 8px;
+    }
+
+}
+
+
+/* =========================================================
+   ACCESSIBILITY / TOUCH
+========================================================= */
+
+@media (hover: none) {
+
+    .product-card:hover,
+    .category-card:hover img {
+        transform: none;
+    }
+
+}
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+/* =========================================================
+   SAFE AREA
+========================================================= */
+
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+
+    .ziva-bottom-nav {
+        padding-bottom: env(safe-area-inset-bottom);
+        height: calc(69px + env(safe-area-inset-bottom));
+    }
+
 }
