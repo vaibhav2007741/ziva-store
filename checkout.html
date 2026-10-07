@@ -1,1980 +1,2092 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Checkout | ZIVA</title>
-  <meta name="description" content="Complete your ZIVA order securely.">
-
-  <link rel="stylesheet" href="style.css">
-
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      background: #f8f3ed;
-      color: #171313;
-      font-family: Arial, Helvetica, sans-serif;
-    }
-
-    .checkout-page {
-      min-height: 100vh;
-      padding: 50px 6% 80px;
-    }
-
-    .checkout-heading {
-      max-width: 1180px;
-      margin: 0 auto 35px;
-      text-align: center;
-    }
-
-    .checkout-heading h1 {
-      margin: 0 0 10px;
-      font-size: 40px;
-      letter-spacing: 2px;
-    }
-
-    .checkout-heading p {
-      margin: 0;
-      color: #756b64;
-      font-size: 14px;
-    }
-
-    .checkout-layout {
-      max-width: 1180px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: 1fr 390px;
-      gap: 30px;
-      align-items: start;
-    }
-
-    .checkout-card,
-    .summary-card {
-      background: #fff;
-      border: 1px solid #e6ddd5;
-      border-radius: 18px;
-    }
-
-    .checkout-card {
-      padding: 28px;
-      margin-bottom: 22px;
-    }
-
-    .checkout-card h2,
-    .summary-card h2 {
-      margin: 0 0 22px;
-      font-size: 21px;
-    }
-
-    .section-number {
-      display: inline-flex;
-      width: 29px;
-      height: 29px;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      background: #171313;
-      color: #fff;
-      font-size: 12px;
-      margin-right: 9px;
-    }
-
-    .form-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 17px;
-    }
-
-    .form-group {
-      margin-bottom: 17px;
-    }
-
-    .form-group.full {
-      grid-column: 1 / -1;
-    }
-
-    .form-group label {
-      display: block;
-      margin-bottom: 7px;
-      color: #4f4640;
-      font-size: 13px;
-      font-weight: 600;
-    }
-
-    .required {
-      color: #9a5f54;
-    }
-
-    .form-group input,
-    .form-group textarea,
-    .form-group select {
-      width: 100%;
-      border: 1px solid #d9cec4;
-      border-radius: 8px;
-      background: #fff;
-      padding: 13px 14px;
-      outline: none;
-      color: #171313;
-      font-size: 14px;
-      font-family: inherit;
-    }
-
-    .form-group textarea {
-      min-height: 100px;
-      resize: vertical;
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus,
-    .form-group select:focus {
-      border-color: #171313;
-    }
-
-    /* PAYMENT */
-
-    .payment-option {
-      position: relative;
-      display: block;
-      border: 1px solid #ddd2c8;
-      border-radius: 12px;
-      padding: 18px;
-      margin-bottom: 13px;
-      cursor: pointer;
-      transition: .2s ease;
-    }
-
-    .payment-option:hover {
-      border-color: #aaa096;
-    }
-
-    .payment-option.selected {
-      border-color: #171313;
-      background: #faf7f3;
-    }
-
-    .payment-option input {
-      position: absolute;
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .payment-title {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 15px;
-      font-size: 15px;
-      font-weight: 700;
-    }
-
-    .payment-title-left {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .radio-dot {
-      width: 17px;
-      height: 17px;
-      border: 1px solid #aaa;
-      border-radius: 50%;
-      display: inline-block;
-      position: relative;
-      flex-shrink: 0;
-    }
-
-    .payment-option.selected .radio-dot {
-      border-color: #171313;
-    }
-
-    .payment-option.selected .radio-dot::after {
-      content: "";
-      position: absolute;
-      width: 9px;
-      height: 9px;
-      background: #171313;
-      border-radius: 50%;
-      left: 3px;
-      top: 3px;
-    }
-
-    .payment-badge {
-      font-size: 11px;
-      padding: 5px 8px;
-      border-radius: 5px;
-      background: #eee6de;
-      color: #5e5148;
-      white-space: nowrap;
-    }
-
-    .payment-description {
-      margin: 10px 0 0 27px;
-      color: #81766e;
-      font-size: 12px;
-      line-height: 1.6;
-    }
-
-    .payment-info {
-      margin-top: 15px;
-      padding: 14px;
-      border-radius: 8px;
-      background: #f7f0e9;
-      color: #625850;
-      font-size: 12px;
-      line-height: 1.6;
-    }
-
-    /* SUMMARY */
-
-    .summary-card {
-      padding: 28px;
-      position: sticky;
-      top: 20px;
-    }
-
-    .summary-product {
-      display: grid;
-      grid-template-columns: 68px 1fr auto;
-      gap: 13px;
-      padding: 14px 0;
-      border-bottom: 1px solid #eee5dd;
-      align-items: center;
-    }
-
-    .summary-product-image {
-      width: 68px;
-      height: 82px;
-      border-radius: 8px;
-      overflow: hidden;
-      background: #f1e9e1;
-    }
-
-    .summary-product-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .summary-product-name {
-      font-size: 13px;
-      font-weight: 700;
-      margin-bottom: 5px;
-    }
-
-    .summary-product-meta {
-      color: #81766e;
-      font-size: 11px;
-      line-height: 1.6;
-    }
-
-    .summary-product-price {
-      font-size: 13px;
-      font-weight: 700;
-      white-space: nowrap;
-    }
-
-    .summary-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 15px;
-      padding: 10px 0;
-      color: #6e625a;
-      font-size: 14px;
-    }
-
-    .summary-row.total {
-      margin-top: 10px;
-      padding-top: 18px;
-      border-top: 1px solid #e4d9d0;
-      color: #171313;
-      font-size: 20px;
-      font-weight: 700;
-    }
-
-    .free {
-      color: #527054;
-      font-weight: 700;
-    }
-
-    .cod-payment-row {
-      display: none;
-    }
-
-    .cod-payment-row.show {
-      display: flex;
-    }
-
-    .remaining-row {
-      display: none;
-    }
-
-    .remaining-row.show {
-      display: flex;
-    }
-
-    .place-order-btn {
-      width: 100%;
-      margin-top: 23px;
-      border: none;
-      background: #171313;
-      color: #fff;
-      padding: 17px 20px;
-      border-radius: 9px;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 1.1px;
-      cursor: pointer;
-    }
-
-    .place-order-btn:hover {
-      background: #302727;
-    }
-
-    .back-cart {
-      display: block;
-      text-align: center;
-      margin-top: 17px;
-      color: #514740;
-      text-decoration: none;
-      font-size: 13px;
-    }
-
-    .back-cart:hover {
-      text-decoration: underline;
-    }
-
-    .secure-text {
-      margin-top: 20px;
-      padding-top: 18px;
-      border-top: 1px solid #eee5dd;
-      text-align: center;
-      color: #8a7e75;
-      font-size: 11px;
-      line-height: 1.6;
-    }
-
-    /* MODAL */
-
-    .checkout-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      background: rgba(0, 0, 0, .55);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    .checkout-overlay.active {
-      display: flex;
-    }
-
-    .checkout-modal {
-      width: min(440px, 100%);
-      background: #fff;
-      border-radius: 18px;
-      padding: 32px;
-      text-align: center;
-      position: relative;
-      box-shadow: 0 20px 60px rgba(0,0,0,.2);
-    }
-
-    .checkout-modal h3 {
-      margin: 0 0 10px;
-      font-size: 23px;
-    }
-
-    .checkout-modal p {
-      color: #756b64;
-      line-height: 1.6;
-      font-size: 14px;
-      margin: 0 0 22px;
-    }
-
-    .modal-close {
-      position: absolute;
-      right: 16px;
-      top: 12px;
-      border: none;
-      background: transparent;
-      font-size: 23px;
-      cursor: pointer;
-      color: #555;
-    }
-
-    .modal-btn {
-      width: 100%;
-      border: none;
-      background: #171313;
-      color: #fff;
-      padding: 14px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 700;
-      letter-spacing: 1px;
-    }
-
-    @media (max-width: 900px) {
-      .checkout-layout {
-        grid-template-columns: 1fr;
-      }
-
-      .summary-card {
-        position: static;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .checkout-page {
-        padding: 35px 15px 60px;
-      }
-
-      .checkout-heading h1 {
-        font-size: 31px;
-      }
-
-      .checkout-card,
-      .summary-card {
-        padding: 21px;
-      }
-
-      .form-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .form-group.full {
-        grid-column: auto;
-      }
-
-      .summary-product {
-        grid-template-columns: 58px 1fr;
-      }
-
-      .summary-product-image {
-        width: 58px;
-        height: 72px;
-      }
-
-      .summary-product-price {
-        grid-column: 2;
-      }
-
-      .payment-title {
-        align-items: flex-start;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZIVA | Checkout</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* ================================
+           CHECKOUT
+        ================================= */
+
+        .checkout-page {
+            max-width: 1150px;
+            margin: 40px auto;
+            padding: 0 20px 60px;
+        }
+
+        .checkout-title {
+            margin-bottom: 30px;
+        }
+
+        .checkout-title h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .checkout-title p {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .checkout-layout {
+            display: grid;
+            grid-template-columns: 1.4fr .9fr;
+            gap: 30px;
+            align-items: start;
+        }
+
+        .checkout-box {
+            background: #fff;
+            border: 1px solid #eadfd7;
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .checkout-box h2 {
+            font-size: 19px;
+            margin-bottom: 20px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 7px;
+            color: #443b37;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            border: 1px solid #ddd2ca;
+            border-radius: 8px;
+            padding: 13px;
+            font-size: 13px;
+            outline: none;
+            background: #fff;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #e8a0a8;
+        }
+
+        .form-group textarea {
+            min-height: 90px;
+            resize: vertical;
+        }
+
+        /* PAYMENT OPTIONS */
+
+        .payment-option {
+            border: 1px solid #ddd2ca;
+            border-radius: 12px;
+            padding: 17px;
+            margin-bottom: 12px;
+            cursor: pointer;
+        }
+
+        .payment-option.selected {
+            border-color: #241b19;
+            background: #fff8f3;
+        }
+
+        .payment-option-top {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .payment-option input {
+            accent-color: #241b19;
+        }
+
+        .payment-name {
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .payment-desc {
+            margin: 8px 0 0 29px;
+            color: #777;
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+        .payment-badge {
+            display: inline-block;
+            margin-left: 6px;
+            padding: 3px 7px;
+            background: #eee4dc;
+            border-radius: 20px;
+            font-size: 9px;
+        }
+
+        /* SUMMARY */
+
+        .summary-box {
+            position: sticky;
+            top: 20px;
+        }
+
+        .summary-product {
+            display: flex;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee5df;
+        }
+
+        .summary-product img {
+            width: 65px;
+            height: 75px;
+            object-fit: cover;
+            border-radius: 8px;
+            background: #f5f0ec;
+        }
+
+        .summary-product-info {
+            flex: 1;
+        }
+
+        .summary-product-name {
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .summary-product-meta {
+            color: #888;
+            font-size: 11px;
+            margin-bottom: 5px;
+        }
+
+        .summary-product-price {
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            font-size: 13px;
+        }
+
+        .summary-row span:first-child {
+            color: #766c66;
+        }
+
+        .advance-row {
+            color: #a05b62;
+        }
+
+        .remaining-row {
+            color: #5e5752;
+        }
+
+        .total-row {
+            border-top: 1px solid #ddd2ca;
+            margin-top: 8px;
+            padding-top: 17px;
+            font-size: 17px;
+            font-weight: 800;
+        }
+
+        .place-order-btn {
+            width: 100%;
+            border: none;
+            background: #241b19;
+            color: #fff;
+            padding: 16px;
+            border-radius: 9px;
+            margin-top: 20px;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: .7px;
+            cursor: pointer;
+        }
+
+        .secure-note {
+            text-align: center;
+            margin-top: 12px;
+            color: #888;
+            font-size: 10px;
+        }
+
+        /* ================================
+           PAYMENT POPUP
+        ================================= */
+
+        .payment-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(0,0,0,.70);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            overflow-y: auto;
+        }
+
+        .payment-overlay.active {
+            display: flex;
+        }
+
+        .payment-modal {
+            width: min(450px,100%);
+            max-height: 95vh;
+            overflow-y: auto;
+            background: #fff;
+            border-radius: 20px;
+            padding: 25px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .close-payment {
+            position: absolute;
+            right: 13px;
+            top: 8px;
+            border: none;
+            background: transparent;
+            font-size: 28px;
+            color: #555;
+            cursor: pointer;
+        }
+
+        .payment-label {
+            font-size: 10px;
+            letter-spacing: 1.5px;
+            color: #8b7d74;
+            margin-bottom: 7px;
+        }
+
+        .payment-modal h2 {
+            margin: 0 0 8px;
+            font-size: 24px;
+        }
+
+        .payment-modal-subtitle {
+            color: #777;
+            font-size: 12px;
+            line-height: 1.5;
+            margin-bottom: 17px;
+        }
+
+        .qr-card {
+            border: 1px solid #e2d8d0;
+            border-radius: 15px;
+            background: #faf7f4;
+            padding: 17px;
+        }
+
+        .qr-image {
+            width: 220px;
+            height: 220px;
+            max-width: 100%;
+            object-fit: contain;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 7px;
+        }
+
+        .payment-amount {
+            margin-top: 12px;
+            font-size: 25px;
+            font-weight: 800;
+        }
+
+        .payment-order-id {
+            margin-top: 5px;
+            color: #81766e;
+            font-size: 11px;
+        }
+
+        /* APP BUTTONS */
+
+        .payment-apps {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+
+        .payment-app {
+            border: 1px solid #ddd2ca;
+            background: #fff;
+            padding: 9px 13px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .payment-instructions {
+            text-align: left;
+            background: #f7f0e9;
+            border-radius: 9px;
+            padding: 13px 15px;
+            color: #625850;
+            font-size: 12px;
+            line-height: 1.6;
+            margin: 15px 0;
+        }
+
+        .payment-instructions ol {
+            margin: 7px 0 0;
+            padding-left: 20px;
+        }
+
+        /* UTR */
+
+        .utr-box {
+            text-align: left;
+            margin-top: 15px;
+        }
+
+        .utr-box label {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 7px;
+        }
+
+        .utr-box input {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #d8cec5;
+            border-radius: 8px;
+            outline: none;
+            font-size: 13px;
+        }
+
+        .utr-box input:focus {
+            border-color: #241b19;
+        }
+
+        .utr-help {
+            margin-top: 6px;
+            font-size: 10px;
+            color: #888;
+            line-height: 1.4;
+        }
+
+        .confirm-payment-btn {
+            width: 100%;
+            border: none;
+            background: #171313;
+            color: #fff;
+            padding: 15px;
+            border-radius: 9px;
+            margin-top: 15px;
+            font-size: 13px;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        .back-checkout-btn {
+            width: 100%;
+            margin-top: 9px;
+            border: 1px solid #d8cec5;
+            background: #fff;
+            color: #514740;
+            padding: 13px;
+            border-radius: 9px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .payment-warning {
+            margin: 12px 5px 0;
+            color: #8a7e75;
+            font-size: 10px;
+            line-height: 1.5;
+        }
+
+        /* NORMAL MESSAGE */
+
+        .message-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 11000;
+            background: rgba(0,0,0,.60);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .message-overlay.active {
+            display: flex;
+        }
+
+        .message-modal {
+            width: min(390px,100%);
+            background: #fff;
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .message-modal h3 {
+            margin-bottom: 10px;
+        }
+
+        .message-modal p {
+            color: #777;
+            font-size: 13px;
+            line-height: 1.5;
+            margin-bottom: 18px;
+        }
+
+        .message-btn {
+            width: 100%;
+            border: none;
+            background: #241b19;
+            color: #fff;
+            padding: 13px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        @media (max-width: 800px) {
+            .checkout-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .summary-box {
+                position: static;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .checkout-page {
+                margin-top: 25px;
+                padding: 0 13px 40px;
+            }
+
+            .checkout-title h1 {
+                font-size: 26px;
+            }
+
+            .checkout-box {
+                padding: 18px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+
+            .qr-image {
+                width: 205px;
+                height: 205px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
+<!-- ================================
+     HEADER
+================================= -->
+
 <header class="header">
 
-  <a href="index.html" class="logo">ZIVA</a>
+    <div class="logo">
+        <a href="index.html">ZIVA</a>
+    </div>
 
-  <nav>
-    <a href="index.html">New In</a>
-    <a href="index.html#women-section">Women</a>
-    <a href="index.html#mens-section">Men</a>
-    <a href="index.html#trending-section">Trending</a>
-    <a href="index.html#sale-section">Sale</a>
-  </nav>
+    <nav>
+        <a href="index.html">New In</a>
+        <a href="index.html">Women</a>
+        <a href="index.html">Men</a>
+        <a href="index.html">Trending</a>
+        <a href="index.html">Sale</a>
+    </nav>
 
-  <div class="header-actions">
-
-    <button
-      class="icon-btn"
-      type="button"
-      onclick="openSearch()"
-    >
-      ⌕
-    </button>
-
-    <button
-      class="icon-btn"
-      type="button"
-      onclick="openAccount()"
-    >
-      👤 Account
-    </button>
-
-    <button
-      class="cart-btn"
-      type="button"
-      onclick="window.location.href='cart.html'"
-    >
-      🛍 Cart
-    </button>
-
-  </div>
+    <div class="header-actions">
+        <a href="index.html">Search</a>
+        <a href="account.html">Account</a>
+        <a href="cart.html">Cart</a>
+    </div>
 
 </header>
 
 
+<!-- ================================
+     CHECKOUT
+================================= -->
+
 <main class="checkout-page">
 
-  <div class="checkout-heading">
+    <div class="checkout-title">
+        <h1>Checkout</h1>
+        <p>Complete your details and place your ZIVA order.</p>
+    </div>
 
-    <h1>CHECKOUT</h1>
 
-    <p>
-      Complete your details to place your ZIVA order.
-    </p>
+    <div class="checkout-layout">
 
-  </div>
+        <!-- LEFT -->
 
+        <div>
 
-  <div class="checkout-layout">
+            <!-- CUSTOMER -->
 
-    <!-- LEFT SIDE -->
+            <div class="checkout-box">
 
-    <section>
+                <h2>Customer Details</h2>
 
-      <!-- CUSTOMER -->
+                <div class="form-grid">
 
-      <div class="checkout-card">
+                    <div class="form-group">
 
-        <h2>
-          <span class="section-number">1</span>
-          Customer Details
-        </h2>
+                        <label>Full Name *</label>
 
-        <div class="form-grid">
+                        <input
+                            type="text"
+                            id="customerName"
+                            placeholder="Enter your name">
 
-          <div class="form-group">
+                    </div>
 
-            <label>
-              Full Name <span class="required">*</span>
-            </label>
 
-            <input
-              type="text"
-              id="customerName"
-              placeholder="Enter your full name"
-              autocomplete="name"
-            >
+                    <div class="form-group">
 
-          </div>
+                        <label>Phone Number *</label>
 
+                        <input
+                            type="tel"
+                            id="customerPhone"
+                            maxlength="10"
+                            placeholder="10-digit mobile number">
 
-          <div class="form-group">
+                    </div>
 
-            <label>
-              Mobile Number <span class="required">*</span>
-            </label>
 
-            <input
-              type="tel"
-              id="customerPhone"
-              placeholder="10-digit mobile number"
-              maxlength="10"
-              inputmode="numeric"
-              autocomplete="tel"
-            >
+                    <div class="form-group full">
 
-          </div>
+                        <label>Email Address *</label>
 
+                        <input
+                            type="email"
+                            id="customerEmail"
+                            placeholder="Enter your email">
 
-          <div class="form-group full">
+                    </div>
 
-            <label>
-              Email Address
-            </label>
-
-            <input
-              type="email"
-              id="customerEmail"
-              placeholder="example@email.com"
-              autocomplete="email"
-            >
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <!-- ADDRESS -->
-
-      <div class="checkout-card">
-
-        <h2>
-          <span class="section-number">2</span>
-          Delivery Address
-        </h2>
-
-        <div class="form-grid">
-
-          <div class="form-group full">
-
-            <label>
-              Full Address <span class="required">*</span>
-            </label>
-
-            <textarea
-              id="fullAddress"
-              placeholder="House / Flat No., Street, Area, Landmark"
-            ></textarea>
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label>
-              City <span class="required">*</span>
-            </label>
-
-            <input
-              type="text"
-              id="city"
-              placeholder="City"
-              autocomplete="address-level2"
-            >
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label>
-              State <span class="required">*</span>
-            </label>
-
-            <select id="state">
-
-              <option value="">
-                Select State
-              </option>
-
-              <option>Andhra Pradesh</option>
-              <option>Arunachal Pradesh</option>
-              <option>Assam</option>
-              <option>Bihar</option>
-              <option>Chhattisgarh</option>
-              <option>Delhi</option>
-              <option>Goa</option>
-              <option>Gujarat</option>
-              <option>Haryana</option>
-              <option>Himachal Pradesh</option>
-              <option>Jharkhand</option>
-              <option>Karnataka</option>
-              <option>Kerala</option>
-              <option>Madhya Pradesh</option>
-              <option>Maharashtra</option>
-              <option>Madhya Pradesh</option>
-              <option>Odisha</option>
-              <option>Punjab</option>
-              <option>Rajasthan</option>
-              <option>Tamil Nadu</option>
-              <option>Telangana</option>
-              <option>Uttar Pradesh</option>
-              <option>Uttarakhand</option>
-              <option>West Bengal</option>
-
-            </select>
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label>
-              PIN Code <span class="required">*</span>
-            </label>
-
-            <input
-              type="text"
-              id="pin"
-              placeholder="6-digit PIN"
-              maxlength="6"
-              inputmode="numeric"
-              autocomplete="postal-code"
-            >
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <!-- PAYMENT -->
-
-      <div class="checkout-card">
-
-        <h2>
-          <span class="section-number">3</span>
-          Payment Method
-        </h2>
-
-
-        <!-- ONLINE -->
-
-        <label
-          class="payment-option selected"
-          id="onlineOption"
-        >
-
-          <input
-            type="radio"
-            name="payment"
-            value="online"
-            checked
-            onchange="selectPayment('online')"
-          >
-
-          <div class="payment-title">
-
-            <div class="payment-title-left">
-
-              <span class="radio-dot"></span>
-
-              <span>
-                Online Payment
-              </span>
+                </div>
 
             </div>
 
-            <span class="payment-badge">
-              FREE DELIVERY
-            </span>
 
-          </div>
+            <!-- ADDRESS -->
 
-          <div class="payment-description">
-            Pay the full order amount online.
-            Delivery is completely free.
-          </div>
+            <div class="checkout-box">
 
-        </label>
+                <h2>Delivery Address</h2>
+
+                <div class="form-grid">
+
+                    <div class="form-group full">
+
+                        <label>Full Address *</label>
+
+                        <textarea
+                            id="fullAddress"
+                            placeholder="House/Flat No., Street, Area"></textarea>
+
+                    </div>
 
 
-        <!-- COD -->
+                    <div class="form-group">
 
-        <label
-          class="payment-option"
-          id="codOption"
-        >
+                        <label>City *</label>
 
-          <input
-            type="radio"
-            name="payment"
-            value="cod"
-            onchange="selectPayment('cod')"
-          >
+                        <input
+                            type="text"
+                            id="city"
+                            placeholder="City">
 
-          <div class="payment-title">
+                    </div>
 
-            <div class="payment-title-left">
 
-              <span class="radio-dot"></span>
+                    <div class="form-group">
 
-              <span>
-                Cash on Delivery
-              </span>
+                        <label>State *</label>
+
+                        <input
+                            type="text"
+                            id="state"
+                            placeholder="State">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>PIN Code *</label>
+
+                        <input
+                            type="text"
+                            id="pin"
+                            maxlength="6"
+                            placeholder="6-digit PIN">
+
+                    </div>
+
+                </div>
 
             </div>
 
-            <span class="payment-badge">
-              ₹250 ADVANCE
-            </span>
 
-          </div>
+            <!-- PAYMENT -->
 
-          <div class="payment-description">
-            Pay ₹250 online as a delivery/booking advance.
-            The remaining amount is payable at delivery.
-          </div>
+            <div class="checkout-box">
 
-        </label>
+                <h2>Payment Method</h2>
 
 
-        <div
-          class="payment-info"
-          id="paymentInfo"
-        >
-          Online payment gateway is currently in
-          testing mode. No real payment will be
-          collected yet.
+                <div
+                    class="payment-option"
+                    id="onlineOption"
+                    onclick="selectPayment('online')">
+
+                    <div class="payment-option-top">
+
+                        <input
+                            type="radio"
+                            name="payment"
+                            id="onlineRadio">
+
+                        <div class="payment-name">
+
+                            Online Payment
+
+                            <span class="payment-badge">
+                                FULL PAYMENT
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <div class="payment-desc">
+
+                        Pay the full order amount using
+                        ZIVA's Online QR code.
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="payment-option selected"
+                    id="codOption"
+                    onclick="selectPayment('cod')">
+
+                    <div class="payment-option-top">
+
+                        <input
+                            type="radio"
+                            name="payment"
+                            id="codRadio"
+                            checked>
+
+                        <div class="payment-name">
+                            Cash on Delivery
+                        </div>
+
+                    </div>
+
+                    <div class="payment-desc">
+
+                        Pay ₹250 advance through QR.
+                        Remaining amount will be payable at delivery.
+
+                    </div>
+
+                </div>
+
+            </div>
+
         </div>
 
-      </div>
 
-    </section>
+        <!-- RIGHT -->
 
+        <div class="checkout-box summary-box">
 
-    <!-- RIGHT SIDE -->
+            <h2>Order Summary</h2>
 
-    <aside class="summary-card">
-
-      <h2>
-        Order Summary
-      </h2>
-
-      <div id="checkoutProducts"></div>
+            <div id="checkoutProducts"></div>
 
 
-      <div class="summary-row">
+            <div class="summary-row">
 
-        <span>
-          Subtotal
-        </span>
+                <span>Subtotal</span>
 
-        <strong id="subtotal">
-          ₹0
-        </strong>
+                <strong id="subtotal">
+                    ₹0
+                </strong>
 
-      </div>
+            </div>
 
 
-      <!-- ONLINE DELIVERY -->
+            <div
+                class="summary-row"
+                id="codAdvanceRow">
 
-      <div
-        class="summary-row"
-        id="onlineDeliveryRow"
-      >
+                <span>COD Advance</span>
 
-        <span>
-          Delivery
-        </span>
+                <strong id="codAdvance">
+                    ₹250
+                </strong>
 
-        <strong class="free">
-          FREE
-        </strong>
-
-      </div>
+            </div>
 
 
-      <!-- COD ADVANCE -->
+            <div
+                class="summary-row remaining-row"
+                id="remainingRow">
 
-      <div
-        class="summary-row cod-payment-row"
-        id="codAdvanceRow"
-      >
+                <span>Pay at Delivery</span>
 
-        <span>
-          COD Advance
-        </span>
+                <strong id="remainingAmount">
+                    ₹0
+                </strong>
 
-        <strong>
-          ₹250
-        </strong>
-
-      </div>
+            </div>
 
 
-      <!-- COD REMAINING -->
+            <div
+                class="summary-row"
+                id="onlinePaymentRow"
+                style="display:none;">
 
-      <div
-        class="summary-row remaining-row"
-        id="remainingRow"
-      >
+                <span>Payment</span>
 
-        <span>
-          Pay at Delivery
-        </span>
+                <strong>
+                    Full Payment
+                </strong>
 
-        <strong id="remainingAmount">
-          ₹0
-        </strong>
-
-      </div>
+            </div>
 
 
-      <!-- TOTAL -->
+            <div class="summary-row total-row">
 
-      <div class="summary-row total">
+                <span>Total</span>
 
-        <span>
-          Total Order Value
-        </span>
+                <strong id="total">
+                    ₹0
+                </strong>
 
-        <strong id="total">
-          ₹0
-        </strong>
-
-      </div>
+            </div>
 
 
-      <button
-        class="place-order-btn"
-        type="button"
-        onclick="placeZivaOrder()"
-      >
-        PLACE ORDER
-      </button>
+            <button
+                type="button"
+                class="place-order-btn"
+                onclick="placeZivaOrder()">
+
+                PLACE ORDER
+
+            </button>
 
 
-      <a
-        href="cart.html"
-        class="back-cart"
-      >
-        ← Back to Cart
-      </a>
+            <div class="secure-note">
+                Payment screen will open after PLACE ORDER.
+            </div>
 
+        </div>
 
-      <div class="secure-text">
-        🔒 Secure checkout<br>
-        Your information is handled securely by ZIVA.
-      </div>
-
-    </aside>
-
-  </div>
+    </div>
 
 </main>
 
 
-<!-- MODAL -->
+<!-- ================================
+     PAYMENT POPUP
+================================= -->
 
 <div
-  class="checkout-overlay"
-  id="checkoutOverlay"
-  onclick="closeCheckoutModal(event)"
->
+    class="payment-overlay"
+    id="paymentOverlay">
 
-  <div
-    class="checkout-modal"
-    onclick="event.stopPropagation()"
-  >
+    <div class="payment-modal">
 
-    <button
-      class="modal-close"
-      type="button"
-      onclick="closeCheckoutModal()"
-    >
-      ×
-    </button>
+        <button
+            type="button"
+            class="close-payment"
+            onclick="closePaymentPopup()">
 
-    <h3 id="modalTitle">
-      ZIVA
-    </h3>
+            ×
 
-    <p id="modalText">
-      —
-    </p>
+        </button>
 
-    <button
-      class="modal-btn"
-      id="modalPrimary"
-      type="button"
-      onclick="modalPrimaryAction()"
-    >
-      OK
-    </button>
 
-  </div>
+        <div class="payment-label">
+            ZIVA PAYMENT
+        </div>
+
+
+        <h2 id="paymentTitle">
+            Pay ₹250 Advance
+        </h2>
+
+
+        <div
+            class="payment-modal-subtitle"
+            id="paymentSubtitle">
+
+            Scan the QR code and complete your payment.
+
+        </div>
+
+
+        <div class="qr-card">
+
+            <!-- COD QR -->
+
+            <img
+                id="codQR"
+                class="qr-image"
+                src="images/qr.png"
+                alt="ZIVA COD QR">
+
+
+            <!-- ONLINE QR -->
+
+            <img
+                id="onlineQR"
+                class="qr-image"
+                src="images/online-qr.png"
+                alt="ZIVA Online QR"
+                style="display:none;">
+
+
+            <div
+                class="payment-amount"
+                id="paymentAmount">
+
+                ₹250
+
+            </div>
+
+
+            <div class="payment-order-id">
+
+                Order ID:
+                <strong id="paymentOrderId">
+                    ZIVA-00000000
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- PAYMENT APPS -->
+
+        <div class="payment-apps">
+
+            <div class="payment-app">
+                📱 PhonePe
+            </div>
+
+            <div class="payment-app">
+                📱 Google Pay
+            </div>
+
+            <div class="payment-app">
+                📱 Paytm
+            </div>
+
+        </div>
+
+
+        <!-- INSTRUCTIONS -->
+
+        <div class="payment-instructions">
+
+            <strong>Payment kaise karein?</strong>
+
+            <ol>
+
+                <li>
+                    PhonePe, Google Pay ya Paytm open karo.
+                </li>
+
+                <li>
+                    QR code scan karo.
+                </li>
+
+                <li id="paymentInstruction">
+                    Exactly ₹250 pay karo.
+                </li>
+
+                <li>
+                    Payment successful hone ke baad
+                    UTR / Transaction ID dekho.
+                </li>
+
+            </ol>
+
+        </div>
+
+
+        <!-- UTR -->
+
+        <div class="utr-box">
+
+            <label for="utrNumber">
+                UTR / Transaction ID *
+            </label>
+
+            <input
+                type="text"
+                id="utrNumber"
+                placeholder="Enter your UTR / Transaction ID"
+                maxlength="50"
+                autocomplete="off">
+
+            <div class="utr-help">
+
+                UTR payment successful hone ke baad
+                PhonePe / Google Pay / Paytm transaction details
+                mein mil sakta hai.
+
+            </div>
+
+        </div>
+
+
+        <!-- CONFIRM -->
+
+        <button
+            type="button"
+            class="confirm-payment-btn"
+            onclick="confirmPayment()">
+
+            CONFIRM PAYMENT
+
+        </button>
+
+
+        <button
+            type="button"
+            class="back-checkout-btn"
+            onclick="closePaymentPopup()">
+
+            ← BACK TO CHECKOUT
+
+        </button>
+
+
+        <div class="payment-warning">
+
+            UTR enter karna mandatory hai.
+            UTR ke bina order confirm nahi hoga.
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================================
+     MESSAGE MODAL
+================================= -->
+
+<div
+    class="message-overlay"
+    id="messageOverlay">
+
+    <div class="message-modal">
+
+        <h3 id="messageTitle">
+            ZIVA
+        </h3>
+
+        <p id="messageText">
+            Message
+        </p>
+
+        <button
+            type="button"
+            class="message-btn"
+            onclick="closeMessage()">
+
+            OK
+
+        </button>
+
+    </div>
 
 </div>
 
 
 <script>
 
-  const ZIVA_CART_KEY = "zivaCart";
+    /* =========================================================
+       ZIVA CHECKOUT
+    ========================================================= */
 
-  let selectedPayment = "online";
+    const ZIVA_CART_KEY = "zivaCart";
 
-  let checkoutAction = null;
+    let selectedPayment = "cod";
+
+    let pendingOrder = null;
 
 
-  /* =========================
-     CART
-  ========================= */
+    /* =========================================================
+       CART
+    ========================================================= */
 
-  function getCart() {
+    function getCart() {
 
-    try {
+        try {
 
-      const saved =
-        localStorage.getItem(ZIVA_CART_KEY);
+            const cart =
+                JSON.parse(
+                    localStorage.getItem(
+                        ZIVA_CART_KEY
+                    )
+                );
 
-      const cart =
-        saved ? JSON.parse(saved) : [];
+            return Array.isArray(cart)
+                ? cart
+                : [];
 
-      return Array.isArray(cart)
-        ? cart
-        : [];
+        } catch (error) {
 
-    } catch (error) {
+            return [];
 
-      return [];
+        }
 
     }
 
-  }
 
+    function getPrice(item) {
 
-  /* =========================
-     HELPERS
-  ========================= */
-
-  function formatPrice(price) {
-
-    return "₹" +
-      Number(price || 0)
-        .toLocaleString("en-IN");
-
-  }
-
-
-  function escapeHTML(value) {
-
-    return String(value ?? "")
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
-
-  }
-
-
-  function isLoggedIn() {
-
-    return (
-      localStorage.getItem(
-        "zivaLoggedIn"
-      ) === "true"
-    );
-
-  }
-
-
-  /* =========================
-     IMAGE
-  ========================= */
-
-  function getImage(item) {
-
-    if (item.image) {
-      return item.image;
-    }
-
-    if (
-      Array.isArray(item.images) &&
-      item.images.length
-    ) {
-      return item.images[0];
-    }
-
-    return "images/men-outfit.jpeg";
-
-  }
-
-
-  /* =========================
-     GET SUBTOTAL
-  ========================= */
-
-  function getSubtotal() {
-
-    const cart = getCart();
-
-    return cart.reduce(
-      (total, item) => {
-
-        return total +
-          (
-            Number(item.price) || 0
-          ) *
-          (
-            Number(item.quantity) || 1
-          );
-
-      },
-      0
-    );
-
-  }
-
-
-  /* =========================
-     PAYMENT SWITCH
-  ========================= */
-
-  function selectPayment(method) {
-
-    selectedPayment = method;
-
-    const onlineOption =
-      document.getElementById(
-        "onlineOption"
-      );
-
-    const codOption =
-      document.getElementById(
-        "codOption"
-      );
-
-    const onlineDeliveryRow =
-      document.getElementById(
-        "onlineDeliveryRow"
-      );
-
-    const codAdvanceRow =
-      document.getElementById(
-        "codAdvanceRow"
-      );
-
-    const remainingRow =
-      document.getElementById(
-        "remainingRow"
-      );
-
-    const remainingAmount =
-      document.getElementById(
-        "remainingAmount"
-      );
-
-    const paymentInfo =
-      document.getElementById(
-        "paymentInfo"
-      );
-
-
-    onlineOption.classList.remove(
-      "selected"
-    );
-
-    codOption.classList.remove(
-      "selected"
-    );
-
-    codAdvanceRow.classList.remove(
-      "show"
-    );
-
-    remainingRow.classList.remove(
-      "show"
-    );
-
-
-    const subtotal =
-      getSubtotal();
-
-
-    if (method === "online") {
-
-      onlineOption.classList.add(
-        "selected"
-      );
-
-      /*
-        ONLINE:
-        Full amount online
-        FREE DELIVERY
-      */
-
-      onlineDeliveryRow.style.display =
-        "flex";
-
-      paymentInfo.textContent =
-        "Online payment gateway is currently in testing mode. No real payment will be collected yet.";
-
-    } else {
-
-      codOption.classList.add(
-        "selected"
-      );
-
-      /*
-        COD:
-        ₹250 advance online
-        Remaining at delivery
-      */
-
-      onlineDeliveryRow.style.display =
-        "none";
-
-      codAdvanceRow.classList.add(
-        "show"
-      );
-
-      remainingRow.classList.add(
-        "show"
-      );
-
-      remainingAmount.textContent =
-        formatPrice(
-          Math.max(0, subtotal - 250)
+        return Number(
+            item.price ||
+            item.salePrice ||
+            item.amount ||
+            0
         );
 
-      paymentInfo.textContent =
-        "COD requires a ₹250 online delivery/booking advance. The remaining amount will be payable when your order is delivered.";
-
-    }
-
-  }
-
-
-  /* =========================
-     RENDER PRODUCTS
-  ========================= */
-
-  function renderCheckout() {
-
-    const cart = getCart();
-
-    const container =
-      document.getElementById(
-        "checkoutProducts"
-      );
-
-
-    if (!cart.length) {
-
-      container.innerHTML = `
-        <p style="
-          color:#81766e;
-          font-size:13px;
-          line-height:1.6;
-        ">
-          Your bag is empty.
-        </p>
-      `;
-
-      document.getElementById(
-        "subtotal"
-      ).textContent = "₹0";
-
-      document.getElementById(
-        "total"
-      ).textContent = "₹0";
-
-      return;
-
     }
 
 
-    let html = "";
+    function getQuantity(item) {
 
-
-    cart.forEach(item => {
-
-      const price =
-        Number(item.price) || 0;
-
-      const quantity =
-        Number(item.quantity) || 1;
-
-      const itemTotal =
-        price * quantity;
-
-
-      let meta =
-        "Quantity: " +
-        quantity;
-
-
-      if (item.tshirtSize) {
-
-        meta +=
-          " • T-Shirt: " +
-          item.tshirtSize;
-
-      }
-
-
-      if (item.pantSize) {
-
-        meta +=
-          " • Waist: " +
-          item.pantSize;
-
-      }
-
-
-      html += `
-
-        <div class="summary-product">
-
-          <div class="summary-product-image">
-
-            <img
-              src="${escapeHTML(
-                getImage(item)
-              )}"
-              alt="${escapeHTML(
-                item.name ||
-                "ZIVA Product"
-              )}"
-              onerror="
-                this.onerror=null;
-                this.src='images/men-outfit.jpeg';
-              "
-            >
-
-          </div>
-
-
-          <div>
-
-            <div class="summary-product-name">
-              ${escapeHTML(
-                item.name ||
-                "ZIVA Product"
-              )}
-            </div>
-
-            <div class="summary-product-meta">
-              ${escapeHTML(meta)}
-            </div>
-
-          </div>
-
-
-          <div class="summary-product-price">
-            ${formatPrice(itemTotal)}
-          </div>
-
-        </div>
-
-      `;
-
-    });
-
-
-    container.innerHTML = html;
-
-
-    const subtotal =
-      getSubtotal();
-
-
-    document.getElementById(
-      "subtotal"
-    ).textContent =
-      formatPrice(subtotal);
-
-
-    document.getElementById(
-      "total"
-    ).textContent =
-      formatPrice(subtotal);
-
-
-    selectPayment(
-      selectedPayment
-    );
-
-  }
-
-
-  /* =========================
-     USER
-  ========================= */
-
-  function loadCurrentUser() {
-
-    try {
-
-      const saved =
-        localStorage.getItem(
-          "zivaCurrentUser"
+        return Number(
+            item.quantity ||
+            item.qty ||
+            1
         );
 
-      if (!saved) return;
-
-      const user =
-        JSON.parse(saved);
+    }
 
 
-      if (user.name) {
+    function calculateSubtotal(cart) {
 
-        document.getElementById(
-          "customerName"
-        ).value =
-          user.name;
+        return cart.reduce(
+            function(total, item) {
 
-      }
+                return total +
+                    getPrice(item) *
+                    getQuantity(item);
+
+            },
+            0
+        );
+
+    }
 
 
-      if (user.identifier) {
+    function money(amount) {
 
-        const identifier =
-          String(user.identifier);
+        return "₹" +
+            Number(amount).toLocaleString(
+                "en-IN"
+            );
 
-        if (
-          identifier.includes("@")
-        ) {
+    }
 
-          document.getElementById(
-            "customerEmail"
-          ).value =
-            identifier;
+
+    /* =========================================================
+       RENDER PRODUCTS
+    ========================================================= */
+
+    function renderCheckout() {
+
+        const cart = getCart();
+
+        const box =
+            document.getElementById(
+                "checkoutProducts"
+            );
+
+        const subtotal =
+            calculateSubtotal(cart);
+
+
+        box.innerHTML = "";
+
+
+        if (cart.length === 0) {
+
+            box.innerHTML = `
+                <p style="
+                    color:#777;
+                    font-size:13px;
+                    padding:10px 0 20px;
+                ">
+                    Your cart is empty.
+                </p>
+            `;
 
         } else {
 
-          document.getElementById(
-            "customerPhone"
-          ).value =
-            identifier;
+            cart.forEach(function(item) {
+
+                const name =
+                    item.name ||
+                    item.title ||
+                    "ZIVA Product";
+
+                const image =
+                    item.image ||
+                    item.img ||
+                    "images/placeholder.jpg";
+
+                const price =
+                    getPrice(item);
+
+                const quantity =
+                    getQuantity(item);
+
+
+                box.innerHTML += `
+
+                    <div class="summary-product">
+
+                        <img
+                            src="${image}"
+                            alt="${name}"
+                        >
+
+                        <div class="summary-product-info">
+
+                            <div class="summary-product-name">
+                                ${name}
+                            </div>
+
+                            <div class="summary-product-meta">
+                                Qty: ${quantity}
+                            </div>
+
+                            <div class="summary-product-price">
+                                ${money(price * quantity)}
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            });
 
         }
 
-      }
 
-    } catch (error) {
-
-      console.error(
-        "User data error:",
-        error
-      );
-
-    }
-
-  }
+        document.getElementById(
+            "subtotal"
+        ).textContent =
+            money(subtotal);
 
 
-  /* =========================
-     VALIDATION
-  ========================= */
-
-  function validateCheckout() {
-
-    const name =
-      document.getElementById(
-        "customerName"
-      ).value.trim();
-
-    const phone =
-      document.getElementById(
-        "customerPhone"
-      ).value.trim();
-
-    const email =
-      document.getElementById(
-        "customerEmail"
-      ).value.trim();
-
-    const address =
-      document.getElementById(
-        "fullAddress"
-      ).value.trim();
-
-    const city =
-      document.getElementById(
-        "city"
-      ).value.trim();
-
-    const state =
-      document.getElementById(
-        "state"
-      ).value;
-
-    const pin =
-      document.getElementById(
-        "pin"
-      ).value.trim();
+        document.getElementById(
+            "total"
+        ).textContent =
+            money(subtotal);
 
 
-    if (!name) {
-
-      showCheckoutModal(
-        "Name Required",
-        "Please enter your full name."
-      );
-
-      return false;
+        updateSummary();
 
     }
 
 
-    if (!/^[0-9]{10}$/.test(phone)) {
+    /* =========================================================
+       PAYMENT SELECT
+    ========================================================= */
 
-      showCheckoutModal(
-        "Invalid Mobile Number",
-        "Please enter a valid 10-digit mobile number."
-      );
+    function selectPayment(payment) {
 
-      return false;
-
-    }
+        selectedPayment =
+            payment;
 
 
-    if (
-      email &&
-      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
-    ) {
+        const onlineOption =
+            document.getElementById(
+                "onlineOption"
+            );
 
-      showCheckoutModal(
-        "Invalid Email",
-        "Please enter a valid email address."
-      );
+        const codOption =
+            document.getElementById(
+                "codOption"
+            );
 
-      return false;
+        const onlineRadio =
+            document.getElementById(
+                "onlineRadio"
+            );
 
-    }
-
-
-    if (!address) {
-
-      showCheckoutModal(
-        "Address Required",
-        "Please enter your complete delivery address."
-      );
-
-      return false;
-
-    }
+        const codRadio =
+            document.getElementById(
+                "codRadio"
+            );
 
 
-    if (!city) {
+        if (payment === "online") {
 
-      showCheckoutModal(
-        "City Required",
-        "Please enter your city."
-      );
+            onlineOption.classList.add(
+                "selected"
+            );
 
-      return false;
+            codOption.classList.remove(
+                "selected"
+            );
 
-    }
+            onlineRadio.checked = true;
 
+            codRadio.checked = false;
 
-    if (!state) {
+        } else {
 
-      showCheckoutModal(
-        "State Required",
-        "Please select your state."
-      );
+            codOption.classList.add(
+                "selected"
+            );
 
-      return false;
+            onlineOption.classList.remove(
+                "selected"
+            );
 
-    }
+            codRadio.checked = true;
 
-
-    if (!/^[0-9]{6}$/.test(pin)) {
-
-      showCheckoutModal(
-        "Invalid PIN Code",
-        "Please enter a valid 6-digit PIN code."
-      );
-
-      return false;
-
-    }
-
-
-    return true;
-
-  }
-
-
-  /* =========================
-     PLACE ORDER
-  ========================= */
-
-  function placeZivaOrder() {
-
-    const cart =
-      getCart();
-
-
-    if (!isLoggedIn()) {
-
-      localStorage.setItem(
-        "zivaCheckoutPending",
-        "true"
-      );
-
-      showCheckoutModal(
-        "Login Required",
-        "Please login or create your ZIVA account before placing an order.",
-        "LOGIN",
-        function() {
-
-          window.location.href =
-            "login.html";
+            onlineRadio.checked = false;
 
         }
-      );
 
-      return;
+
+        updateSummary();
 
     }
 
 
-    if (!cart.length) {
+    /* =========================================================
+       SUMMARY
+    ========================================================= */
 
-      showCheckoutModal(
-        "Your Bag Is Empty",
-        "Please add a product before placing an order.",
-        "SHOP NOW",
-        function() {
+    function updateSummary() {
 
-          window.location.href =
-            "index.html";
+        const subtotal =
+            calculateSubtotal(
+                getCart()
+            );
+
+
+        const codAdvanceRow =
+            document.getElementById(
+                "codAdvanceRow"
+            );
+
+        const remainingRow =
+            document.getElementById(
+                "remainingRow"
+            );
+
+        const onlinePaymentRow =
+            document.getElementById(
+                "onlinePaymentRow"
+            );
+
+
+        if (selectedPayment === "cod") {
+
+            const advance =
+                Math.min(
+                    250,
+                    subtotal
+                );
+
+            const remaining =
+                Math.max(
+                    0,
+                    subtotal - advance
+                );
+
+
+            codAdvanceRow.style.display =
+                "flex";
+
+            remainingRow.style.display =
+                "flex";
+
+            onlinePaymentRow.style.display =
+                "none";
+
+
+            document.getElementById(
+                "codAdvance"
+            ).textContent =
+                money(advance);
+
+
+            document.getElementById(
+                "remainingAmount"
+            ).textContent =
+                money(remaining);
+
+        } else {
+
+            codAdvanceRow.style.display =
+                "none";
+
+            remainingRow.style.display =
+                "none";
+
+            onlinePaymentRow.style.display =
+                "flex";
 
         }
-      );
 
-      return;
+
+        document.getElementById(
+            "total"
+        ).textContent =
+            money(subtotal);
 
     }
 
 
-    if (!validateCheckout()) {
-      return;
+    /* =========================================================
+       VALIDATE FORM
+    ========================================================= */
+
+    function validateCheckout() {
+
+        const name =
+            document.getElementById(
+                "customerName"
+            ).value.trim();
+
+        const phone =
+            document.getElementById(
+                "customerPhone"
+            ).value.trim();
+
+        const email =
+            document.getElementById(
+                "customerEmail"
+            ).value.trim();
+
+        const address =
+            document.getElementById(
+                "fullAddress"
+            ).value.trim();
+
+        const city =
+            document.getElementById(
+                "city"
+            ).value.trim();
+
+        const state =
+            document.getElementById(
+                "state"
+            ).value.trim();
+
+        const pin =
+            document.getElementById(
+                "pin"
+            ).value.trim();
+
+
+        if (!name) {
+
+            showMessage(
+                "Name Required",
+                "Please enter your full name."
+            );
+
+            return false;
+
+        }
+
+
+        if (!/^[0-9]{10}$/.test(phone)) {
+
+            showMessage(
+                "Invalid Phone",
+                "Please enter a valid 10-digit phone number."
+            );
+
+            return false;
+
+        }
+
+
+        if (!email || !email.includes("@")) {
+
+            showMessage(
+                "Invalid Email",
+                "Please enter a valid email address."
+            );
+
+            return false;
+
+        }
+
+
+        if (!address) {
+
+            showMessage(
+                "Address Required",
+                "Please enter your complete delivery address."
+            );
+
+            return false;
+
+        }
+
+
+        if (!city) {
+
+            showMessage(
+                "City Required",
+                "Please enter your city."
+            );
+
+            return false;
+
+        }
+
+
+        if (!state) {
+
+            showMessage(
+                "State Required",
+                "Please enter your state."
+            );
+
+            return false;
+
+        }
+
+
+        if (!/^[0-9]{6}$/.test(pin)) {
+
+            showMessage(
+                "Invalid PIN",
+                "Please enter a valid 6-digit PIN code."
+            );
+
+            return false;
+
+        }
+
+
+        return true;
+
     }
 
 
-    const subtotal =
-      getSubtotal();
+    /* =========================================================
+       CREATE PENDING ORDER
+    ========================================================= */
+
+    function createPendingOrder() {
+
+        const cart =
+            getCart();
+
+        const subtotal =
+            calculateSubtotal(cart);
 
 
-    /*
-      COD advance is NOT added
-      to the product total.
-
-      It is a portion paid in advance.
-    */
-
-    const codAdvance =
-      selectedPayment === "cod"
-        ? Math.min(250, subtotal)
-        : 0;
+        const paymentAmount =
+            selectedPayment === "cod"
+                ? Math.min(250, subtotal)
+                : subtotal;
 
 
-    const payAtDelivery =
-      selectedPayment === "cod"
-        ? Math.max(
-            0,
-            subtotal - codAdvance
-          )
-        : 0;
+        const payAtDelivery =
+            selectedPayment === "cod"
+                ? Math.max(
+                    0,
+                    subtotal - paymentAmount
+                )
+                : 0;
 
 
-    const orderId =
-      "ZIVA-" +
-      Date.now()
-        .toString()
-        .slice(-8);
+        const orderId =
+            "ZIVA-" +
+            Date.now()
+                .toString()
+                .slice(-8);
 
 
-    const order = {
+        return {
 
-      orderId: orderId,
+            orderId: orderId,
 
-      createdAt:
-        new Date().toISOString(),
-
-      customer: {
-
-        name:
-          document.getElementById(
-            "customerName"
-          ).value.trim(),
-
-        phone:
-          document.getElementById(
-            "customerPhone"
-          ).value.trim(),
-
-        email:
-          document.getElementById(
-            "customerEmail"
-          ).value.trim()
-
-      },
+            createdAt:
+                new Date().toISOString(),
 
 
-      address: {
+            customer: {
 
-        fullAddress:
-          document.getElementById(
-            "fullAddress"
-          ).value.trim(),
+                name:
+                    document.getElementById(
+                        "customerName"
+                    ).value.trim(),
 
-        city:
-          document.getElementById(
-            "city"
-          ).value.trim(),
+                phone:
+                    document.getElementById(
+                        "customerPhone"
+                    ).value.trim(),
 
-        state:
-          document.getElementById(
-            "state"
-          ).value,
+                email:
+                    document.getElementById(
+                        "customerEmail"
+                    ).value.trim()
 
-        pin:
-          document.getElementById(
-            "pin"
-          ).value.trim()
-
-      },
+            },
 
 
-      paymentMethod:
-        selectedPayment === "online"
-          ? "Online Payment"
-          : "Cash on Delivery",
+            address: {
+
+                fullAddress:
+                    document.getElementById(
+                        "fullAddress"
+                    ).value.trim(),
+
+                city:
+                    document.getElementById(
+                        "city"
+                    ).value.trim(),
+
+                state:
+                    document.getElementById(
+                        "state"
+                    ).value.trim(),
+
+                pin:
+                    document.getElementById(
+                        "pin"
+                    ).value.trim()
+
+            },
 
 
-      paymentStatus:
-        "Testing / Pending",
+            paymentMethod:
+                selectedPayment === "cod"
+                    ? "Cash on Delivery"
+                    : "Online Payment",
 
 
-      /*
-        Online:
-        full amount online
-
-        COD:
-        ₹250 advance
-        remaining at delivery
-      */
-
-      codAdvance:
-        codAdvance,
-
-      payAtDelivery:
-        payAtDelivery,
+            paymentType:
+                selectedPayment,
 
 
-      delivery:
-        selectedPayment === "online"
-          ? 0
-          : 250,
+            paymentAmount:
+                paymentAmount,
 
 
-      items:
-        cart,
+            paymentStatus:
+                "Payment Verification Pending",
 
 
-      subtotal:
-        subtotal,
+            utr:
+                "",
 
 
-      total:
-        subtotal
-
-    };
-
-
-    /*
-      Save latest order
-    */
-
-    localStorage.setItem(
-      "zivaLastOrder",
-      JSON.stringify(order)
-    );
+            codAdvance:
+                selectedPayment === "cod"
+                    ? paymentAmount
+                    : 0,
 
 
-    /*
-      Save order history
-    */
+            payAtDelivery:
+                payAtDelivery,
 
-    let orders = [];
 
-    try {
+            items:
+                cart,
 
-      const saved =
-        localStorage.getItem(
-          "zivaOrders"
+
+            subtotal:
+                subtotal,
+
+
+            total:
+                subtotal
+
+        };
+
+    }
+
+
+    /* =========================================================
+       PLACE ORDER
+    ========================================================= */
+
+    function placeZivaOrder() {
+
+        const cart =
+            getCart();
+
+
+        if (cart.length === 0) {
+
+            showMessage(
+                "Cart Empty",
+                "Please add a product to your cart first."
+            );
+
+            return;
+
+        }
+
+
+        if (!validateCheckout()) {
+
+            return;
+
+        }
+
+
+        /*
+         * Order abhi save nahi hoga.
+         * Sirf pending order banega.
+         */
+
+        pendingOrder =
+            createPendingOrder();
+
+
+        openPaymentPopup();
+
+    }
+
+
+    /* =========================================================
+       OPEN PAYMENT POPUP
+    ========================================================= */
+
+    function openPaymentPopup() {
+
+        if (!pendingOrder) {
+
+            return;
+
+        }
+
+
+        const overlay =
+            document.getElementById(
+                "paymentOverlay"
+            );
+
+        const codQR =
+            document.getElementById(
+                "codQR"
+            );
+
+        const onlineQR =
+            document.getElementById(
+                "onlineQR"
+            );
+
+        const title =
+            document.getElementById(
+                "paymentTitle"
+            );
+
+        const subtitle =
+            document.getElementById(
+                "paymentSubtitle"
+            );
+
+        const amount =
+            document.getElementById(
+                "paymentAmount"
+            );
+
+        const instruction =
+            document.getElementById(
+                "paymentInstruction"
+            );
+
+        const orderId =
+            document.getElementById(
+                "paymentOrderId"
+            );
+
+        const utr =
+            document.getElementById(
+                "utrNumber"
+            );
+
+        const confirmButton =
+            document.querySelector(
+                ".confirm-payment-btn"
+            );
+
+
+        orderId.textContent =
+            pendingOrder.orderId;
+
+
+        utr.value = "";
+
+
+        if (
+            pendingOrder.paymentType ===
+            "online"
+        ) {
+
+            /* ONLINE */
+
+            codQR.style.display =
+                "none";
+
+            onlineQR.style.display =
+                "inline-block";
+
+
+            title.textContent =
+                "Pay Full Amount";
+
+
+            subtitle.textContent =
+                "Scan the Online QR code and pay the full order amount.";
+
+
+            amount.textContent =
+                money(
+                    pendingOrder.total
+                );
+
+
+            instruction.textContent =
+                "Pay exactly " +
+                money(
+                    pendingOrder.total
+                ) +
+                ".";
+
+
+            confirmButton.textContent =
+                "CONFIRM PAYMENT";
+
+        } else {
+
+            /* COD */
+
+            onlineQR.style.display =
+                "none";
+
+            codQR.style.display =
+                "inline-block";
+
+
+            title.textContent =
+                "Pay ₹250 Advance";
+
+
+            subtitle.textContent =
+                "Scan the COD QR code and pay your advance.";
+
+
+            amount.textContent =
+                money(
+                    pendingOrder.codAdvance
+                );
+
+
+            instruction.textContent =
+                "Pay exactly " +
+                money(
+                    pendingOrder.codAdvance
+                ) +
+                ".";
+
+
+            confirmButton.textContent =
+                "CONFIRM PAYMENT";
+
+        }
+
+
+        overlay.classList.add(
+            "active"
         );
 
-      orders =
-        saved
-          ? JSON.parse(saved)
-          : [];
 
-      if (!Array.isArray(orders)) {
-        orders = [];
-      }
-
-    } catch (error) {
-
-      orders = [];
+        document.body.style.overflow =
+            "hidden";
 
     }
 
 
-    orders.unshift(order);
+    /* =========================================================
+       CONFIRM PAYMENT
+    ========================================================= */
+
+    function confirmPayment() {
+
+        if (!pendingOrder) {
+
+            closePaymentPopup();
+
+            return;
+
+        }
 
 
-    localStorage.setItem(
-      "zivaOrders",
-      JSON.stringify(orders)
-    );
+        const utrInput =
+            document.getElementById(
+                "utrNumber"
+            );
 
 
-    /*
-      Testing mode:
-      clear cart after order creation.
-    */
-
-    localStorage.removeItem(
-      ZIVA_CART_KEY
-    );
+        const utr =
+            utrInput.value.trim();
 
 
-    /*
-      Go to success page.
-    */
+        /* UTR MUST BE ENTERED */
 
-    window.location.href =
-      "order-success.html";
+        if (!utr) {
 
-  }
+            showMessage(
+                "UTR Required",
+                "Please enter your UTR / Transaction ID before confirming the payment."
+            );
 
+            return;
 
-  /* =========================
-     MODAL
-  ========================= */
-
-  function showCheckoutModal(
-    title,
-    text,
-    buttonText = "OK",
-    action = null
-  ) {
-
-    document.getElementById(
-      "modalTitle"
-    ).textContent =
-      title;
-
-    document.getElementById(
-      "modalText"
-    ).textContent =
-      text;
-
-    document.getElementById(
-      "modalPrimary"
-    ).textContent =
-      buttonText;
-
-    checkoutAction =
-      action;
+        }
 
 
-    document.getElementById(
-      "checkoutOverlay"
-    ).classList.add(
-      "active"
-    );
+        /*
+         * Basic minimum length.
+         * Isse completely empty/very short text reject hoga.
+         */
 
-  }
+        if (utr.length < 6) {
+
+            showMessage(
+                "Invalid UTR",
+                "Please enter a valid UTR / Transaction ID."
+            );
+
+            return;
+
+        }
 
 
-  function modalPrimaryAction() {
+        /*
+         * UTR save
+         */
 
-    if (
-      typeof checkoutAction ===
-      "function"
+        pendingOrder.utr =
+            utr;
+
+
+        /*
+         * IMPORTANT:
+         * Abhi automatic payment verification nahi hai.
+         * Isliye status pending verification rahega.
+         */
+
+        pendingOrder.paymentStatus =
+            "Payment Verification Pending";
+
+
+        pendingOrder.paymentSubmittedAt =
+            new Date().toISOString();
+
+
+        /* SAVE LAST ORDER */
+
+        localStorage.setItem(
+            "zivaLastOrder",
+            JSON.stringify(
+                pendingOrder
+            )
+        );
+
+
+        /* SAVE ALL ORDERS */
+
+        let orders = [];
+
+        try {
+
+            orders =
+                JSON.parse(
+                    localStorage.getItem(
+                        "zivaOrders"
+                    )
+                ) || [];
+
+            if (!Array.isArray(orders)) {
+
+                orders = [];
+
+            }
+
+        } catch (error) {
+
+            orders = [];
+
+        }
+
+
+        orders.unshift(
+            pendingOrder
+        );
+
+
+        localStorage.setItem(
+            "zivaOrders",
+            JSON.stringify(
+                orders
+            )
+        );
+
+
+        /* CLEAR CART */
+
+        localStorage.removeItem(
+            ZIVA_CART_KEY
+        );
+
+
+        pendingOrder = null;
+
+
+        closePaymentPopup();
+
+
+        /* GO TO SUCCESS PAGE */
+
+        window.location.href =
+            "order-success.html";
+
+    }
+
+
+    /* =========================================================
+       CLOSE PAYMENT POPUP
+    ========================================================= */
+
+    function closePaymentPopup() {
+
+        document.getElementById(
+            "paymentOverlay"
+        ).classList.remove(
+            "active"
+        );
+
+
+        document.body.style.overflow =
+            "";
+
+    }
+
+
+    /* =========================================================
+       MESSAGE
+    ========================================================= */
+
+    function showMessage(
+        title,
+        message
     ) {
 
-      const action =
-        checkoutAction;
-
-      checkoutAction = null;
-
-      action();
-
-    } else {
-
-      closeCheckoutModal();
-
-    }
-
-  }
+        document.getElementById(
+            "messageTitle"
+        ).textContent =
+            title;
 
 
-  function closeCheckoutModal(event) {
-
-    if (
-      event &&
-      event.target &&
-      event.target.id !==
-      "checkoutOverlay"
-    ) {
-      return;
-    }
-
-    document.getElementById(
-      "checkoutOverlay"
-    ).classList.remove(
-      "active"
-    );
-
-    checkoutAction = null;
-
-  }
+        document.getElementById(
+            "messageText"
+        ).textContent =
+            message;
 
 
-  /* =========================
-     HEADER
-  ========================= */
-
-  function openAccount() {
-
-    window.location.href =
-      "login.html";
-
-  }
-
-
-  function openSearch() {
-
-    /*
-      Existing script.js search system
-      can handle the search if available.
-    */
-
-    if (
-      typeof window.zivaOpenSearch ===
-      "function"
-    ) {
-
-      window.zivaOpenSearch();
+        document.getElementById(
+            "messageOverlay"
+        ).classList.add(
+            "active"
+        );
 
     }
 
-  }
 
+    function closeMessage() {
 
-  /* =========================
-     ESCAPE
-  ========================= */
-
-  document.addEventListener(
-    "keydown",
-    function(event) {
-
-      if (event.key === "Escape") {
-
-        closeCheckoutModal();
-
-      }
+        document.getElementById(
+            "messageOverlay"
+        ).classList.remove(
+            "active"
+        );
 
     }
-  );
 
 
-  /* =========================
-     INITIALIZE
-  ========================= */
+    /* =========================================================
+       START
+    ========================================================= */
 
-  document.addEventListener(
-    "DOMContentLoaded",
-    function() {
+    renderCheckout();
 
-      renderCheckout();
-
-      loadCurrentUser();
-
-      selectPayment("online");
-
-    }
-  );
 
 </script>
 

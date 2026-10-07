@@ -57,6 +57,7 @@ function getZivaCurrentUser() {
 function openAccount() {
 
     if (isZivaLoggedIn()) {
+
         const user = getZivaCurrentUser();
 
         const name = user && user.name
@@ -67,6 +68,7 @@ function openAccount() {
             "My Account",
             `
                 <div style="text-align:center;padding:8px 0 4px;">
+
                     <div style="
                         width:65px;
                         height:65px;
@@ -79,14 +81,18 @@ function openAccount() {
                         font-size:25px;
                         font-weight:800;
                     ">
-                        ${name.charAt(0).toUpperCase()}
+                        ${escapeHtml(name.charAt(0).toUpperCase())}
                     </div>
 
                     <h3 style="margin-bottom:5px;">
                         Hello, ${escapeHtml(name)}
                     </h3>
 
-                    <p style="color:#777;font-size:13px;margin-bottom:18px;">
+                    <p style="
+                        color:#777;
+                        font-size:13px;
+                        margin-bottom:18px;
+                    ">
                         Welcome back to ZIVA
                     </p>
 
@@ -101,6 +107,7 @@ function openAccount() {
                             border-radius:5px;
                             font-weight:700;
                             margin-bottom:9px;
+                            cursor:pointer;
                         "
                     >
                         📦 My Orders
@@ -116,10 +123,12 @@ function openAccount() {
                             color:#241b19;
                             border-radius:5px;
                             font-weight:700;
+                            cursor:pointer;
                         "
                     >
                         Logout
                     </button>
+
                 </div>
             `
         );
@@ -193,7 +202,8 @@ function updateAccountButton() {
 
 function updateMobileAccount() {
 
-    const mobileAccount = document.getElementById("zivaMobileAccount");
+    const mobileAccount =
+        document.getElementById("zivaMobileAccount");
 
     if (!mobileAccount) {
         return;
@@ -232,43 +242,56 @@ function updateMobileAccount() {
 
 function updateOrdersButton() {
 
-    const headerActions = document.querySelector(".header-actions");
+    const headerActions =
+        document.querySelector(".header-actions");
 
     if (!headerActions) {
         return;
     }
 
-    let ordersButton = document.getElementById("zivaOrdersButton");
+    let ordersButton =
+        document.getElementById("zivaOrdersButton");
 
     if (!ordersButton) {
 
-        ordersButton = document.createElement("button");
+        ordersButton =
+            document.createElement("button");
 
-        ordersButton.id = "zivaOrdersButton";
-        ordersButton.className = "ziva-orders-btn";
+        ordersButton.id =
+            "zivaOrdersButton";
+
+        ordersButton.className =
+            "ziva-orders-btn";
 
         ordersButton.innerHTML = `
             📦 Orders
         `;
 
-        ordersButton.onclick = function () {
-            window.location.href = "my-orders.html";
-        };
+        ordersButton.onclick =
+            function () {
+                window.location.href =
+                    "my-orders.html";
+            };
 
-        const cartButton = document.getElementById("cartButton");
+        const cartButton =
+            document.getElementById("cartButton");
 
         if (cartButton) {
+
             headerActions.insertBefore(
                 ordersButton,
                 cartButton
             );
+
         } else {
+
             headerActions.appendChild(
                 ordersButton
             );
         }
 
-        const style = document.createElement("style");
+        const style =
+            document.createElement("style");
 
         style.innerHTML = `
             .ziva-orders-btn {
@@ -305,11 +328,13 @@ function updateCartCount() {
 
     const cart = getZivaCart();
 
-    const totalQuantity = cart.reduce(function (total, item) {
+    const totalQuantity =
+        cart.reduce(function (total, item) {
 
-        return total + Number(item.quantity || 1);
+            return total +
+                Number(item.quantity || 1);
 
-    }, 0);
+        }, 0);
 
 
     /* Desktop */
@@ -332,7 +357,9 @@ function updateCartCount() {
     /* Mobile */
 
     const mobileCount =
-        document.getElementById("zivaMobileCartCount");
+        document.getElementById(
+            "zivaMobileCartCount"
+        );
 
     if (mobileCount) {
 
@@ -348,16 +375,18 @@ function updateCartCount() {
 
     /* Generic */
 
-    document.querySelectorAll(".ziva-cart-count").forEach(function (element) {
+    document
+        .querySelectorAll(".ziva-cart-count")
+        .forEach(function (element) {
 
-        element.textContent =
-            totalQuantity;
+            element.textContent =
+                totalQuantity;
 
-        element.style.display =
-            totalQuantity > 0
-                ? "grid"
-                : "none";
-    });
+            element.style.display =
+                totalQuantity > 0
+                    ? "grid"
+                    : "none";
+        });
 }
 
 
@@ -387,7 +416,8 @@ function addToCart(product, selectedSize) {
     }
 
 
-    const cart = getZivaCart();
+    const cart =
+        getZivaCart();
 
 
     const productId =
@@ -407,8 +437,11 @@ function addToCart(product, selectedSize) {
         cart.findIndex(function (item) {
 
             return (
-                String(item.id) === String(productId) &&
-                String(item.size || "") === String(size || "")
+                String(item.id) ===
+                String(productId) &&
+
+                String(item.size || "") ===
+                String(size || "")
             );
 
         });
@@ -417,17 +450,33 @@ function addToCart(product, selectedSize) {
     if (existingIndex !== -1) {
 
         cart[existingIndex].quantity =
-            Number(cart[existingIndex].quantity || 1) + 1;
+            Number(
+                cart[existingIndex].quantity || 1
+            ) + 1;
 
     } else {
 
         cart.push({
+
             id: productId,
-            name: product.name || "ZIVA Product",
-            price: Number(product.price || 0),
-            image: product.image || "",
-            category: product.category || "Fashion",
-            size: size || "",
+
+            name:
+                product.name ||
+                "ZIVA Product",
+
+            price:
+                Number(product.price || 0),
+
+            image:
+                product.image || "",
+
+            category:
+                product.category ||
+                "Fashion",
+
+            size:
+                size || "",
+
             quantity: 1
         });
     }
@@ -437,7 +486,9 @@ function addToCart(product, selectedSize) {
 
     updateCartCount();
 
-    showZivaToast("Added to ZIVA bag");
+    showZivaToast(
+        "Added to ZIVA bag"
+    );
 }
 
 
@@ -455,7 +506,8 @@ function addProductToCart(product) {
 ========================================================= */
 
 function openCart() {
-    window.location.href = "cart.html";
+    window.location.href =
+        "cart.html";
 }
 
 
@@ -469,7 +521,10 @@ function toggleWishlist(product) {
         return;
     }
 
-    const wishlist = getZivaWishlist();
+
+    const wishlist =
+        getZivaWishlist();
+
 
     const id =
         product.id ||
@@ -480,7 +535,8 @@ function toggleWishlist(product) {
     const index =
         wishlist.findIndex(function (item) {
 
-            return String(item.id) === String(id);
+            return String(item.id) ===
+                String(id);
 
         });
 
@@ -491,21 +547,36 @@ function toggleWishlist(product) {
 
         saveZivaWishlist(wishlist);
 
-        showZivaToast("Removed from wishlist");
+        showZivaToast(
+            "Removed from wishlist"
+        );
 
     } else {
 
         wishlist.push({
+
             id: id,
-            name: product.name || "ZIVA Product",
-            price: Number(product.price || 0),
-            image: product.image || "",
-            category: product.category || "Fashion"
+
+            name:
+                product.name ||
+                "ZIVA Product",
+
+            price:
+                Number(product.price || 0),
+
+            image:
+                product.image || "",
+
+            category:
+                product.category ||
+                "Fashion"
         });
 
         saveZivaWishlist(wishlist);
 
-        showZivaToast("Added to wishlist");
+        showZivaToast(
+            "Added to wishlist"
+        );
     }
 
 
@@ -513,37 +584,53 @@ function toggleWishlist(product) {
 }
 
 
+/* =========================================================
+   WISHLIST BUTTON UPDATE
+========================================================= */
+
 function updateWishlistButtons() {
 
-    const wishlist = getZivaWishlist();
-
-    document.querySelectorAll("[data-wishlist-id]").forEach(function (button) {
-
-        const id =
-            button.getAttribute("data-wishlist-id");
-
-        const exists =
-            wishlist.some(function (item) {
-
-                return String(item.id) === String(id);
-
-            });
+    const wishlist =
+        getZivaWishlist();
 
 
-        if (exists) {
+    document
+        .querySelectorAll("[data-wishlist-id]")
+        .forEach(function (button) {
 
-            button.classList.add("active");
+            const id =
+                button.getAttribute(
+                    "data-wishlist-id"
+                );
 
-            button.innerHTML = "♥";
 
-        } else {
+            const exists =
+                wishlist.some(function (item) {
 
-            button.classList.remove("active");
+                    return String(item.id) ===
+                        String(id);
 
-            button.innerHTML = "♡";
-        }
+                });
 
-    });
+
+            if (exists) {
+
+                button.classList.add(
+                    "active"
+                );
+
+                button.innerHTML = "♥";
+
+            } else {
+
+                button.classList.remove(
+                    "active"
+                );
+
+                button.innerHTML = "♡";
+            }
+
+        });
 }
 
 
@@ -554,7 +641,9 @@ function updateWishlistButtons() {
 function openSearch() {
 
     let searchOverlay =
-        document.getElementById("zivaSearchOverlay");
+        document.getElementById(
+            "zivaSearchOverlay"
+        );
 
 
     if (!searchOverlay) {
@@ -564,6 +653,7 @@ function openSearch() {
 
         searchOverlay.id =
             "zivaSearchOverlay";
+
 
         searchOverlay.innerHTML = `
             <div class="ziva-search-box">
@@ -575,7 +665,9 @@ function openSearch() {
                     ×
                 </button>
 
-                <h2>Search ZIVA</h2>
+                <h2>
+                    Search ZIVA
+                </h2>
 
                 <div class="ziva-search-input-wrap">
 
@@ -595,104 +687,182 @@ function openSearch() {
             </div>
         `;
 
-        document.body.appendChild(searchOverlay);
+
+        document.body.appendChild(
+            searchOverlay
+        );
 
 
         const style =
             document.createElement("style");
 
+
         style.innerHTML = `
+
             #zivaSearchOverlay {
+
                 position:fixed;
                 inset:0;
                 z-index:5000;
-                background:rgba(36,27,25,.55);
+
+                background:
+                    rgba(36,27,25,.55);
+
                 display:flex;
+
                 justify-content:center;
+
                 align-items:flex-start;
-                padding:70px 15px 20px;
+
+                padding:
+                    70px 15px 20px;
             }
+
 
             .ziva-search-box {
+
                 width:100%;
                 max-width:650px;
+
                 background:#fff8f3;
+
                 border-radius:12px;
+
                 padding:25px;
+
                 position:relative;
-                box-shadow:0 25px 70px rgba(0,0,0,.25);
+
+                box-shadow:
+                    0 25px 70px
+                    rgba(0,0,0,.25);
             }
 
+
             .ziva-search-box h2 {
+
                 margin-bottom:18px;
             }
 
+
             .ziva-search-close {
+
                 position:absolute;
+
                 top:10px;
                 right:15px;
+
                 border:0;
+
                 background:none;
+
                 font-size:30px;
-            }
 
-            .ziva-search-input-wrap {
-                height:48px;
-                display:flex;
-                align-items:center;
-                gap:10px;
-                padding:0 14px;
-                background:white;
-                border:1px solid #ddd;
-                border-radius:8px;
-            }
-
-            .ziva-search-input-wrap input {
-                width:100%;
-                border:0;
-                outline:0;
-                background:transparent;
-                font-size:14px;
-            }
-
-            #zivaSearchResults {
-                margin-top:15px;
-                max-height:400px;
-                overflow:auto;
-            }
-
-            .ziva-search-result {
-                display:flex;
-                align-items:center;
-                gap:12px;
-                padding:10px 0;
-                border-bottom:1px solid #eee;
                 cursor:pointer;
             }
 
+
+            .ziva-search-input-wrap {
+
+                height:48px;
+
+                display:flex;
+
+                align-items:center;
+
+                gap:10px;
+
+                padding:
+                    0 14px;
+
+                background:white;
+
+                border:
+                    1px solid #ddd;
+
+                border-radius:8px;
+            }
+
+
+            .ziva-search-input-wrap input {
+
+                width:100%;
+
+                border:0;
+
+                outline:0;
+
+                background:transparent;
+
+                font-size:14px;
+            }
+
+
+            #zivaSearchResults {
+
+                margin-top:15px;
+
+                max-height:400px;
+
+                overflow:auto;
+            }
+
+
+            .ziva-search-result {
+
+                display:flex;
+
+                align-items:center;
+
+                gap:12px;
+
+                padding:10px 0;
+
+                border-bottom:
+                    1px solid #eee;
+
+                cursor:pointer;
+            }
+
+
             .ziva-search-result img {
+
                 width:55px;
+
                 height:65px;
+
                 object-fit:cover;
+
                 border-radius:5px;
             }
 
+
             .ziva-search-result strong {
+
                 font-size:13px;
             }
 
+
             .ziva-search-result small {
+
                 display:block;
+
                 margin-top:3px;
+
                 color:#b87973;
             }
+
         `;
 
-        document.head.appendChild(style);
+
+        document.head.appendChild(
+            style
+        );
 
 
         const input =
-            document.getElementById("zivaSearchInput");
+            document.getElementById(
+                "zivaSearchInput"
+            );
 
 
         input.addEventListener(
@@ -708,13 +878,16 @@ function openSearch() {
     }
 
 
-    searchOverlay.style.display = "flex";
+    searchOverlay.style.display =
+        "flex";
 
 
     setTimeout(function () {
 
         const input =
-            document.getElementById("zivaSearchInput");
+            document.getElementById(
+                "zivaSearchInput"
+            );
 
         if (input) {
             input.focus();
@@ -727,10 +900,14 @@ function openSearch() {
 function closeSearch() {
 
     const overlay =
-        document.getElementById("zivaSearchOverlay");
+        document.getElementById(
+            "zivaSearchOverlay"
+        );
 
     if (overlay) {
-        overlay.style.display = "none";
+
+        overlay.style.display =
+            "none";
     }
 }
 
@@ -738,7 +915,10 @@ function closeSearch() {
 function searchZivaProducts(query) {
 
     const results =
-        document.getElementById("zivaSearchResults");
+        document.getElementById(
+            "zivaSearchResults"
+        );
+
 
     if (!results) {
         return;
@@ -754,12 +934,15 @@ function searchZivaProducts(query) {
     if (!search) {
 
         results.innerHTML = `
+
             <p style="
                 color:#777;
                 font-size:13px;
                 padding:15px 0;
             ">
+
                 Search for products on ZIVA.
+
             </p>
         `;
 
@@ -770,33 +953,51 @@ function searchZivaProducts(query) {
     let products = [];
 
 
-    if (Array.isArray(window.zivaProducts)) {
-        products = window.zivaProducts;
+    if (
+        Array.isArray(
+            window.zivaProducts
+        )
+    ) {
+
+        products =
+            window.zivaProducts;
     }
 
 
     const matches =
-        products.filter(function (product) {
+        products
+            .filter(function (product) {
 
-            const text = `
-                ${product.name || ""}
-                ${product.category || ""}
-                ${product.type || ""}
-            `.toLowerCase();
+                const text = `
 
-            return text.includes(search);
+                    ${product.name || ""}
 
-        }).slice(0, 12);
+                    ${product.category || ""}
+
+                    ${product.type || ""}
+
+                `.toLowerCase();
+
+
+                return text.includes(
+                    search
+                );
+
+            })
+            .slice(0, 12);
 
 
     if (!matches.length) {
 
         results.innerHTML = `
+
             <p style="
                 padding:15px 0;
                 color:#777;
             ">
+
                 No products found.
+
             </p>
         `;
 
@@ -805,47 +1006,67 @@ function searchZivaProducts(query) {
 
 
     results.innerHTML =
-        matches.map(function (product) {
+        matches
+            .map(function (product) {
 
-            return `
-                <div
-                    class="ziva-search-result"
-                    onclick="openSearchedProduct('${escapeAttribute(product.id)}')"
-                >
+                return `
 
-                    <img
-                        src="${escapeAttribute(product.image || "")}"
-                        alt=""
+                    <div
+                        class="ziva-search-result"
+
+                        onclick="
+                            openSearchedProduct(
+                                '${escapeAttribute(product.id)}'
+                            )
+                        "
                     >
 
-                    <div>
-                        <strong>
-                            ${escapeHtml(product.name || "ZIVA Product")}
-                        </strong>
+                        <img
+                            src="${escapeAttribute(product.image || "")}"
+                            alt=""
+                        >
 
-                        <small>
-                            ₹${Number(product.price || 0).toLocaleString("en-IN")}
-                        </small>
+                        <div>
+
+                            <strong>
+                                ${escapeHtml(
+                                    product.name ||
+                                    "ZIVA Product"
+                                )}
+                            </strong>
+
+                            <small>
+                                ₹${Number(
+                                    product.price || 0
+                                ).toLocaleString("en-IN")}
+                            </small>
+
+                        </div>
+
                     </div>
 
-                </div>
-            `;
+                `;
 
-        }).join("");
+            })
+            .join("");
 }
 
 
 function openSearchedProduct(id) {
 
     const products =
-        Array.isArray(window.zivaProducts)
+        Array.isArray(
+            window.zivaProducts
+        )
             ? window.zivaProducts
             : [];
+
 
     const product =
         products.find(function (item) {
 
-            return String(item.id) === String(id);
+            return String(item.id) ===
+                String(id);
 
         });
 
@@ -875,8 +1096,11 @@ function showLoginRequiredModal() {
     const modal =
         createZivaModal(
             "Login Required",
+
             `
-                <div style="text-align:center;">
+                <div style="
+                    text-align:center;
+                ">
 
                     <div style="
                         font-size:40px;
@@ -890,30 +1114,48 @@ function showLoginRequiredModal() {
                         font-size:14px;
                         margin-bottom:20px;
                     ">
-                        Please login or create your ZIVA account
-                        before adding products to your bag.
+
+                        Please login or create
+                        your ZIVA account
+                        before adding products
+                        to your bag.
+
                     </p>
 
                     <button
-                        onclick="window.location.href='login.html'"
+                        onclick="
+                            window.location.href='login.html'
+                        "
                         style="
                             width:100%;
                             padding:13px;
+
                             border:0;
+
                             background:#241b19;
+
                             color:white;
+
                             border-radius:5px;
+
                             font-weight:800;
+
+                            cursor:pointer;
                         "
                     >
+
                         Login / Sign Up
+
                     </button>
 
                 </div>
             `
         );
 
-    document.body.appendChild(modal);
+
+    document.body.appendChild(
+        modal
+    );
 }
 
 
@@ -921,16 +1163,25 @@ function showLoginRequiredModal() {
    CUSTOM MODAL
 ========================================================= */
 
-function createZivaModal(title, content) {
+function createZivaModal(
+    title,
+    content
+) {
 
     const wrapper =
         document.createElement("div");
 
+
     wrapper.className =
         "ziva-custom-modal";
 
+
     wrapper.innerHTML = `
-        <div class="ziva-modal-backdrop"></div>
+
+        <div
+            class="ziva-modal-backdrop"
+        ></div>
+
 
         <div class="ziva-modal-card">
 
@@ -941,13 +1192,18 @@ function createZivaModal(title, content) {
                 ×
             </button>
 
-            <h2>${escapeHtml(title)}</h2>
+            <h2>
+                ${escapeHtml(title)}
+            </h2>
 
-            <div class="ziva-modal-content">
+            <div
+                class="ziva-modal-content"
+            >
                 ${content}
             </div>
 
         </div>
+
     `;
 
 
@@ -956,71 +1212,125 @@ function createZivaModal(title, content) {
 
 
     style.innerHTML = `
+
         .ziva-custom-modal {
+
             position:fixed;
+
             inset:0;
+
             z-index:6000;
+
             display:flex;
+
             align-items:center;
+
             justify-content:center;
+
             padding:20px;
         }
 
+
         .ziva-modal-backdrop {
+
             position:absolute;
+
             inset:0;
-            background:rgba(36,27,25,.55);
+
+            background:
+                rgba(36,27,25,.55);
         }
+
 
         .ziva-modal-card {
+
             width:100%;
+
             max-width:430px;
+
             max-height:90vh;
+
             overflow:auto;
+
             position:relative;
+
             z-index:2;
+
             background:#fff8f3;
+
             border-radius:12px;
+
             padding:25px;
-            box-shadow:0 25px 70px rgba(0,0,0,.25);
+
+            box-shadow:
+                0 25px 70px
+                rgba(0,0,0,.25);
         }
 
+
         .ziva-modal-card h2 {
+
             margin-bottom:20px;
+
             font-size:22px;
         }
 
+
         .ziva-modal-close {
+
             position:absolute;
+
             top:9px;
+
             right:13px;
+
             width:35px;
+
             height:35px;
+
             border:0;
+
             background:transparent;
+
             font-size:27px;
+
             cursor:pointer;
         }
+
     `;
 
 
-    document.head.appendChild(style);
+    document.head.appendChild(
+        style
+    );
 
 
     const close =
         function () {
+
             wrapper.remove();
+
         };
 
 
     wrapper
-        .querySelector(".ziva-modal-close")
-        .addEventListener("click", close);
+        .querySelector(
+            ".ziva-modal-close"
+        )
+        .addEventListener(
+            "click",
+            close
+        );
 
 
     wrapper
-        .querySelector(".ziva-modal-backdrop")
-        .addEventListener("click", close);
+        .querySelector(
+            ".ziva-modal-backdrop"
+        )
+        .addEventListener(
+            "click",
+            close
+        );
 
 
     return wrapper;
@@ -1034,7 +1344,10 @@ function createZivaModal(title, content) {
 function showZivaToast(message) {
 
     const oldToast =
-        document.querySelector(".ziva-toast");
+        document.querySelector(
+            ".ziva-toast"
+        );
+
 
     if (oldToast) {
         oldToast.remove();
@@ -1044,8 +1357,10 @@ function showZivaToast(message) {
     const toast =
         document.createElement("div");
 
+
     toast.className =
         "ziva-toast";
+
 
     toast.textContent =
         message;
@@ -1054,47 +1369,92 @@ function showZivaToast(message) {
     const style =
         document.createElement("style");
 
+
     style.innerHTML = `
+
         .ziva-toast {
+
             position:fixed;
+
             left:50%;
+
             bottom:90px;
-            transform:translateX(-50%);
+
+            transform:
+                translateX(-50%);
+
             z-index:7000;
+
             background:#241b19;
+
             color:#fff;
-            padding:12px 18px;
+
+            padding:
+                12px 18px;
+
             border-radius:30px;
+
             font-size:12px;
+
             font-weight:700;
-            box-shadow:0 10px 30px rgba(0,0,0,.2);
-            animation:zivaToastIn .25s ease;
+
+            box-shadow:
+                0 10px 30px
+                rgba(0,0,0,.2);
+
+            animation:
+                zivaToastIn .25s ease;
         }
 
+
         @keyframes zivaToastIn {
+
             from {
+
                 opacity:0;
-                transform:translate(-50%,10px);
+
+                transform:
+                    translate(
+                        -50%,
+                        10px
+                    );
             }
 
             to {
+
                 opacity:1;
-                transform:translate(-50%,0);
+
+                transform:
+                    translate(
+                        -50%,
+                        0
+                    );
             }
         }
+
     `;
 
-    document.head.appendChild(style);
 
-    document.body.appendChild(toast);
+    document.head.appendChild(
+        style
+    );
+
+
+    document.body.appendChild(
+        toast
+    );
 
 
     setTimeout(function () {
 
-        toast.style.opacity = "0";
+        toast.style.opacity =
+            "0";
+
 
         setTimeout(function () {
+
             toast.remove();
+
         }, 250);
 
     }, 1800);
@@ -1108,7 +1468,10 @@ function showZivaToast(message) {
 function setupMobileNavigation() {
 
     const bottomNav =
-        document.querySelector(".ziva-bottom-nav");
+        document.querySelector(
+            ".ziva-bottom-nav"
+        );
+
 
     if (!bottomNav) {
         return;
@@ -1116,74 +1479,97 @@ function setupMobileNavigation() {
 
 
     const home =
-        document.getElementById("zivaMobileHome");
+        document.getElementById(
+            "zivaMobileHome"
+        );
+
 
     const categories =
-        document.getElementById("zivaMobileCategories");
+        document.getElementById(
+            "zivaMobileCategories"
+        );
+
 
     const wishlist =
-        document.getElementById("zivaMobileWishlist");
+        document.getElementById(
+            "zivaMobileWishlist"
+        );
+
 
     const account =
-        document.getElementById("zivaMobileAccount");
+        document.getElementById(
+            "zivaMobileAccount"
+        );
+
 
     const cart =
-        document.getElementById("zivaMobileCart");
+        document.getElementById(
+            "zivaMobileCart"
+        );
 
 
     if (home) {
 
-        home.onclick = function () {
+        home.onclick =
+            function () {
 
-            window.location.href =
-                "index.html";
-        };
+                window.location.href =
+                    "index.html";
+            };
     }
 
 
     if (categories) {
 
-        categories.onclick = function () {
+        categories.onclick =
+            function () {
 
-            const section =
-                document.querySelector(
-                    ".categories-section"
-                );
+                const section =
+                    document.querySelector(
+                        ".categories-section"
+                    );
 
-            if (section) {
 
-                section.scrollIntoView({
-                    behavior: "smooth"
-                });
+                if (section) {
 
-            } else {
+                    section.scrollIntoView({
 
-                window.location.href =
-                    "index.html#categories";
-            }
-        };
+                        behavior:
+                            "smooth"
+
+                    });
+
+                } else {
+
+                    window.location.href =
+                        "index.html#categories";
+                }
+            };
     }
 
 
     if (wishlist) {
 
-        wishlist.onclick = function () {
+        wishlist.onclick =
+            function () {
 
-            const list =
-                getZivaWishlist();
+                const list =
+                    getZivaWishlist();
 
-            if (!list.length) {
 
-                showZivaToast(
-                    "Your wishlist is empty"
-                );
+                if (!list.length) {
 
-                return;
-            }
+                    showZivaToast(
+                        "Your wishlist is empty"
+                    );
 
-            window.location.href =
-                "index.html#wishlist";
-        };
+                    return;
+                }
+
+
+                window.location.href =
+                    "index.html#wishlist";
+            };
     }
 
 
@@ -1212,10 +1598,12 @@ function openProduct(product) {
         return;
     }
 
+
     localStorage.setItem(
         "zivaSelectedProduct",
         JSON.stringify(product)
     );
+
 
     window.location.href =
         "product.html";
@@ -1235,10 +1623,12 @@ function goToCheckout() {
             "true"
         );
 
+
         showLoginRequiredModal();
 
         return;
     }
+
 
     window.location.href =
         "checkout.html";
@@ -1252,17 +1642,41 @@ function goToCheckout() {
 function escapeHtml(value) {
 
     return String(value || "")
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
 }
 
 
 function escapeAttribute(value) {
+
     return escapeHtml(value)
-        .replace(/`/g, "&#096;");
+        .replace(
+            /`/g,
+            "&#096;"
+        );
 }
 
 
@@ -1278,15 +1692,19 @@ document.addEventListener(
 
             closeSearch();
 
+
             const modal =
                 document.querySelector(
                     ".ziva-custom-modal"
                 );
 
+
             if (modal) {
+
                 modal.remove();
             }
         }
+
     }
 );
 
@@ -1369,12 +1787,12 @@ document.addEventListener(
                     "zivaLoginRedirect"
                 );
 
+
             if (redirect) {
 
                 localStorage.removeItem(
                     "zivaLoginRedirect"
                 );
-
             }
         }
 
@@ -1383,7 +1801,7 @@ document.addEventListener(
 
 
 /* =========================================================
-   CART STORAGE CHANGE
+   CART / WISHLIST / LOGIN STORAGE CHANGE
 ========================================================= */
 
 window.addEventListener(
@@ -1391,9 +1809,13 @@ window.addEventListener(
     function (event) {
 
         if (
+
             event.key === "zivaCart" ||
+
             event.key === "zivaWishlist" ||
+
             event.key === "zivaLoggedIn"
+
         ) {
 
             updateCartCount();
