@@ -1,1328 +1,1129 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>ZIVA | Fashion Store</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" href="style.css">
+    <title>ZIVA | Fashion Store</title>
 
-<link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
->
+    <link rel="stylesheet" href="style.css">
+</head>
 
-</head><body><!-- =====================================================
-     MOBILE TOP BAR
-===================================================== --><div class="ziva-mobile-top"><div class="ziva-mobile-brand">
-    <a href="index.html">ZIVA</a>
+<body>
+
+<!-- =========================================================
+     MOBILE TOP
+========================================================= -->
+
+<div class="ziva-mobile-top">
+
+    <div class="ziva-mobile-brand">
+        <a href="index.html">ZIVA</a>
+    </div>
+
+    <div class="ziva-mobile-actions">
+
+        <button class="icon-btn" onclick="openSearch()" aria-label="Search">
+            🔍
+        </button>
+
+        <button class="icon-btn" onclick="openAccount()" aria-label="Account">
+            👤
+        </button>
+
+        <button class="icon-btn" onclick="openCart()" aria-label="Cart">
+            🛒
+        </button>
+
+    </div>
+
 </div>
 
-<div class="ziva-mobile-actions">
 
-    <button onclick="openSearch()" aria-label="Search">
-        <i class="fa-solid fa-magnifying-glass"></i>
-    </button>
-
-    <button onclick="openAccount()" aria-label="Account">
-        <i class="fa-regular fa-user"></i>
-    </button>
-
-</div>
-
-</div><!-- =====================================================
+<!-- =========================================================
      MOBILE SEARCH
-===================================================== --><div class="ziva-mobile-search"><button onclick="openSearch()">
+========================================================= -->
 
-    <i class="fa-solid fa-magnifying-glass"></i>
+<div class="ziva-mobile-search">
 
-    <span>Search ZIVA products</span>
+    <input
+        type="text"
+        id="mobileSearchInput"
+        placeholder="Search fashion..."
+        oninput="searchProducts(this.value)"
+    >
 
-</button>
-
-</div><!-- =====================================================
-     DELIVERY
-===================================================== --><div class="ziva-delivery-bar"><div>
-
-    <i class="fa-solid fa-location-dot"></i>
-
-    <span>
-        Deliver to
-        <strong>India</strong>
-    </span>
+    <button onclick="searchProducts(document.getElementById('mobileSearchInput').value)">
+        🔍
+    </button>
 
 </div>
 
-<span class="delivery-arrow">›</span>
 
-</div><!-- =====================================================
+<!-- =========================================================
+     DELIVERY BAR
+========================================================= -->
+
+<div class="ziva-delivery-bar">
+    🚚 Free Delivery on Selected Orders
+</div>
+
+
+<!-- =========================================================
      DESKTOP HEADER
-===================================================== --><header class="header"><a href="index.html" class="logo">
-    ZIVA
-</a>
+========================================================= -->
 
-<nav class="nav">
+<header class="header">
 
-    <a href="#new-in">New In</a>
+    <div class="logo">
+        <a href="index.html">ZIVA</a>
+    </div>
 
-    <a href="#mens-section">Men</a>
+    <nav class="nav">
 
-    <a href="#trending-section">Trending</a>
+        <a href="#new-in">New In</a>
+        <a href="#womens-section">Women</a>
+        <a href="#mens-section">Men</a>
+        <a href="#trending-section">Trending</a>
+        <a href="#sale-section">Sale</a>
 
-    <a href="#sale-section">Sale</a>
+    </nav>
+
+    <div class="header-actions">
+
+        <button class="icon-btn" onclick="openSearch()" aria-label="Search">
+            🔍
+        </button>
+
+        <button class="icon-btn" onclick="openAccount()" aria-label="Account">
+            👤
+        </button>
+
+        <button class="cart-btn" onclick="openCart()">
+            🛒 Cart (<span id="cartCount">0</span>)
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- =========================================================
+     MOBILE CATEGORIES
+========================================================= -->
+
+<div class="ziva-mobile-categories">
+
+    <a href="#womens-section" class="mobile-category-icon">
+        <span>👗</span>
+        <small>Women</small>
+    </a>
+
+    <a href="#mens-section" class="mobile-category-icon">
+        <span>👔</span>
+        <small>Men</small>
+    </a>
+
+    <a href="#trending-section" class="mobile-category-icon">
+        <span>🔥</span>
+        <small>Trending</small>
+    </a>
+
+    <a href="#sale-section" class="mobile-category-icon">
+        <span>🏷️</span>
+        <small>Sale</small>
+    </a>
+
+</div>
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section class="hero" id="new-in">
+
+    <div class="hero-content">
+
+        <p class="hero-small">
+            NEW SEASON
+        </p>
+
+        <h1>
+            WEAR YOUR STYLE.
+        </h1>
+
+        <p>
+            Discover fashion made for your everyday style.
+        </p>
+
+        <div class="hero-buttons">
+
+            <button onclick="document.getElementById('womens-section').scrollIntoView({behavior:'smooth'})">
+                Shop Women
+            </button>
+
+            <button onclick="document.getElementById('mens-section').scrollIntoView({behavior:'smooth'})">
+                Shop Men
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     MOBILE QUICK ACTIONS
+========================================================= -->
+
+<div class="ziva-mobile-quick">
+
+    <a href="#womens-section">
+        <span>👗</span>
+        Women
+    </a>
+
+    <a href="#mens-section">
+        <span>👔</span>
+        Men
+    </a>
+
+    <a href="#trending-section">
+        <span>🔥</span>
+        Trending
+    </a>
+
+</div>
+
+
+<!-- =========================================================
+     CATEGORIES
+========================================================= -->
+
+<section class="categories-section">
+
+    <div class="section-heading">
+
+        <div>
+            <p>SHOP BY CATEGORY</p>
+            <h2>Find Your Style</h2>
+        </div>
+
+        <a href="#womens-section" class="mobile-section-link">
+            View All
+        </a>
+
+    </div>
+
+
+    <div class="category-grid">
+
+        <a href="#womens-section" class="category-card">
+
+            <img src="images/women-dress1.jpg.jpeg" alt="Women Fashion">
+
+            <div class="category-overlay">
+                <h3>Women</h3>
+            </div>
+
+        </a>
+
+
+        <a href="#mens-section" class="category-card">
+
+            <img src="images/dress1.jpg.jpeg" alt="Men Fashion">
+
+            <div class="category-overlay">
+                <h3>Men</h3>
+            </div>
+
+        </a>
+
+
+        <a href="#trending-section" class="category-card">
+
+            <img src="images/women-dress2.jpg.jpeg" alt="Trending Fashion">
+
+            <div class="category-overlay">
+                <h3>Trending</h3>
+            </div>
+
+        </a>
+
+
+        <a href="#sale-section" class="category-card">
+
+            <img src="images/dress2.jpg.jpeg" alt="Sale Fashion">
+
+            <div class="category-overlay">
+                <h3>Sale</h3>
+            </div>
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     FASHION BANNER
+========================================================= -->
+
+<section class="ziva-fashion-banner">
+
+    <div class="banner-content">
+
+        <p>YOUR STYLE. YOUR ZIVA.</p>
+
+        <h2>
+            Fashion That<br>
+            Feels Like You.
+        </h2>
+
+        <button onclick="document.getElementById('womens-section').scrollIntoView({behavior:'smooth'})">
+            SHOP NOW
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     WOMEN
+========================================================= -->
+
+<section class="products-section" id="womens-section">
+
+    <div class="section-heading">
+
+        <div>
+            <p>SHOP WOMEN</p>
+            <h2>Women's Collection</h2>
+        </div>
+
+        <a href="#womens-section" class="mobile-section-link">
+            View All
+        </a>
+
+    </div>
+
+
+    <div class="product-grid" id="womenProducts"></div>
+
+</section>
+
+
+<!-- =========================================================
+     MEN
+========================================================= -->
+
+<section class="products-section" id="mens-section">
+
+    <div class="section-heading">
+
+        <div>
+            <p>SHOP MEN</p>
+            <h2>Men's Collection</h2>
+        </div>
+
+        <a href="#mens-section" class="mobile-section-link">
+            View All
+        </a>
+
+    </div>
+
+
+    <div class="product-grid" id="menProducts"></div>
+
+</section>
+
+
+<!-- =========================================================
+     TRENDING
+========================================================= -->
+
+<section class="products-section" id="trending-section">
+
+    <div class="section-heading">
+
+        <div>
+            <p>MOST WANTED</p>
+            <h2>Trending</h2>
+        </div>
+
+        <a href="#trending-section" class="mobile-section-link">
+            View All
+        </a>
+
+    </div>
+
+
+    <div class="product-grid" id="trendingProducts"></div>
+
+</section>
+
+
+<!-- =========================================================
+     SALE
+========================================================= -->
+
+<section class="products-section" id="sale-section">
+
+    <div class="section-heading">
+
+        <div>
+            <p>LIMITED TIME</p>
+            <h2>Sale</h2>
+        </div>
+
+        <a href="#sale-section" class="mobile-section-link">
+            View All
+        </a>
+
+    </div>
+
+
+    <div class="product-grid" id="saleProducts"></div>
+
+</section>
+
+
+<!-- =========================================================
+     FINAL BANNER
+========================================================= -->
+
+<section class="banner-section">
+
+    <div class="banner-content">
+
+        <p>STYLE NEVER GOES OUT OF FASHION</p>
+
+        <h2>
+            Be You.<br>
+            Be ZIVA.
+        </h2>
+
+        <button onclick="window.scrollTo({top:0, behavior:'smooth'})">
+            EXPLORE ZIVA
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer class="footer">
+
+    <div class="footer-grid">
+
+        <div class="footer-brand">
+
+            <h2>ZIVA</h2>
+
+            <p>
+                Fashion that matches your style,
+                confidence and personality.
+            </p>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <h3>Shop</h3>
+
+            <a href="#womens-section">Women</a>
+            <a href="#mens-section">Men</a>
+            <a href="#trending-section">Trending</a>
+            <a href="#sale-section">Sale</a>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <h3>Help</h3>
+
+            <a href="#">Contact Us</a>
+            <a href="#">Shipping</a>
+            <a href="#">Returns</a>
+            <a href="#">Privacy Policy</a>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+        © 2026 ZIVA. All Rights Reserved.
+    </div>
+
+</footer>
+
+
+<!-- =========================================================
+     MOBILE BOTTOM NAV
+========================================================= -->
+
+<nav class="ziva-bottom-nav">
+
+    <a href="index.html" class="ziva-bottom-item">
+
+        <span class="bottom-icon">⌂</span>
+        <small>Home</small>
+
+    </a>
+
+
+    <a href="#womens-section" class="ziva-bottom-item">
+
+        <span class="bottom-icon">👗</span>
+        <small>Women</small>
+
+    </a>
+
+
+    <a href="#mens-section" class="ziva-bottom-item">
+
+        <span class="bottom-icon">👔</span>
+        <small>Men</small>
+
+    </a>
+
+
+    <a href="#trending-section" class="ziva-bottom-item">
+
+        <span class="bottom-icon">🔥</span>
+        <small>Trending</small>
+
+    </a>
+
+
+    <button class="ziva-bottom-item cart-bottom-item" onclick="openCart()">
+
+        <span class="bottom-icon">
+            🛒
+            <b id="mobileCartCount">0</b>
+        </span>
+
+        <small>Cart</small>
+
+    </button>
 
 </nav>
 
-<div class="header-actions">
 
-    <button
-        class="icon-btn"
-        onclick="openSearch()"
-    >
-        ⌕
-    </button>
-
-    <button
-        class="icon-btn"
-        id="accountButton"
-        onclick="openAccount()"
-    >
-        👤 Login
-    </button>
-
-    <button
-        class="cart-btn"
-        id="cartButton"
-        onclick="openCart()"
-    >
-        🛍 Cart
-        <span id="cartCount">0</span>
-    </button>
-
-</div>
-
-</header><!-- =====================================================
-     MOBILE CATEGORY BAR
-===================================================== --><div class="ziva-mobile-categories"><a href="#new-in">
-
-    <div class="mobile-category-icon">✦</div>
-
-    <span>New In</span>
-
-</a>
-
-<a href="#mens-section">
-
-    <div class="mobile-category-icon">👕</div>
-
-    <span>Men</span>
-
-</a>
-
-<a href="#trending-section">
-
-    <div class="mobile-category-icon">♡</div>
-
-    <span>Trending</span>
-
-</a>
-
-<a href="#sale-section">
-
-    <div class="mobile-category-icon">%</div>
-
-    <span>Sale</span>
-
-</a>
-
-<a href="#categories">
-
-    <div class="mobile-category-icon">⋮</div>
-
-    <span>More</span>
-
-</a>
-
-</div><!-- =====================================================
-     HERO
-===================================================== --><section class="hero" id="new-in"><div class="hero-content">
-
-    <p class="hero-small">
-        ZIVA • NEW SEASON
-    </p>
-
-    <h1>
-        STYLE<br>
-        YOUR WAY
-    </h1>
-
-    <p>
-        Discover your next favourite look with ZIVA.
-    </p>
-
-    <div class="hero-buttons">
-
-        <button
-            onclick="
-            document.getElementById('mens-section')
-            .scrollIntoView({behavior:'smooth'})
-            "
-        >
-            SHOP MEN
-        </button>
-
-        <button
-            onclick="
-            document.getElementById('trending-section')
-            .scrollIntoView({behavior:'smooth'})
-            "
-        >
-            TRENDING
-        </button>
-
-    </div>
-
-</div>
-
-</section><!-- =====================================================
-     MOBILE QUICK ACTIONS
-===================================================== --><section class="ziva-mobile-quick"><a href="#mens-section">
-
-    <span>👕</span>
-
-    <strong>Men's Fashion</strong>
-
-    <small>Explore →</small>
-
-</a>
-
-<a href="#trending-section">
-
-    <span>🔥</span>
-
-    <strong>Trending</strong>
-
-    <small>Shop Now →</small>
-
-</a>
-
-<a href="#sale-section">
-
-    <span>%</span>
-
-    <strong>ZIVA Sale</strong>
-
-    <small>View Deals →</small>
-
-</a>
-
-</section><!-- =====================================================
-     CATEGORY
-===================================================== --><section
-    class="categories-section"
-    id="categories"
-><div class="section-heading">
-
-    <p>EXPLORE ZIVA</p>
-
-    <h2>Shop By Category</h2>
-
-</div>
-
-<div class="category-grid">
-
-    <div
-        class="category-card"
-        onclick="
-        document.getElementById('mens-section')
-        .scrollIntoView({behavior:'smooth'})
-        "
-    >
-
-        <img
-            src="images/men-outfit.jpeg"
-            alt="ZIVA Men Fashion"
-        >
-
-        <div class="category-overlay">
-
-            <h3>Men</h3>
-
-            <span>Shop Now →</span>
-
-        </div>
-
-    </div>
-
-
-    <div
-        class="category-card"
-        onclick="
-        document.getElementById('trending-section')
-        .scrollIntoView({behavior:'smooth'})
-        "
-    >
-
-        <img
-            src="images/WhatsApp Image 2026-10-03 at 9.58.48 PM (1).jpeg"
-            alt="ZIVA Trending"
-        >
-
-        <div class="category-overlay">
-
-            <h3>Trending</h3>
-
-            <span>Explore →</span>
-
-        </div>
-
-    </div>
-
-
-    <div
-        class="category-card"
-        onclick="
-        document.getElementById('sale-section')
-        .scrollIntoView({behavior:'smooth'})
-        "
-    >
-
-        <img
-            src="images/WhatsApp Image 2026-10-03 at 9.58.39 PM.jpeg"
-            alt="ZIVA Sale"
-        >
-
-        <div class="category-overlay">
-
-            <h3>Sale</h3>
-
-            <span>Shop Now →</span>
-
-        </div>
-
-    </div>
-
-</div>
-
-</section><!-- =====================================================
-     FASHION BANNER
-===================================================== --><section class="ziva-fashion-banner"><div>
-
-    <p>ZIVA EDIT</p>
-
-    <h2>
-        THE LOOK<br>
-        EVERYONE WANTS
-    </h2>
-
-    <button
-        onclick="
-        document.getElementById('trending-section')
-        .scrollIntoView({behavior:'smooth'})
-        "
-    >
-        SHOP TRENDING
-    </button>
-
-</div>
-
-</section><!-- =====================================================
-     MEN
-===================================================== --><section
-    class="products-section"
-    id="mens-section"
-><div class="section-heading">
-
-    <p>ZIVA MEN</p>
-
-    <h2>Men's Collection</h2>
-
-    <span class="mobile-section-link">
-        View All →
-    </span>
-
-</div>
-
-<div
-    class="product-grid"
-    id="menProductGrid"
-></div>
-
-</section><!-- =====================================================
-     TRENDING
-===================================================== --><section
-    class="products-section"
-    id="trending-section"
-><div class="section-heading">
-
-    <p>MOST LOVED</p>
-
-    <h2>Trending Now</h2>
-
-    <span class="mobile-section-link">
-        View All →
-    </span>
-
-</div>
-
-<div
-    class="product-grid"
-    id="trendingProductGrid"
-></div>
-
-</section><!-- =====================================================
-     SALE
-===================================================== --><section
-    class="products-section"
-    id="sale-section"
-><div class="section-heading">
-
-    <p>DON'T MISS OUT</p>
-
-    <h2>ZIVA Sale</h2>
-
-    <span class="mobile-section-link">
-        View All →
-    </span>
-
-</div>
-
-<div
-    class="product-grid"
-    id="saleProductGrid"
-></div>
-
-</section><!-- =====================================================
-     FINAL BANNER
-===================================================== --><section class="banner-section"><div class="banner-content">
-
-    <p>ZIVA EXCLUSIVE</p>
-
-    <h2>
-        FIND YOUR<br>
-        PERFECT STYLE
-    </h2>
-
-    <button
-        onclick="
-        document.getElementById('mens-section')
-        .scrollIntoView({behavior:'smooth'})
-        "
-    >
-        SHOP NOW
-    </button>
-
-</div>
-
-</section><!-- =====================================================
-     FOOTER
-===================================================== --><footer class="footer"><div class="footer-grid">
-
-    <div class="footer-brand">
-
-        <h2>ZIVA</h2>
-
-        <p>
-            Fashion that feels like you.
-        </p>
-
-    </div>
-
-
-    <div class="footer-links">
-
-        <h3>SHOP</h3>
-
-        <a href="#mens-section">Men</a>
-
-        <a href="#trending-section">Trending</a>
-
-        <a href="#sale-section">Sale</a>
-
-    </div>
-
-
-    <div class="footer-links">
-
-        <h3>HELP</h3>
-
-        <a href="contact.html">Contact</a>
-
-        <a href="about.html">About Us</a>
-
-        <a href="privacy.html">Privacy Policy</a>
-
-        <a href="terms.html">
-            Terms & Conditions
-        </a>
-
-    </div>
-
-
-    <div class="footer-links">
-
-        <h3>ACCOUNT</h3>
-
-        <a href="login.html">
-            Login / Sign Up
-        </a>
-
-        <a href="cart.html">
-            My Cart
-        </a>
-
-        <a href="my-orders.html">
-            My Orders
-        </a>
-
-    </div>
-
-</div>
-
-
-<div class="footer-bottom">
-
-    <p>
-        © 2026 ZIVA. All Rights Reserved.
-    </p>
-
-</div>
-
-</footer><!-- =====================================================
-     MOBILE BOTTOM NAV
-===================================================== --><nav class="ziva-bottom-nav"><a
-    href="index.html"
-    class="ziva-bottom-item active"
-    id="zivaMobileHome"
->
-
-    <span class="bottom-icon">
-        <i class="fa-solid fa-house"></i>
-    </span>
-
-    <span>Home</span>
-
-</a>
-
-
-<a
-    href="#categories"
-    class="ziva-bottom-item"
-    id="zivaMobileCategories"
->
-
-    <span class="bottom-icon">
-        <i class="fa-solid fa-table-cells"></i>
-    </span>
-
-    <span>Categories</span>
-
-</a>
-
-
-<a
-    href="javascript:void(0)"
-    class="ziva-bottom-item"
-    id="zivaMobileWishlist"
->
-
-    <span class="bottom-icon">
-
-        <i class="fa-regular fa-heart"></i>
-
-    </span>
-
-    <span>Wishlist</span>
-
-</a>
-
-
-<a
-    href="javascript:void(0)"
-    class="ziva-bottom-item"
-    id="zivaMobileAccount"
->
-
-    <span class="bottom-icon">
-
-        <i class="fa-regular fa-user"></i>
-
-    </span>
-
-    <span>Account</span>
-
-</a>
-
-
-<a
-    href="javascript:void(0)"
-    class="ziva-bottom-item cart-bottom-item"
-    id="zivaMobileCart"
->
-
-    <span class="bottom-icon">
-
-        <i class="fa-solid fa-bag-shopping"></i>
-
-        <b id="zivaMobileCartCount">
-            0
-        </b>
-
-    </span>
-
-    <span>Cart</span>
-
-</a>
-
-</nav><!-- =====================================================
+<!-- =========================================================
      PRODUCT DATABASE
-===================================================== --><script>
+========================================================= -->
+
+<script>
 
 window.zivaProducts = [
 
+    /* =========================
+       WOMEN
+    ========================= */
+
     {
-        id:"men-01",
-        name:"ZIVA Men Look 01",
-        price:999,
-        oldPrice:1299,
-        image:"images/men-outfit.jpeg",
-        category:"Men"
+        id: "women-1",
+        name: "Women Dress 01",
+        category: "Women",
+        price: 899,
+        oldPrice: 1199,
+        image: "images/women-dress1.jpg.jpeg"
     },
 
     {
-        id:"men-02",
-        name:"ZIVA Men Look 02",
-        price:899,
-        oldPrice:1199,
-        image:"images/WhatsApp Image 2026-10-03 at 9.58.39 PM (1).jpeg",
-        category:"Men"
+        id: "women-2",
+        name: "Women Dress 02",
+        category: "Women",
+        price: 999,
+        oldPrice: 1299,
+        image: "images/women-dress2.jpg.jpeg"
     },
 
     {
-        id:"men-03",
-        name:"ZIVA Men Look 03",
-        price:899,
-        oldPrice:1199,
-        image:"images/WhatsApp Image 2026-10-03 at 9.58.39 PM.jpeg",
-        category:"Men"
+        id: "women-3",
+        name: "Women Dress 03",
+        category: "Women",
+        price: 1099,
+        oldPrice: 1399,
+        image: "images/women-dress3.jpg.jpeg"
     },
 
     {
-        id:"men-04",
-        name:"ZIVA Men Look 04",
-        price:999,
-        oldPrice:1299,
-        image:"images/WhatsApp Image 2026-10-03 at 9.58.41 PM.jpeg",
-        category:"Men"
+        id: "women-4",
+        name: "Women Dress 04",
+        category: "Women",
+        price: 899,
+        oldPrice: 1199,
+        image: "images/women-dress4.jpg.jpeg"
     },
 
     {
-        id:"men-05",
-        name:"ZIVA Men Look 05",
-        price:899,
-        oldPrice:1199,
-        image:"images/WhatsApp Image 2026-10-03 at 9.58.42 PM (1).jpeg",
-        category:"Men"
+        id: "women-5",
+        name: "Women Dress 05",
+        category: "Women",
+        price: 999,
+        oldPrice: 1299,
+        image: "images/women-dress5.jpg.jpeg"
     },
 
     {
-        id:"men-06",
-        name:"ZIVA Men Look 06",
-        price:999,
-        oldPrice:1299,
-        image:"images/WhatsApp Image 2026-10-03 at 9.58.42 PM.jpeg",
-        category:"Men"
+        id: "women-6",
+        name: "Women Dress 06",
+        category: "Women",
+        price: 1099,
+        oldPrice: 1399,
+        image: "images/women-dress6.jpg.jpeg"
     },
 
     {
-        id:"men-07",
-        name:"ZIVA Men Look 07",
-        price:899,
-        oldPrice:1199,
-        image:"images/WhatsApp Image 2026-10-03 at 9.58.48 PM (1).jpeg",
-        category:"Men"
+        id: "women-7",
+        name: "Women Dress 07",
+        category: "Women",
+        price: 899,
+        oldPrice: 1199,
+        image: "images/women-dress7.jpg.jpeg"
     },
 
     {
-        id:"men-08",
-        name:"ZIVA Men Look 08",
-        price:999,
-        oldPrice:1299,
-        image:"images/WhatsApp Image 2026-10-03 at 9.58.48 PM (2).jpeg",
-        category:"Men"
+        id: "women-8",
+        name: "Women Dress 08",
+        category: "Women",
+        price: 999,
+        oldPrice: 1299,
+        image: "images/women-dress8.jpg.jpeg"
     },
 
     {
-        id:"men-09",
-        name:"ZIVA Men Look 09",
-        price:899,
-        oldPrice:1199,
-        image:"images/WhatsApp Image 2026-10-03 at 9.58.48 PM (3).jpeg",
-        category:"Men"
+        id: "women-9",
+        name: "Women Dress 09",
+        category: "Women",
+        price: 1099,
+        oldPrice: 1399,
+        image: "images/women-dress9.jpg.jpeg"
     },
 
     {
-        id:"men-10",
-        name:"ZIVA Men Look 10",
-        price:999,
-        oldPrice:1299,
-        image:"images/WhatsApp Image 2026-10-03 at 9.58.48 PM.jpeg",
-        category:"Men"
+        id: "women-10",
+        name: "Women Dress 10",
+        category: "Women",
+        price: 899,
+        oldPrice: 1199,
+        image: "images/women-dress10.jpg.jpeg"
     },
 
     {
-        id:"men-11",
-        name:"ZIVA Men Look 11",
-        price:899,
-        oldPrice:1199,
-        image:"images/WhatsApp Image 2026-10-03 at 9.58.49 PM (1).jpeg",
-        category:"Men"
+        id: "women-11",
+        name: "Women Dress 11",
+        category: "Women",
+        price: 999,
+        oldPrice: 1299,
+        image: "images/women-dress11.jpg.jpeg"
     },
 
     {
-        id:"men-12",
-        name:"ZIVA Men Look 12",
-        price:999,
-        oldPrice:1299,
-        image:"images/WhatsApp Image 2026-10-03 at 9.58.49 PM.jpeg",
-        category:"Men"
+        id: "women-12",
+        name: "Women Dress 12",
+        category: "Women",
+        price: 1099,
+        oldPrice: 1399,
+        image: "images/women-dress12.jpg.jpeg"
     },
 
     {
-        id:"men-13",
-        name:"ZIVA Men Look 13",
-        price:899,
-        oldPrice:1199,
-        image:"images/WhatsApp Image 2026-10-03 at 9.58.50 PM (1).jpeg",
-        category:"Men"
+        id: "women-13",
+        name: "Women Dress 13",
+        category: "Women",
+        price: 899,
+        oldPrice: 1199,
+        image: "images/women-dress13.jpg.jpeg"
     },
 
     {
-        id:"men-14",
-        name:"ZIVA Men Look 14",
-        price:999,
-        oldPrice:1299,
-        image:"images/WhatsApp Image 2026-10-03 at 9.58.50 PM.jpeg",
-        category:"Men"
+        id: "women-14",
+        name: "Women Dress 14",
+        category: "Women",
+        price: 999,
+        oldPrice: 1299,
+        image: "images/women-dress14.jpg.jpeg"
     },
 
     {
-        id:"men-15",
-        name:"ZIVA Men Look 15",
-        price:899,
-        oldPrice:1199,
-        image:"images/WhatsApp Image 2026-10-03 at 9.58.51 PM (1).jpeg",
-        category:"Men"
+        id: "women-15",
+        name: "Women Dress 15",
+        category: "Women",
+        price: 1099,
+        oldPrice: 1399,
+        image: "images/women-dress15.jpg.jpeg"
     },
 
     {
-        id:"men-16",
-        name:"ZIVA Men Look 16",
-        price:999,
-        oldPrice:1299,
-        image:"images/WhatsApp Image 2026-10-03 at 9.58.51 PM (2).jpeg",
-        category:"Men"
+        id: "women-16",
+        name: "Women Dress 16",
+        category: "Women",
+        price: 899,
+        oldPrice: 1199,
+        image: "images/women-dress16.jpg.jpeg"
     },
 
     {
-        id:"men-17",
-        name:"ZIVA Men Look 17",
-        price:899,
-        oldPrice:1199,
-        image:"images/WhatsApp Image 2026-10-03 at 9.58.51 PM.jpeg",
-        category:"Men"
+        id: "women-17",
+        name: "Women Dress 17",
+        category: "Women",
+        price: 999,
+        oldPrice: 1299,
+        image: "images/women-dress17.jpg.jpeg"
     },
 
     {
-        id:"men-18",
-        name:"ZIVA Men Look 18",
-        price:999,
-        oldPrice:1299,
-        image:"images/WhatsApp Image 2026-10-03 at 9.58.52 PM.jpeg",
-        category:"Men"
+        id: "women-18",
+        name: "Women Dress 18",
+        category: "Women",
+        price: 1099,
+        oldPrice: 1399,
+        image: "images/women-dress18.jpg.jpeg"
     },
 
     {
-        id:"men-19",
-        name:"ZIVA Men Look 19",
-        price:899,
-        oldPrice:1199,
-        image:"images/WhatsApp Image 2026-10-03 at 9.58.53 PM.jpeg",
-        category:"Men"
+        id: "women-19",
+        name: "Women Dress 19",
+        category: "Women",
+        price: 899,
+        oldPrice: 1199,
+        image: "images/women-dress19.jpg.jpeg"
     },
 
     {
-        id:"men-20",
-        name:"ZIVA Men Look 20",
-        price:999,
-        oldPrice:1299,
-        image:"images/WhatsApp Image 2026-10-03 at 9.58.54 PM.jpeg",
-        category:"Men"
+        id: "women-20",
+        name: "Women Dress 20",
+        category: "Women",
+        price: 999,
+        oldPrice: 1299,
+        image: "images/women-dress20.jpg.jpeg"
     },
 
     {
-        id:"men-21",
-        name:"ZIVA Men Look 21",
-        price:899,
-        oldPrice:1199,
-        image:"images/WhatsApp Image 2026-10-03 at 9.58.55 PM (1).jpeg",
-        category:"Men"
+        id: "women-21",
+        name: "Women Dress 21",
+        category: "Women",
+        price: 1099,
+        oldPrice: 1399,
+        image: "images/women-dress21.jpg.jpeg"
     },
 
     {
-        id:"men-22",
-        name:"ZIVA Men Look 22",
-        price:999,
-        oldPrice:1299,
-        image:"images/WhatsApp Image 2026-10-03 at 9.58.55 PM.jpeg",
-        category:"Men"
+        id: "women-22",
+        name: "Women Dress 22",
+        category: "Women",
+        price: 899,
+        oldPrice: 1199,
+        image: "images/women-dress22.jpg.jpeg"
+    },
+
+
+    /* =========================
+       MEN
+    ========================= */
+
+    {
+        id: "men-1",
+        name: "Men Outfit 01",
+        category: "Men",
+        price: 899,
+        oldPrice: 1199,
+        image: "images/dress1.jpg.jpeg"
     },
 
     {
-        id:"men-23",
-        name:"ZIVA Men Look 23",
-        price:899,
-        oldPrice:1199,
-        image:"images/WhatsApp Image 2026-10-03 at 9.58.56 PM (1).jpeg",
-        category:"Men"
+        id: "men-2",
+        name: "Men Outfit 02",
+        category: "Men",
+        price: 999,
+        oldPrice: 1299,
+        image: "images/dress2.jpg.jpeg"
     },
 
     {
-        id:"men-24",
-        name:"ZIVA Men Look 24",
-        price:999,
-        oldPrice:1299,
-        image:"images/WhatsApp Image 2026-10-03 at 9.58.56 PM.jpeg",
-        category:"Men"
+        id: "men-3",
+        name: "Men Outfit 03",
+        category: "Men",
+        price: 1099,
+        oldPrice: 1399,
+        image: "images/dress3.jpg.jpeg"
     },
 
     {
-        id:"men-25",
-        name:"ZIVA Men Look 25",
-        price:899,
-        oldPrice:1199,
-        image:"images/WhatsApp Image 2026-10-03 at 9.58.57 PM (1).jpeg",
-        category:"Men"
+        id: "men-4",
+        name: "Men Outfit 04",
+        category: "Men",
+        price: 899,
+        oldPrice: 1199,
+        image: "images/dress4.jpg.jpeg"
     },
 
     {
-        id:"men-26",
-        name:"ZIVA Men Look 26",
-        price:999,
-        oldPrice:1299,
-        image:"images/WhatsApp Image 2026-10-03 at 9.58.57 PM (2).jpeg",
-        category:"Men"
+        id: "men-5",
+        name: "Men Outfit 05",
+        category: "Men",
+        price: 999,
+        oldPrice: 1299,
+        image: "images/dress5.jpg.jpeg"
     },
 
     {
-        id:"men-27",
-        name:"ZIVA Men Look 27",
-        price:899,
-        oldPrice:1199,
-        image:"images/WhatsApp Image 2026-10-03 at 9.58.57 PM.jpeg",
-        category:"Men"
+        id: "men-6",
+        name: "Men Outfit 06",
+        category: "Men",
+        price: 1099,
+        oldPrice: 1399,
+        image: "images/dress6.jpg.jpeg"
     },
 
     {
-        id:"men-28",
-        name:"ZIVA Men Look 28",
-        price:999,
-        oldPrice:1299,
-        image:"images/WhatsApp Image 2026-10-03 at 9.58.58 PM.jpeg",
-        category:"Men"
+        id: "men-7",
+        name: "Men Outfit 07",
+        category: "Men",
+        price: 899,
+        oldPrice: 1199,
+        image: "images/dress7.jpg.jpeg"
     },
 
     {
-        id:"men-29",
-        name:"ZIVA Men Look 29",
-        price:899,
-        oldPrice:1199,
-        image:"images/WhatsApp Image 2026-10-03 at 9.59.00 PM (1).jpeg",
-        category:"Men"
+        id: "men-8",
+        name: "Men Outfit 08",
+        category: "Men",
+        price: 999,
+        oldPrice: 1299,
+        image: "images/dress8.jpg.jpeg"
     },
 
     {
-        id:"men-30",
-        name:"ZIVA Men Look 30",
-        price:999,
-        oldPrice:1299,
-        image:"images/WhatsApp Image 2026-10-03 at 9.59.00 PM.jpeg",
-        category:"Men"
+        id: "men-9",
+        name: "Men Outfit 09",
+        category: "Men",
+        price: 1099,
+        oldPrice: 1399,
+        image: "images/dress9.jpg.jpeg"
     },
 
     {
-        id:"men-31",
-        name:"ZIVA Men Look 31",
-        price:899,
-        oldPrice:1199,
-        image:"images/WhatsApp Image 2026-10-03 at 9.59.02 PM (1).jpeg",
-        category:"Men"
+        id: "men-10",
+        name: "Men Outfit 10",
+        category: "Men",
+        price: 899,
+        oldPrice: 1199,
+        image: "images/dress10.jpg.jpeg"
     },
 
     {
-        id:"men-32",
-        name:"ZIVA Men Look 32",
-        price:999,
-        oldPrice:1299,
-        image:"images/WhatsApp Image 2026-10-03 at 9.59.02 PM.jpeg",
-        category:"Men"
+        id: "men-11",
+        name: "Men Outfit 11",
+        category: "Men",
+        price: 999,
+        oldPrice: 1299,
+        image: "images/dress11.jpg.jpeg"
     },
 
     {
-        id:"men-33",
-        name:"ZIVA Men Look 33",
-        price:899,
-        oldPrice:1199,
-        image:"images/WhatsApp Image 2026-10-03 at 9.59.05 PM (1).jpeg",
-        category:"Men"
+        id: "men-12",
+        name: "Men Outfit 12",
+        category: "Men",
+        price: 1099,
+        oldPrice: 1399,
+        image: "images/dress12.jpg.jpeg"
     },
 
     {
-        id:"men-34",
-        name:"ZIVA Men Look 34",
-        price:999,
-        oldPrice:1299,
-        image:"images/WhatsApp Image 2026-10-03 at 9.59.05 PM (2).jpeg",
-        category:"Men"
+        id: "men-13",
+        name: "Men Outfit 13",
+        category: "Men",
+        price: 899,
+        oldPrice: 1199,
+        image: "images/dress13.jpg.jpeg"
     },
 
     {
-        id:"men-35",
-        name:"ZIVA Men Look 35",
-        price:899,
-        oldPrice:1199,
-        image:"images/WhatsApp Image 2026-10-03 at 9.59.05 PM.jpeg",
-        category:"Men"
+        id: "men-14",
+        name: "Men Outfit 14",
+        category: "Men",
+        price: 999,
+        oldPrice: 1299,
+        image: "images/dress14.jpg.jpeg"
     },
 
     {
-        id:"men-36",
-        name:"ZIVA Men Look 36",
-        price:999,
-        oldPrice:1299,
-        image:"images/WhatsApp Image 2026-10-03 at 9.59.06 PM (1).jpeg",
-        category:"Men"
+        id: "men-15",
+        name: "Men Outfit 15",
+        category: "Men",
+        price: 1099,
+        oldPrice: 1399,
+        image: "images/dress15.jpg.jpeg"
     },
 
     {
-        id:"men-37",
-        name:"ZIVA Men Look 37",
-        price:899,
-        oldPrice:1199,
-        image:"images/WhatsApp Image 2026-10-03 at 9.59.06 PM.jpeg",
-        category:"Men"
+        id: "men-16",
+        name: "Men Outfit 16",
+        category: "Men",
+        price: 899,
+        oldPrice: 1199,
+        image: "images/dress16.jpg.jpeg"
     },
 
     {
-        id:"men-38",
-        name:"ZIVA Men Look 38",
-        price:999,
-        oldPrice:1299,
-        image:"images/WhatsApp Image 2026-10-03 at 9.59.07 PM.jpeg",
-        category:"Men"
+        id: "men-17",
+        name: "Men Outfit 17",
+        category: "Men",
+        price: 999,
+        oldPrice: 1299,
+        image: "images/dress17.jpg.jpeg"
     },
 
     {
-        id:"men-39",
-        name:"ZIVA Men Look 39",
-        price:899,
-        oldPrice:1199,
-        image:"images/WhatsApp Image 2026-10-03 at 9.59.11 PM (1).jpeg",
-        category:"Men"
+        id: "men-18",
+        name: "Men Outfit 18",
+        category: "Men",
+        price: 1099,
+        oldPrice: 1399,
+        image: "images/dress18.jpg.jpeg"
     },
 
     {
-        id:"men-40",
-        name:"ZIVA Men Look 40",
-        price:999,
-        oldPrice:1299,
-        image:"images/WhatsApp Image 2026-10-03 at 9.59.11 PM (2).jpeg",
-        category:"Men"
+        id: "men-19",
+        name: "Men Outfit 19",
+        category: "Men",
+        price: 899,
+        oldPrice: 1199,
+        image: "images/dress19.jpg.jpeg"
     },
 
     {
-        id:"men-41",
-        name:"ZIVA Men Look 41",
-        price:899,
-        oldPrice:1199,
-        image:"images/WhatsApp Image 2026-10-03 at 9.59.11 PM.jpeg",
-        category:"Men"
+        id: "men-20",
+        name: "Men Outfit 20",
+        category: "Men",
+        price: 999,
+        oldPrice: 1299,
+        image: "images/dress20.jpg.jpeg"
     },
 
     {
-        id:"men-42",
-        name:"ZIVA Men Look 42",
-        price:999,
-        oldPrice:1299,
-        image:"images/WhatsApp Image 2026-10-03 at 9.59.12 PM.jpeg",
-        category:"Men"
+        id: "men-21",
+        name: "Men Outfit 21",
+        category: "Men",
+        price: 1099,
+        oldPrice: 1399,
+        image: "images/dress21.jpg.jpeg"
     },
 
     {
-        id:"men-43",
-        name:"ZIVA Men Look 43",
-        price:899,
-        oldPrice:1199,
-        image:"images/WhatsApp Image 2026-10-03 at 9.59.13 PM (1).jpeg",
-        category:"Men"
-    },
-
-    {
-        id:"men-44",
-        name:"ZIVA Men Look 44",
-        price:999,
-        oldPrice:1299,
-        image:"images/WhatsApp Image 2026-10-03 at 9.59.13 PM.jpeg",
-        category:"Men"
-    },
-
-    {
-        id:"men-45",
-        name:"ZIVA Men Look 45",
-        price:899,
-        oldPrice:1199,
-        image:"images/WhatsApp Image 2026-10-03 at 9.59.14 PM (1).jpeg",
-        category:"Men"
-    },
-
-    {
-        id:"men-46",
-        name:"ZIVA Men Look 46",
-        price:999,
-        oldPrice:1299,
-        image:"images/WhatsApp Image 2026-10-03 at 9.59.14 PM.jpeg",
-        category:"Men"
-    },
-
-    {
-        id:"men-47",
-        name:"ZIVA Men Look 47",
-        price:899,
-        oldPrice:1199,
-        image:"images/WhatsApp Image 2026-10-03 at 9.59.16 PM (1).jpeg",
-        category:"Men"
-    },
-
-    {
-        id:"men-48",
-        name:"ZIVA Men Look 48",
-        price:999,
-        oldPrice:1299,
-        image:"images/WhatsApp Image 2026-10-03 at 9.59.16 PM.jpeg",
-        category:"Men"
-    },
-
-    {
-        id:"men-49",
-        name:"ZIVA Men Look 49",
-        price:899,
-        oldPrice:1199,
-        image:"images/WhatsApp Image 2026-10-03 at 9.59.17 PM (1).jpeg",
-        category:"Men"
-    },
-
-    {
-        id:"men-50",
-        name:"ZIVA Men Look 50",
-        price:999,
-        oldPrice:1299,
-        image:"images/WhatsApp Image 2026-10-03 at 9.59.17 PM.jpeg",
-        category:"Men"
-    },
-
-    {
-        id:"men-51",
-        name:"ZIVA Men Look 51",
-        price:1099,
-        oldPrice:1399,
-        image:"images/men-outfit3.jpeg",
-        category:"Men"
-    },
-
-    {
-        id:"men-52",
-        name:"ZIVA Men Look 52",
-        price:999,
-        oldPrice:1299,
-        image:"images/men-outfit4.jpeg",
-        category:"Men"
-    },
-
-    {
-        id:"men-53",
-        name:"ZIVA Men Look 53",
-        price:1199,
-        oldPrice:1499,
-        image:"images/men-outfit5.jpeg",
-        category:"Men"
-    },
-
-    {
-        id:"men-54",
-        name:"ZIVA Men Look 54",
-        price:1099,
-        oldPrice:1399,
-        image:"images/men-outfit6.jpeg",
-        category:"Men"
-    },
-
-    {
-        id:"men-55",
-        name:"ZIVA Men Look 55",
-        price:999,
-        oldPrice:1299,
-        image:"images/men-outfit7.jpeg",
-        category:"Men"
+        id: "men-22",
+        name: "Men Outfit 22",
+        category: "Men",
+        price: 899,
+        oldPrice: 1199,
+        image: "images/dress22.jpg.jpeg"
     }
 
 ];
 
 
-/* =====================================================
+/* =========================================================
    PRODUCT CARD
-===================================================== */
+========================================================= */
 
-function createProductCard(product) {
+function getZivaProduct(id) {
 
-    const card =
-        document.createElement("div");
-
-    card.className = "product-card";
-
-
-    card.innerHTML = `
-
-        <div class="product-image">
-
-            <img
-                src="${escapeAttribute(product.image)}"
-                alt="${escapeAttribute(product.name)}"
-                loading="lazy"
-            >
-
-            <button
-                class="heart"
-                type="button"
-                data-wishlist-id="${escapeAttribute(product.id)}"
-                aria-label="Add to wishlist"
-            >
-                ♡
-            </button>
-
-        </div>
-
-
-        <div class="product-info">
-
-            <h3>
-                ${escapeHtml(product.name)}
-            </h3>
-
-            <p class="product-price">
-
-                ₹${Number(product.price).toLocaleString("en-IN")}
-
-                <span
-                    style="
-                        text-decoration:line-through;
-                        opacity:.5;
-                        margin-left:6px;
-                        font-size:13px;
-                    "
-                >
-                    ₹${Number(product.oldPrice).toLocaleString("en-IN")}
-                </span>
-
-            </p>
-
-
-            <button
-                class="add-btn"
-                type="button"
-            >
-                ADD TO BAG
-            </button>
-
-        </div>
-
-    `;
-
-
-    /* =================================================
-       PRODUCT CLICK
-    ================================================= */
-
-    card.addEventListener(
-        "click",
-        function() {
-
-            localStorage.setItem(
-                "zivaSelectedProduct",
-                JSON.stringify(product)
-            );
-
-            window.location.href =
-                "product.html";
-
-        }
-    );
-
-
-    /* =================================================
-       WISHLIST
-    ================================================= */
-
-    const heart =
-        card.querySelector(".heart");
-
-
-    heart.addEventListener(
-        "click",
-        function(event) {
-
-            event.preventDefault();
-
-            event.stopPropagation();
-
-
-            toggleWishlist(product);
-
-
-            updateWishlistButtons();
-
-        }
-    );
-
-
-    /* =================================================
-       ADD TO BAG
-    ================================================= */
-
-    const addButton =
-        card.querySelector(".add-btn");
-
-
-    addButton.addEventListener(
-        "click",
-        function(event) {
-
-            event.preventDefault();
-
-            event.stopPropagation();
-
-
-            addToCart(product);
-
-        }
-    );
-
-
-    return card;
+    return window.zivaProducts.find(function(product) {
+        return product.id === id;
+    });
 
 }
 
 
-/* =====================================================
+function zivaOpenProduct(id) {
+
+    const product = getZivaProduct(id);
+
+    if (product && typeof openProduct === "function") {
+        openProduct(product);
+    }
+
+}
+
+
+function zivaAddToCart(id) {
+
+    const product = getZivaProduct(id);
+
+    if (product && typeof addToCart === "function") {
+        addToCart(product);
+    }
+
+}
+
+
+function zivaToggleWishlist(id) {
+
+    const product = getZivaProduct(id);
+
+    if (product && typeof toggleWishlist === "function") {
+        toggleWishlist(product);
+    }
+
+}
+
+
+function createProductCard(product) {
+
+    return `
+        <article class="product-card">
+
+            <div
+                class="product-image"
+                onclick="zivaOpenProduct('${product.id}')"
+                style="cursor:pointer;"
+            >
+
+                <img
+                    src="${product.image}"
+                    alt="${product.name}"
+                    loading="lazy"
+                    onerror="this.style.display='none';"
+                >
+
+                <button
+                    class="heart"
+                    type="button"
+                    data-wishlist-id="${product.id}"
+                    onclick="event.stopPropagation(); zivaToggleWishlist('${product.id}')"
+                    aria-label="Add to wishlist"
+                >
+                    ♡
+                </button>
+
+            </div>
+
+
+            <div class="product-info">
+
+                <h3>
+                    ${product.name}
+                </h3>
+
+                <p>
+                    <span>₹${product.price}</span>
+
+                    <del>
+                        ₹${product.oldPrice}
+                    </del>
+                </p>
+
+                <button
+                    class="add-btn"
+                    type="button"
+                    onclick="zivaAddToCart('${product.id}')"
+                >
+                    Add to Bag
+                </button>
+
+            </div>
+
+        </article>
+    `;
+
+}
+
+
+/* =========================================================
    LOAD PRODUCTS
-===================================================== */
+========================================================= */
 
-document.addEventListener(
-    "DOMContentLoaded",
-    function() {
+function loadZivaProducts() {
 
-        const menGrid =
-            document.getElementById(
-                "menProductGrid"
-            );
-
-        const trendingGrid =
-            document.getElementById(
-                "trendingProductGrid"
-            );
-
-        const saleGrid =
-            document.getElementById(
-                "saleProductGrid"
-            );
+    const womenGrid = document.getElementById("womenProducts");
+    const menGrid = document.getElementById("menProducts");
+    const trendingGrid = document.getElementById("trendingProducts");
+    const saleGrid = document.getElementById("saleProducts");
 
 
-        if (!menGrid) {
-            return;
-        }
+    const womenProducts = window.zivaProducts.filter(function(product) {
+        return product.category === "Women";
+    });
 
 
-        /* MEN */
-
-        window.zivaProducts.forEach(
-            function(product) {
-
-                menGrid.appendChild(
-                    createProductCard(product)
-                );
-
-            }
-        );
+    const menProducts = window.zivaProducts.filter(function(product) {
+        return product.category === "Men";
+    });
 
 
-        /* TRENDING */
+    if (womenGrid) {
 
-        if (trendingGrid) {
-
-            window.zivaProducts
-                .slice(0, 8)
-                .forEach(
-                    function(product) {
-
-                        trendingGrid.appendChild(
-                            createProductCard(product)
-                        );
-
-                    }
-                );
-
-        }
-
-
-        /* SALE */
-
-        if (saleGrid) {
-
-            window.zivaProducts
-                .filter(
-                    function(product) {
-
-                        return (
-                            product.oldPrice >
-                            product.price
-                        );
-
-                    }
-                )
-                .slice(0, 8)
-                .forEach(
-                    function(product) {
-
-                        saleGrid.appendChild(
-                            createProductCard(product)
-                        );
-
-                    }
-                );
-
-        }
-
-
-        /* UPDATE HEARTS */
-
-        updateWishlistButtons();
-
-        updateCartCount();
+        womenGrid.innerHTML = womenProducts
+            .map(createProductCard)
+            .join("");
 
     }
-);
 
 
-/* =====================================================
-   LOAD MAIN SCRIPT
-===================================================== */
+    if (menGrid) {
 
-</script><script src="script.js"></script></body>
+        menGrid.innerHTML = menProducts
+            .map(createProductCard)
+            .join("");
+
+    }
+
+
+    if (trendingGrid) {
+
+        trendingGrid.innerHTML = window.zivaProducts
+            .slice(0, 8)
+            .map(createProductCard)
+            .join("");
+
+    }
+
+
+    if (saleGrid) {
+
+        saleGrid.innerHTML = window.zivaProducts
+            .filter(function(product) {
+                return product.oldPrice > product.price;
+            })
+            .slice(0, 8)
+            .map(createProductCard)
+            .join("");
+
+    }
+
+}
+
+
+document.addEventListener("DOMContentLoaded", function() {
+
+    loadZivaProducts();
+
+});
+
+
+</script>
+
+
+<!-- =========================================================
+     MAIN ZIVA SCRIPT
+========================================================= -->
+
+<script src="script.js"></script>
+
+</body>
 </html>
